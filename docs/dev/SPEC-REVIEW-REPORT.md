@@ -2,7 +2,7 @@
 
 ## Current gate
 
-Technical state: **Ready** for the complete reviewed SPEC scope, subject to separate human acceptance. SPEC human review is **pending**; PLAN remains held. No implementation, test execution, or browser compatibility pass is claimed.
+Technical state: **Ready** for the complete reviewed SPEC scope, subject to separate human acceptance. SPEC human review is **accepted** at `1ae7fa32560ebc7db679be0bd3b353c23c9005bc`; dependent PLAN authoring is eligible. No implementation, test execution, or browser compatibility pass is claimed.
 
 Reviewed root: [SPEC](SPEC.md), SHA-256 `7dd0a43bc357005f4cb85fd0861664dc18e3fc91a20aa5b8e40bc7dfa08796f8`. There are no focused children. Governing source content identities follow; the accepted decomposition checkpoint is `e14b1d5c07fc830aa3963d6e87044ad9b1df0cd2`, and its pending navigation-only edit records the actual human acceptance and links SPEC without changing component ownership.
 
@@ -10,7 +10,7 @@ Reviewed root: [SPEC](SPEC.md), SHA-256 `7dd0a43bc357005f4cb85fd0861664dc18e3fc9
 - [ARCHITECTURE](ARCHITECTURE.md): SHA-256 `8f05b301c007640fa90235de13ecec3d4a2f891e65e9996e7eda48570b6538be`.
 - [DECOMPOSITION](DECOMPOSITION.md): SHA-256 `f8571d4c5a113e088fd2c5ba1f5e16ab01ffb1a6275e7b29f620ae17a67bc297`.
 
-The user accepted classic-core scope, PROJECT, ARCHITECTURE, DECOMPOSITION, and the proposed gameplay defaults before this specification. Numeric timing elaborations, exact geometry/spawn conventions, compatibility scope, and input/error contracts in SPEC remain subject to its human review. Technical Ready does not turn these proposed elaborations into accepted requirements.
+The user accepted classic-core scope, PROJECT, ARCHITECTURE, DECOMPOSITION, and the proposed gameplay defaults before this specification. Numeric timing elaborations, exact geometry/spawn conventions, compatibility scope, and input/error contracts in SPEC were included in that human acceptance. Technical readiness and the human decision are recorded separately.
 
 ## Initial review
 
@@ -38,3 +38,7 @@ Initial SPEC SHA-256: `af24e31b44e05daaab21376d4b3c7c709f4c88ec0c9a1cf993433386d
 Corrected F-001 and F-002 in SPEC. Revised SPEC SHA-256: `7dd0a43bc357005f4cb85fd0861664dc18e3fc91a20aa5b8e40bc7dfa08796f8`. Governing identities are unchanged from the current-gate list. Direct recheck confirms that startup consumes no draws before Start, ready preview is empty, valid Start consumes exactly two draws, rendering consumes none, and disabled lifecycle actions are harmless no-ops. Unknown actions retain B8's explicit-error contract. Letter-case clarification preserves the accepted controls.
 
 Rechecked dependency direction, state/rule ownership, selected scope, deterministic random/time inputs, lifecycle/resource cleanup, scoring/level ordering, and acceptance coverage. No confirmed unresolved design-conformance issues remain. Automated local-link, heading separation, tab/credential-marker, and whitespace checks are recorded with this checkpoint after execution. Runtime behavior and engine compatibility remain unverified. Human SPEC acceptance is the next gate; no PLAN or implementation work is authorized by this report's Ready state alone.
+
+## Human decision
+
+The user accepted the complete SPEC checkpoint presented at `1ae7fa32560ebc7db679be0bd3b353c23c9005bc`. SPEC content and the governing content identities above are unchanged; the current-gate update records the decision without changing the original review or Revision 1 evidence. PLAN and layout retain their separate human checkpoints.
