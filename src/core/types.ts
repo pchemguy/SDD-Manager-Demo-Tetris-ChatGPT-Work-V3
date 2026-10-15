@@ -15,6 +15,8 @@ export interface Game {
   active: Active | null;
   next: Piece | null;
   bag: Piece[];
+  hold: Piece | null;
+  holdUsed: boolean;
   status: "ready" | "running" | "paused" | "gameover";
   score: number;
   lines: number;
@@ -24,4 +26,5 @@ export interface Game {
   soft: boolean;
 }
 export type Draw = () => number;
-export type Move = "left" | "right" | "cw" | "ccw" | "down" | "hardDrop";
+export type Move =
+  "left" | "right" | "cw" | "ccw" | "down" | "hardDrop" | "hold";

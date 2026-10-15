@@ -29,10 +29,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Evidence: Separate code review from execution; repair blockers; deterministic/build/browser demonstration; findings and TODO; close review issue then milestone.
             Verified: Reviewed bag/timer/drop code and dependent lifecycle/input separately from tests. Added passing 100 ms floor and grounded-pause characterizations, formatted scoped additions, and inspected actual production screenshot. Fresh 55/55 unit tests, strict build, 48/48 development and 12/12 production browser scenarios passed across Chromium 153.0.8010.0/Firefox 157.0/WebKit 27.2, zero skips. M2.1 report retains findings, limits and TODO None.
     - [ ] M2.2 — Hold ghost and wall kicks
-        - [ ] T-031 — Implement once-per-piece Hold and presentation
+        - [x] T-031 — Implement once-per-piece Hold and presentation
             Scope: core state/transitions, controller/input/composition, Hold markup/views and fixtures.
             Depends on: T-030; M2.1 complete/closed.
             Evidence: F4/F7/F8; empty/swap draw counts, repeat rejection, blocked spawn, reset/pause and held-state/clock cleanup, actual named Hold display.
+            Verified: RED Unknown action observed before Hold implementation. 61/61 unit tests, strict build, actual C/uppercase C display/restart checks, composition rebuild and production C scenario passed. Empty Hold consumes preview plus one draw; occupied swaps are draw-free; both blocked paths, once-per-piece reset after lock, pause/restart, soft/held timing cleanup and accepted-only clock rebase verified. Hold Canvas/availability are required composition resources; test-only real-markup fixture aligned.
         - [ ] T-032 — Render exact state-free landing Ghost
             Scope: view/canvas.ts and focused core/view/browser tests.
             Depends on: T-031.

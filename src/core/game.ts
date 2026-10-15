@@ -39,6 +39,13 @@ function assertState(s: Game): void {
     (s.status === "ready" && s.bag.length !== 0)
   )
     throw Error("Invalid bag state");
+  if (
+    (s.hold !== null && !piece(s.hold)) ||
+    typeof s.holdUsed !== "boolean" ||
+    (s.holdUsed && s.hold === null) ||
+    (s.status === "ready" && (s.hold !== null || s.holdUsed))
+  )
+    throw Error("Invalid hold state");
   if (s.status === "running" || s.status === "paused") {
     const a = s.active;
     if (
@@ -73,6 +80,8 @@ export function ready(): Game {
     active: null,
     next: null,
     bag: [],
+    hold: null,
+    holdUsed: false,
     status: "ready",
     score: 0,
     lines: 0,
@@ -124,6 +133,7 @@ function spawnNext(s: Game, draw: Draw): Game {
     status: ok ? "running" : "gameover",
     fallMs: 0,
     lockMs: 0,
+    holdUsed: false,
   };
   assertState(result);
   return result;
@@ -144,9 +154,34 @@ function moved(s: Game, active: Active): Game {
 /** Apply movement without settling; only elapsed continuous contact may lock. */
 export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
   assertState(s);
-  if (!["left", "right", "cw", "ccw", "down", "hardDrop"].includes(action))
+  if (
+    !["left", "right", "cw", "ccw", "down", "hardDrop", "hold"].includes(action)
+  )
     throw Error("Unknown action");
   if (s.status !== "running" || !s.active) return s;
+  if (action === "hold") {
+    if (s.holdUsed) return s;
+    const outgoing = s.active.kind;
+    if (s.hold === null)
+      return {
+        ...spawnNext(s, draw),
+        hold: outgoing,
+        holdUsed: true,
+        soft: false,
+      };
+    const incoming = spawn(s.hold),
+      ok = legal(s.board, cells(incoming));
+    return {
+      ...s,
+      active: ok ? incoming : null,
+      status: ok ? "running" : "gameover",
+      hold: outgoing,
+      holdUsed: true,
+      soft: false,
+      fallMs: 0,
+      lockMs: 0,
+    };
+  }
   if (action === "hardDrop") return moved(s, landing(s.board, s.active));
   const active = { ...s.active };
   if (action === "left") active.x--;

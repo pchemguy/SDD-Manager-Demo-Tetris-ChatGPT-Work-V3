@@ -163,3 +163,17 @@ test("grounded pause preserves lock elapsed until explicit resume", () => {
   expect(c.snapshot.board.flat().filter(Boolean)).toHaveLength(4);
   expect(c.snapshot.lockMs).toBe(0);
 });
+test("accepted Hold clears held movement and soft drop; another Hold is inert", () => {
+  const c = new Controller(
+    () => 0.2,
+    () => {},
+  );
+  c.dispatch("start");
+  c.dispatch("left");
+  c.dispatch("down");
+  expect(c.dispatch("hold")).toBe(true);
+  expect(c.dispatch("hold")).toBe(false);
+  c.frame(150);
+  expect(c.snapshot.active).toMatchObject({ kind: "T", x: 3, y: 0 });
+  expect(c.snapshot.soft).toBe(false);
+});

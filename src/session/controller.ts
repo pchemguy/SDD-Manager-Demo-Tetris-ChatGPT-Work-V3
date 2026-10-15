@@ -35,6 +35,14 @@ export class Controller {
   /** Apply one command in order; Start and Restart have distinct lifecycle guards. */
   dispatch(command: Command) {
     if (this.disposed) return;
+    if (command === "hold") {
+      const next = act(this.state, "hold", this.draw);
+      if (next === this.state) return false;
+      this.clearHeld();
+      this.state = next;
+      this.render();
+      return true;
+    }
     if (command === "pause" || command === "blur") {
       if (
         this.state.status !== "running" &&
