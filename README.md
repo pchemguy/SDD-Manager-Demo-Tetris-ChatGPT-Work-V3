@@ -1,0 +1,5 @@
+# Browser Tetris
+
+A classic browser-based Tetris game under development. The [project brief](docs/dev/PROJECT.md) defines the accepted direction and selected gameplay scope. The accepted [architecture](docs/dev/ARCHITECTURE.md) defines system boundaries; the accepted [component decomposition](docs/dev/DECOMPOSITION.md) assigns logical responsibilities. The accepted [behavioral specification](docs/dev/SPEC.md) defines the game rules. The accepted [delivery plan](docs/dev/PLAN.md) defines increments; the accepted [repository layout](docs/dev/layout.md) assigns physical ownership. The accepted [task list](docs/dev/TASKS.md) defines the intended implementation work. Implementation has not started. Application code and setup commands are not yet available.
+
+Development uses [SDD Manager](SDD-MANAGER.md). See the [AI-assisted development disclosure](AI_DISCLOSURE.md).
