@@ -55,10 +55,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-034; M2.2 complete/closed.
             Evidence: F8 and retained B8; malformed dense/unique bag, held/use/lock fields, draw/overflow atomicity, missing Hold Canvas/markup, disposal/rebuild and safe fatal stop.
             Verified: 129/129 unit tests and strict build pass; 36/36 focused failure/lifecycle checks pass across all three engines. Added malformed bag/held/use/lock and ready residue cases; invalid Hold/settlement draws and score overflow preserve complete snapshots without selection; missing Hold markup/context, fatal Hold input/time freeze and occupied-Hold disposal/rebuild verified. Initial test mock lacked an explicit this type; corrected and strict build rerun successfully. No product defect or test-first claim for these boundary characterizations.
-        - [ ] T-036 — Verify complete modern browser and static acceptance
+        - [x] T-036 — Verify complete modern browser and static acceptance
             Scope: browser specs, deterministic fixtures, production selection and retained screenshots.
             Depends on: T-035.
             Evidence: F1–F8; actual C/Enter/Space/Z/X, lock delay, ghost/hold pixels, typing/repeats/focus, 800x600, production assets/exclusions; all three exact engine versions/counts/skips.
+            Verified: 129/129 unit tests, strict build, 75/75 development and 54/54 actual static-production browser checks pass across Chromium153.0.8010.0/Firefox157.0/WebKit27.2, zero skips. Added real Z/X/native typing/button checks and explicit C/Enter repeat defaults; expanded production to modern, Space, failures, usability and static exclusions. ACCEPTANCE.md maps F1-F8 and retained contracts to evidence and records exact facilities/limits.
         - [ ] T-037 — Document modern player rules and reproducible checks
             Scope: README.md, AGENTS.md and focused maintained guides.
             Depends on: T-036.

@@ -141,3 +141,62 @@ test("Space floor kick and Hold compose with the paused Ghost display", async ({
     fullPage: true,
   });
 });
+
+test("modern keys preserve native typing, reject repeats and retain Z/X rotation", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Math.random = () => 0;
+  });
+  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
+  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
+  await page.goto("/");
+  await page.getByRole("button", { name: "Start game" }).click();
+  const image = () =>
+    page
+      .locator("#board")
+      .evaluate((c) => (c as HTMLCanvasElement).toDataURL());
+  const original = await image();
+  await page.keyboard.press("z");
+  expect(await image()).not.toBe(original);
+  await page.keyboard.press("x");
+  expect(await image()).toBe(original);
+  const prevented = await page.locator("#board").evaluate((board) =>
+    ["c", "Enter"].map((key) => {
+      const event = new KeyboardEvent("keydown", {
+        key,
+        repeat: true,
+        bubbles: true,
+        cancelable: true,
+      });
+      board.dispatchEvent(event);
+      return event.defaultPrevented;
+    }),
+  );
+  expect(prevented).toEqual([true, true]);
+  expect(await image()).toBe(original);
+  await expect(page.locator("#hold-status")).toHaveText("Available");
+  await page.evaluate(() => {
+    const input = document.createElement("input");
+    input.id = "modern-typing";
+    document.body.append(input);
+  });
+  await page.locator("#modern-typing").fill("a");
+  await page.locator("#modern-typing").press("c");
+  await page.locator("#modern-typing").press("Enter");
+  await expect(page.locator("#modern-typing")).toHaveValue("ac");
+  expect(await image()).toBe(original);
+  await page.locator("#board").focus();
+  await page.keyboard.press("Shift+C");
+  await expect(page.locator("#hold-status")).toHaveText("Used");
+  await page
+    .getByRole("button", { name: "Restart", exact: true })
+    .press("Enter");
+  await expect(page.locator("#hold-status")).toHaveText("Available");
+  await expect(page.locator("#board")).toBeFocused();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+});
