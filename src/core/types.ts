@@ -19,6 +19,7 @@ export interface Game {
   lines: number;
   level: number;
   fallMs: number;
+  soft: boolean;
 }
 export type Draw = () => number;
 export type Move = "left" | "right" | "cw" | "ccw" | "down";

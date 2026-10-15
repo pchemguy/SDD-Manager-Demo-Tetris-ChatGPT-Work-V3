@@ -30,3 +30,22 @@ test("restart is fresh; duplicate Start is inert; views cannot mutate live board
   expect(c.snapshot.active?.x).toBe(4);
   expect(c.snapshot.active?.y).toBe(0);
 });
+test("soft drop immediate move, exact held interval and release reset", () => {
+  const c = new Controller(
+    () => 0.2,
+    () => {},
+  );
+  c.dispatch("start");
+  c.dispatch("down");
+  expect(c.snapshot.active?.y).toBe(1);
+  c.frame(49);
+  expect(c.snapshot.active?.y).toBe(1);
+  c.frame(1);
+  expect(c.snapshot.active?.y).toBe(2);
+  c.dispatch("downRelease");
+  c.frame(999);
+  expect(c.snapshot.active?.y).toBe(2);
+  c.frame(1);
+  expect(c.snapshot.active?.y).toBe(3);
+  expect(c.snapshot.score).toBe(0);
+});

@@ -14,6 +14,7 @@ export function ready(): Game {
     lines: 0,
     level: 1,
     fallMs: 0,
+    soft: false,
   };
 }
 /** Map one finite uniform draw to a piece. Invalid sources fail explicitly. */
@@ -71,8 +72,11 @@ export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
 export function advance(s: Game, ms: number, draw: Draw): Game {
   if (s.status !== "running") return s;
   let next = { ...s, fallMs: s.fallMs + ms };
-  while (next.fallMs >= gravity(next.level)) {
-    next = { ...next, fallMs: next.fallMs - gravity(next.level) };
+  while (next.fallMs >= (next.soft ? 50 : gravity(next.level))) {
+    next = {
+      ...next,
+      fallMs: next.fallMs - (next.soft ? 50 : gravity(next.level)),
+    };
     const moved = act(next, "down", draw);
     if (moved.board !== next.board) return moved;
     next = moved;

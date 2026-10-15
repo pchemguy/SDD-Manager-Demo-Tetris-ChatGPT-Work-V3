@@ -23,6 +23,7 @@ export function bindInput(
     const c: Record<string, Command> = {
       ArrowLeft: "left",
       ArrowRight: "right",
+      ArrowDown: "down",
       z: "ccw",
       x: "cw",
     };
@@ -31,6 +32,9 @@ export function bindInput(
       e.preventDefault();
       dispatch(cmd);
     }
+  });
+  listen(root, "keyup", (event) => {
+    if ((event as KeyboardEvent).key === "ArrowDown") dispatch("downRelease");
   });
   return () => listeners.splice(0).forEach((fn) => fn());
 }

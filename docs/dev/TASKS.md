@@ -65,10 +65,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-009; M1.1 complete/closed. Contracts: B4.
             Evidence: Verify all clear rewards, pre-clear multiplier across a level boundary, no-clear score, cumulative lines, exact level/interval formula and 100 ms floor; run core regressions.
             Verified: Three scoring/progression integration tests failed before implementation and now pass. Full suite 29 tests passed; rewards 0/100/300/500/800, pre-clear multiplier, 10-line level crossing, exact gravity curve/floor, atomic clear reward and updated interval verified. Typecheck passed; M1.1 is closed/read back before this milestone.
-        - [ ] T-011 — Implement soft-drop timing and reset semantics
+        - [x] T-011 — Implement soft-drop timing and reset semantics
             Scope: Core falling-time actions, controller Down-state handling, input mapping, and focused core/session tests.
             Depends on: T-010. Contracts: B3, B5 soft drop.
             Evidence: Verify immediate Down attempt, 50 ms falling interval, release/reset, failed soft-drop locking, pause-independent core accumulation contract, and no newly spawned-piece cascade.
+            Verified: Soft-drop scenario first failed at the 50 ms boundary; after implementation all 31 tests and typecheck passed. Verified immediate attempt, exact held timing, release timer reset/restored gravity, no drop reward, failed-attempt locking and no post-lock cascade. Input maps Down press/release without OS-repeat dependence.
         - [ ] T-012 — Implement deterministic horizontal key repetition
             Scope: Controller repeat bookkeeping and input adapter repeat filtering; tests/session and tests/platform/input.test.ts.
             Depends on: T-011. Contracts: B5 held direction and ordering.

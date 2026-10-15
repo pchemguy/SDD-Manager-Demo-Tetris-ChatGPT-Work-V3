@@ -26,6 +26,12 @@ export class Controller {
     } else if (command === "restart") {
       if (this.state.status === "ready") return;
       this.state = start(this.draw);
+    } else if (command === "down" || command === "downRelease") {
+      if (this.state.status !== "running") return;
+      this.state =
+        command === "down"
+          ? { ...act(this.state, "down", this.draw), soft: true, fallMs: 0 }
+          : { ...this.state, soft: false, fallMs: 0 };
     } else this.state = act(this.state, command, this.draw);
     this.render();
   }

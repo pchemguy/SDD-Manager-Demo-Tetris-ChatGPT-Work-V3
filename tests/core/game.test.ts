@@ -89,3 +89,14 @@ test("game over ignores further movement and time", () => {
   expect(act(s, "left", () => 0)).toBe(s);
   expect(advance(s, 1000, () => 0)).toBe(s);
 });
+
+test("held soft drop locks on failed attempt with no cascade or drop reward", () => {
+  const s = start(() => 0.2);
+  s.soft = true;
+  s.active!.y = 18;
+  const n = advance(s, 500, () => 0.2);
+  expect(n.board[19][4]).toBe("O");
+  expect(n.active?.y).toBe(0);
+  expect(n.fallMs).toBe(0);
+  expect(n.score).toBe(0);
+});
