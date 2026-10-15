@@ -2,9 +2,9 @@
 
 ## Current gate
 
-Technical state: **Ready for PLAN strategy review and subsequent layout preparation**, subject to PLAN human acceptance. This is not combined PLAN/layout readiness. Layout is not authored or assessed; TASKS generation is blocked pending accepted layout and combined QC. PLAN human review is pending.
+Technical state: **Ready for combined PLAN/layout scope**. The user accepted PLAN as presented at `a7a28cd0102ae4878a00d4e5ec12f4ac28b3dde8`; PLAN content is unchanged. Layout human review is pending. TASKS generation remains held until layout acceptance.
 
-Reviewed scope: complete PLAN root, no focused children. Governing inputs are accepted PROJECT, ARCHITECTURE, DECOMPOSITION, and SPEC. SPEC/design QC content identities were checked against actual files before planning; they match. SPEC human acceptance refers to checkpoint `1ae7fa32560ebc7db679be0bd3b353c23c9005bc`, with unchanged SPEC content.
+Reviewed scope: complete PLAN root and [layout](layout.md), no focused children. Layout content identity and the combined recheck are recorded in Revision 1. Governing inputs are accepted PROJECT, ARCHITECTURE, DECOMPOSITION, and SPEC. SPEC/design QC content identities were checked against actual files before planning; they match. SPEC human acceptance refers to checkpoint `1ae7fa32560ebc7db679be0bd3b353c23c9005bc`, with unchanged SPEC content.
 
 Exact reviewed/governing content identities:
 
@@ -43,3 +43,22 @@ No confirmed strategy/SPEC conformance issues remain. No correction/recheck cycl
 Local file links, heading separation, tabs/credential-marker scan, whitespace, current SPEC-QC hashes, PLAN source identities, B1–B8 coverage presence, and milestone identity coverage were checked for this checkpoint. Substantive review assessed contract coverage, scope exclusions, dependency and review ordering, incremental usefulness, risk controls, and report/tracking/integration exits.
 
 Human PLAN acceptance is the next gate. After it, author layout, complete combined PLAN/layout QC in an appended Revision section, and present the separate layout checkpoint. Do not derive TASKS or project hosted task objects from this strategy-only Ready result.
+
+## Revision 1: Combined PLAN/layout review
+
+The user accepted PLAN checkpoint `a7a28cd0102ae4878a00d4e5ec12f4ac28b3dde8`. PLAN and all governing document content identities from the initial review remain unchanged. Reviewed layout: [layout.md](layout.md), SHA-256 `7293c3a7fe12dfdfcd23259168dbd1f9420969252fdb65e6862a93aa96eb8072`. This section extends QC to physical ownership; the initial strategy assessment and its historical limits are retained above.
+
+| Layout coverage | Combined assessment |
+| --- | --- |
+| Core geometry, board, policy, types, and transitions | Distinct source ownership and matching deterministic checks preserve B1–B5 and core dependency direction. |
+| Session, ports, and browser adapters | Controller state/ordering remains separate from browser facilities; clock/input/random homes and tests support M1.1–M1.3. |
+| Canvas, HTML, page composition, and style | B6–B8 controls, presentation, viewport, failure, and resource-lifecycle checks have source and browser test homes. |
+| Fixtures and harnesses | Deterministic helpers remain outside production; harness-only evidence is distinguished from actual-application/production-build checks. No runtime global testing API is required. |
+| Tooling and generated outputs | Root npm/TypeScript/build/test configs and ignored outputs support reproducible installation, Node tests, three-engine browser checks, and static-build evidence in M1.4/M1.5. |
+| Documents, reports, and bundled capabilities | Canonical docs and owning reports remain discoverable; agent capabilities are preserved separately from game source and deployment output. |
+
+Direct review confirms both component-to-path and directory-to-owner navigation. There are no ambiguous physical owners, core/browser dependency cycles, or new gameplay requirements. The four delivery milestone count, dedicated final review milestone, and initial semantic-scope rationale remain valid; no task IDs or delivery-task counts are invented. Expected bounded edits can remain within a cohesive module and its tests, with deliberate cross-block work for integration.
+
+Checked official Vite, Vitest, and Playwright documentation for proposed tool roles/requirements and observed Node v24.19.0/npm 11.9.0. Package versions, native dependencies, browser installation/launch, production-build correctness, and platform compatibility are not validated at this document checkpoint. The npm environment emits an unknown `http-proxy` configuration warning; no environment mutation was performed. Selecting and verifying compatible locked tool versions remains the first implementation setup work.
+
+Local links, heading/list spacing, tabs/credential-marker scan, whitespace, source hashes, proposed ownership coverage, and absence of application scaffolding were checked. No confirmed combined PLAN/layout issue remains. No correction to PLAN or SPEC was necessary. Technical combined Ready does not supply human layout acceptance. After acceptance, sdd-tasks may derive and review TASKS; hosted task projection and implementation still require their later human/readiness/tracking gates.
