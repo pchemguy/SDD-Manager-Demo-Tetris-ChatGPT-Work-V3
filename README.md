@@ -18,6 +18,7 @@ Open the local URL printed by Vite and select **Start game**. Keep the playfield
 | Left / Right arrows | Move; hold to repeat. |
 | Down arrow | Soft drop; hold for faster falling. |
 | Z / X | Rotate counterclockwise / clockwise. |
+| Space | Rotate clockwise once per fresh press. |
 | P | Pause or resume. |
 | Start game | Begin from Ready. |
 | Pause / Resume | Suspend or continue the current game. |
@@ -44,7 +45,7 @@ npm run build
 npm run preview
 ```
 
-The development browser suite runs 14 scenarios on each of Chromium, Firefox and WebKit. Unit tests cover deterministic rules, timing, input, views and failure boundaries. Production tests use a separate suite against the built assets. In Windows CMD:
+The development browser suite runs 15 scenarios on each of Chromium, Firefox and WebKit. Unit tests cover deterministic rules, timing, input, views and failure boundaries. Production tests use a separate suite against the built assets. In Windows CMD:
 
 ```bat
 set SDD_PRODUCTION=1
@@ -60,9 +61,9 @@ In a POSIX shell, use `SDD_PRODUCTION=1 npm run test:browser`. Run `npm run buil
 
 | Engine | Tested version | Development / production scenarios |
 | --- | --- | --- |
-| Chromium | 153.0.8010.0 | 14 / 2 passed |
-| Firefox | 157.0 | 14 / 2 passed |
-| WebKit | 27.2 | 14 / 2 passed |
+| Chromium | 153.0.8010.0 | 15 / 3 passed |
+| Firefox | 157.0 | 15 / 3 passed |
+| WebKit | 27.2 | 15 / 3 passed |
 
 There were no skipped scenarios. See the [acceptance evidence and screenshots](docs/dev/reports/phases/P1/T-023-ACCEPTANCE.md) for actual provisioning and launch settings. These results do not certify every browser release or operating system. Headless blur/visibility tests model the event handlers; native desktop OS focus-switch delivery was not separately verified. WebKit intermittently omitted rapid injected mouse clicks before application listeners received them; the retained Pause/Resume button scenario uses native Enter activation, alongside mouse Start/Restart. This does not certify that injected pointer sequence.
 

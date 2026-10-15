@@ -1,5 +1,7 @@
 # PLAN review report
 
+Latest bounded control amendment: see Revision 3 below for the current SPEC identity and focused Ready assessment. Earlier preparation observations and acceptance remain historical evidence.
+
 ## Current gate
 
 Technical state: **Ready for combined PLAN/layout scope**. The user accepted PLAN as presented at `a7a28cd0102ae4878a00d4e5ec12f4ac28b3dde8`; PLAN content is unchanged. Layout human review is accepted at `7a61b2473a2de0e21005f81b74c79ae84b5c43a1`; TASKS derivation is eligible.
@@ -70,3 +72,11 @@ The user accepted the complete layout/tooling checkpoint at `7a61b2473a2de0e2100
 ## Revision 2: Tooling recovery allocation
 
 T-001 exposed invalid HTML returned by official browser downloads and unsupported archive chown. The layout adds one cohesive tooling utility, `scripts/provision-chromium.mjs`, and ignored `.cache/browser/` output. Revised layout SHA-256: `bc74c29dfa9bccaa6bd5ea735d644aebe56d35f7699f8feaa1e0efaf8a979249`. Rechecked component/path ownership, T-001 scope, delivery/acceptance and tracking gates: unchanged; no gameplay or task hierarchy amendment. Combined conformance remains Ready. The fallback verifies Chromium only; Firefox/WebKit remain required. Actual runtime observations are retained in T-001 evidence.
+
+## Revision 3: Spacebar rotation amendment
+
+Current amended SPEC SHA-256: `15118b886ae68d5c6297616f897ed5da4ff49872feff7bd83f52a57c5af7f7d3`. Reviewed affected B5–B7 coverage in M1.1 input wiring, M1.2 controls and M1.3 usability, and layout input/view owners. Existing delivery boundaries and all required exits cover the alternate mapping; no phase, milestone, dependency or layout change is needed.
+
+Scoped technical gate: **Ready** for this bounded steering amendment; no unresolved conformance finding. The human command authorizes this direct amendment; initial preparation acceptance and earlier evidence remain historical. Governing PROJECT, ARCHITECTURE, DECOMPOSITION, PLAN and layout contents are unchanged. This recheck establishes document conformance, not a runtime pass. Runtime acceptance and reassessed completion evidence belong to the active [revision report](reports/phases/P1/revisions/001_8131306-spacebar-rotation/REVISION-REPORT.md).
+
+Reviewed PLAN SHA-256: `ed8499f98cf503a422c663e8f0f919261fb7781f876a1587644c80c5a35841fd`. This bounded recheck preserves the existing phase/milestone/task decomposition assessment; counts and unaffected findings are unchanged.
