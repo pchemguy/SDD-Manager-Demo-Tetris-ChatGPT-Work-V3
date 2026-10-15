@@ -96,10 +96,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-015; M1.2 complete/closed. Contracts: B1, B8.
             Evidence: Verify malformed state, unknown actions, invalid/nonfinite/out-of-range draws, negative/nonfinite elapsed time, and expected placement rejection; errors leave prior snapshots unchanged and do not commit partial board/score results.
             Verified: Two new core validation/overflow scenarios failed before implementation. All 38 unit tests, strict build and four Chromium regressions pass after input/state/output guards. Unknown actions, malformed/nonintegral state, invalid times/draws, and unsafe scoring fail before committing results; invalid draw after tentative lock preserves the original board/score. Corrected blocked-spawn fixture to retain a legal active piece under the explicit invariant.
-        - [ ] T-017 — Complete scheduler and listener resource safety
+        - [x] T-017 — Complete scheduler and listener resource safety
             Scope: Controller disposal, clock/input adapter cleanup and focused tests/platform/session cases.
             Depends on: T-016. Contracts: B5–B6, B8 resources.
             Evidence: Verify repeated start/restart/resume do not duplicate frame chains/listeners, teardown cancels owned resources, disposed notifications are inert, and rebuilding starts one coherent session.
+            Verified: Disposed-session behavior first failed against a no-op disposal method; all 39 unit tests, strict build and five Chromium scenarios pass. Controller notifications become inert, owned listeners/frame callbacks are removed/cancelled, disposal is idempotent, and a separate real-markup harness verifies fresh mount after teardown. No production global debug API was added.
         - [ ] T-018 — Implement observable fatal-error handling
             Scope: Composition and controller error boundary plus DOM fallback; tests/browser/failures.spec.ts and controlled fixtures.
             Depends on: T-017. Contracts: B8.

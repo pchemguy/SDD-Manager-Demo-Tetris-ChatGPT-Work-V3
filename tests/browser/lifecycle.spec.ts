@@ -47,3 +47,26 @@ test("stored next preview, Pause/Resume button and focus are rendered", async ({
   await expect(page.locator("#lines")).toHaveText("0");
   await expect(page.locator("#level")).toHaveText("1");
 });
+test("composition disposal removes listeners and permits one fresh rebuild", async ({
+  page,
+}) => {
+  await page.goto("/tests/fixtures/application.html");
+  const result = await page.evaluate(async () => {
+    const path = "/src/main.ts";
+    const { mount } = await import(path);
+    const dispose = mount(document);
+    (document.getElementById("start") as HTMLButtonElement).click();
+    dispose();
+    dispose();
+    const status = document.getElementById("status")!.textContent;
+    (document.getElementById("restart") as HTMLButtonElement).click();
+    const inert = document.getElementById("status")!.textContent === status;
+    const second = mount(document);
+    const ready = document.getElementById("status")!.textContent;
+    (document.getElementById("start") as HTMLButtonElement).click();
+    const running = document.getElementById("status")!.textContent;
+    second();
+    return { inert, ready, running };
+  });
+  expect(result).toEqual({ inert: true, ready: "Ready", running: "Running" });
+});

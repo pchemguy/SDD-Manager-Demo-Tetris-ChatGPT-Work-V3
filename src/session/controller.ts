@@ -3,6 +3,12 @@ import { ready, start, act, advance } from "../core/game";
 import type { Draw } from "../core/types";
 import type { Command, View } from "./ports";
 export class Controller {
+  private disposed = false;
+  /** Make all later notifications inert and clear transient held-input resources. */
+  dispose() {
+    this.disposed = true;
+    this.clearHeld();
+  }
   private state = ready();
   private held: ("left" | "right")[] = [];
   private repeatMs = 0;
@@ -28,6 +34,7 @@ export class Controller {
   }
   /** Apply one command in order; Start and Restart have distinct lifecycle guards. */
   dispatch(command: Command) {
+    if (this.disposed) return;
     if (command === "pause" || command === "blur") {
       if (
         this.state.status !== "running" &&
@@ -79,6 +86,7 @@ export class Controller {
   }
   /** Deliver logical elapsed milliseconds; non-running states remain inert. */
   frame(ms: number) {
+    if (this.disposed) return;
     if (!Number.isFinite(ms) || ms < 0) throw Error("Invalid elapsed time");
     if (this.state.status === "running" && this.held.length) {
       this.repeatMs += ms;

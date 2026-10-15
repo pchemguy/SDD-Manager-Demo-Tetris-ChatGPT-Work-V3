@@ -108,3 +108,16 @@ test("pause/focus are idempotent, preserve fall time and clear held state", () =
     soft: false,
   });
 });
+test("disposed session ignores notifications without drawing or changing state", () => {
+  const view = vi.fn();
+  const c = new Controller(() => 0.2, view);
+  c.dispatch("start");
+  const before = c.snapshot;
+  c.dispose();
+  const count = view.mock.calls.length;
+  c.dispatch("restart");
+  c.dispatch("left");
+  c.frame(1000);
+  expect(c.snapshot).toEqual(before);
+  expect(view).toHaveBeenCalledTimes(count);
+});
