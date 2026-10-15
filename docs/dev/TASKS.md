@@ -29,10 +29,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-002. Contracts: B1, B3.
             Evidence: Focused board tests verify edges, occupied-cell overlap, padding, atomic settlement, simultaneous clears, empty-row insertion, and retained-row order.
             Verified: Four board tests first failed against behavior stubs; all now pass, covering legal cells, integer/boundary/overlap rejection, copy-on-settlement, atomic failure, simultaneous two/four-row clears and preserved order. Full suite: 12 passing tests; typecheck passed.
-        - [ ] T-004 — Implement initial game state and piece succession
+        - [x] T-004 — Implement initial game state and piece succession
             Scope: src/core/game.ts, core types, src/platform/random.ts, and deterministic tests/core/game.test.ts.
             Depends on: T-002, T-003. Contracts: B2–B3, B6 ready/start/restart subset.
             Evidence: Verify ready state consumes no draws, Start consumes two, exact mapping/spawn/preview promotion, repeated identities, fresh restart, and blocked spawn; no browser globals in core.
+            Verified: Four lifecycle/draw tests failed against missing behavior and now pass: no ready draws, exactly two Start draws, preview promotion/replenishment, repeats, exact draw boundaries, blocked spawn without overwrite, and fresh state. Full suite 16 passing; typecheck passed.
         - [ ] T-005 — Implement movement gravity and lock-clear transitions
             Scope: src/core/game.ts and focused game sequence tests; compose existing geometry/board helpers.
             Depends on: T-004. Contracts: B1–B3, B5 normal-falling subset.
