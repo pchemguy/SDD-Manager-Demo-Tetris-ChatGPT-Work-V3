@@ -10,11 +10,11 @@ function assertState(s: Game): void {
     !s ||
     !Array.isArray(s.board) ||
     s.board.length !== 20 ||
-    s.board.some(
+    Array.from(s.board).some(
       (r) =>
         !Array.isArray(r) ||
         r.length !== 10 ||
-        r.some((v) => v !== null && !piece(v)),
+        Array.from(r).some((v) => v !== null && !piece(v)),
     )
   )
     throw Error("Invalid board state");

@@ -130,3 +130,14 @@ test("invalid draws and score overflow are atomic", () => {
   expect(() => act(full, "down", () => 0)).toThrow();
   expect(full).toEqual(original);
 });
+
+test("sparse board rows and cells reject atomically", () => {
+  for (const hole of ["row", "cell"]) {
+    const s = start(() => 0.2);
+    if (hole === "row") delete s.board[19];
+    else delete s.board[19][0];
+    const before = structuredClone(s);
+    expect(() => act(s, "left", () => 0)).toThrow("Invalid board state");
+    expect(s).toEqual(before);
+  }
+});

@@ -64,7 +64,7 @@ In a POSIX shell, use `SDD_PRODUCTION=1 npm run test:browser`. Run `npm run buil
 | Firefox | 157.0 | 14 / 2 passed |
 | WebKit | 27.2 | 14 / 2 passed |
 
-There were no skipped scenarios. See the [acceptance evidence and screenshots](docs/dev/reports/phases/P1/T-023-ACCEPTANCE.md) for actual provisioning and launch settings. These results do not certify every browser release or operating system. Headless blur/visibility tests model the event handlers; native desktop OS focus-switch delivery was not separately verified.
+There were no skipped scenarios. See the [acceptance evidence and screenshots](docs/dev/reports/phases/P1/T-023-ACCEPTANCE.md) for actual provisioning and launch settings. These results do not certify every browser release or operating system. Headless blur/visibility tests model the event handlers; native desktop OS focus-switch delivery was not separately verified. WebKit intermittently omitted rapid injected mouse clicks before application listeners received them; the retained Pause/Resume button scenario uses native Enter activation, alongside mouse Start/Restart. This does not certify that injected pointer sequence.
 
 In the development container, official Chromium archives were unavailable. The optional locked Linux x64 fallback is:
 

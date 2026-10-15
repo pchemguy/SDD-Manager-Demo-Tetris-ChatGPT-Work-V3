@@ -121,7 +121,7 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-016–T-020; constituent delivery issues completed. Contracts: PLAN M1.3 exit.
             Evidence: Review implementation separately from tests, assess B7–B8 and remaining B5–B6 acceptance, inspect viewport/visual evidence, repair blockers, and publish features/findings/limits/TODO report before issue/milestone closure.
             Verified: Reviewed all application state/input/resource/failure/view boundaries and M1.3 acceptance. Finding M13-F001 reproduced an unowned Down release resetting 100 ms to 0; repaired with held-soft guard and rechecked. All 40 unit tests, strict build and 14 Chromium scenarios pass; desktop screenshot inspected/retained. No blocking M1.3 findings or TODOs. Firefox/WebKit and final delivery evidence remain mandatory M1.4 work.
-    - [ ] M1.4 — Reproducible delivery and acceptance evidence
+    - [x] M1.4 — Reproducible delivery and acceptance evidence
         - [x] T-022 — Verify clean production build and distributable contents
             Scope: Build/config/lockfile and tests/browser/static-build.spec.ts; focused fixes only.
             Depends on: T-021; M1.3 complete/closed. Contracts: B8; PLAN M1.4.
@@ -138,10 +138,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-023. Contracts: B6–B8; PLAN delivery/documentation exits.
             Evidence: From actual validated setup, document requirements, npm ci, browser installation, dev/typecheck/test/browser/build/preview, controls, rules, static serving, non-goals and observed limits. Verify links and Windows CMD-compatible script assumptions; claim only tested environments.
             Verified: README and AGENTS now document actual controls/rules, Node/npm setup, dev/typecheck/unit/browser/build/preview, static-only deployment, CMD syntax and observed engine/container limits. Fresh npm ci, typecheck, optional packaged-browser provisioning, strict build and 2/2 production Chromium checks passed; all maintained local links resolve. npm scripts inspected for CMD-compatible commands; Windows runtime remains untested.
-        - [ ] T-025 — Review test and report reproducible delivery
+        - [x] T-025 — Review test and report reproducible delivery
             Scope: Whole delivery result with M1.4 changes; docs/dev/reports/phases/P1/M1.4.md.
             Depends on: T-022–T-024; constituent delivery issues completed. Contracts: PLAN M1.4 exit.
             Evidence: Review code/config/docs, rerun required affected/full regressions and build/engine checks, repair blockers, and publish features, reproducibility, acceptance and compatibility evidence, findings and TODOs; close issue and native milestone after verified completion.
+            Verified: Reviewed coherent delivery code/config/docs separately from checks. M14-F001 sparse board validation reproduced RED, repaired and rechecked; M14-F002 WebKit injected pointer loss investigated and native Enter button activation retained (10/10 repeats). Fresh 41/41 unit, strict build, 42/42 development and 6/6 production engine scenarios passed, zero skips. M1.4 report records acceptance, historical T-022 exception and limits; TODO None.
     - [ ] M1.5 — Phase review and final report
         - [ ] T-026 — Review verify and report complete Phase P1
             Scope: Complete P1 implementation and all milestone reports; docs/dev/reports/phases/P1/PHASE-REPORT.md and docs/dev/reports/IMPLEMENTATION-REPORT.md.

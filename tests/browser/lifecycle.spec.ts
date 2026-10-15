@@ -24,6 +24,7 @@ test("stored next preview, Pause/Resume button and focus are rendered", async ({
   await page.addInitScript(() => {
     Math.random = () => 0.2;
   });
+  // Native keyboard button activation avoids intermittent WebKit pointer loss.
   await page.goto("/");
   await page.getByRole("button", { name: "Start game" }).click();
   await expect(page.locator("#board")).toBeFocused();
@@ -37,9 +38,9 @@ test("stored next preview, Pause/Resume button and focus are rendered", async ({
         ),
       ),
   ).toEqual([241, 206, 103, 255]);
-  await page.getByRole("button", { name: "Pause", exact: true }).click();
+  await page.getByRole("button", { name: "Pause", exact: true }).press("Enter");
   await expect(page.locator("#status")).toHaveText("Paused");
-  await page.getByRole("button", { name: "Resume", exact: true }).click();
+  await page.getByRole("button", { name: "Resume", exact: true }).press("Enter");
   await expect(page.locator("#status")).toHaveText("Running");
   await expect(page.locator("#board")).toBeFocused();
   await page.getByRole("button", { name: "Restart", exact: true }).click();
