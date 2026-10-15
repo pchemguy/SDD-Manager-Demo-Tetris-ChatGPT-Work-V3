@@ -90,7 +90,7 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-010–T-014; constituent delivery issues completed. Contracts: PLAN M1.2 exit.
             Evidence: Separate code review and deterministic/browser checks; inspect complete controls/scoring/preview demo and timing observations, repair blockers, report capabilities, evidence, limits and TODOs; publish and reconcile issue/milestone closure.
             Verified: M1.2 code review assessed score/clear order, core versus scheduling state, repeat ordering, pause/focus lifecycle, draw-free views and actual input. All 36 unit tests, strict static build and four Chromium scenarios passed; updated screenshot inspected/retained. No blocking milestone findings or optional TODOs; modeled focus evidence and missing final engines are explicit. Updated current README/agent guidance.
-    - [ ] M1.3 — Robust and usable browser experience
+    - [x] M1.3 — Robust and usable browser experience
         - [x] T-016 — Enforce atomic core validation and error contracts
             Scope: Core state/action/time/draw validation in src/core/game.ts and focused invalid-input tests.
             Depends on: T-015; M1.2 complete/closed. Contracts: B1, B8.
@@ -116,10 +116,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-019. Contracts: B5–B8 cross-component acceptance.
             Evidence: Exercise real app focus, held input across pause/restart, blur/visibility sequences, fatal-error inertness, disposal/rebuild and render/state consistency. Distinguish injected-harness checks from actual-app checks; preserve core regressions.
             Verified: Added cross-component regression scenarios against already implemented behavior; they passed on first execution, with no fabricated RED or production edits. All 39 unit tests, strict build and 14 Chromium scenarios pass. Verified frozen paused canvas, cleared held input across pause/resume/restart, idempotent modeled visibility notifications, fatal inertness and controlled diagnostics that do not echo injected payloads.
-        - [ ] T-021 — Review test and report robustness and usability
+        - [x] T-021 — Review test and report robustness and usability
             Scope: All M1.3 changes and affected dependencies; docs/dev/reports/phases/P1/M1.3.md.
             Depends on: T-016–T-020; constituent delivery issues completed. Contracts: PLAN M1.3 exit.
             Evidence: Review implementation separately from tests, assess B7–B8 and remaining B5–B6 acceptance, inspect viewport/visual evidence, repair blockers, and publish features/findings/limits/TODO report before issue/milestone closure.
+            Verified: Reviewed all application state/input/resource/failure/view boundaries and M1.3 acceptance. Finding M13-F001 reproduced an unowned Down release resetting 100 ms to 0; repaired with held-soft guard and rechecked. All 40 unit tests, strict build and 14 Chromium scenarios pass; desktop screenshot inspected/retained. No blocking M1.3 findings or TODOs. Firefox/WebKit and final delivery evidence remain mandatory M1.4 work.
     - [ ] M1.4 — Reproducible delivery and acceptance evidence
         - [ ] T-022 — Verify clean production build and distributable contents
             Scope: Build/config/lockfile and tests/browser/static-build.spec.ts; focused fixes only.

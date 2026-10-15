@@ -121,3 +121,13 @@ test("disposed session ignores notifications without drawing or changing state",
   expect(c.snapshot).toEqual(before);
   expect(view).toHaveBeenCalledTimes(count);
 });
+test("unowned Down release does not reset normal gravity timing", () => {
+  const c = new Controller(
+    () => 0.2,
+    () => {},
+  );
+  c.dispatch("start");
+  c.frame(100);
+  c.dispatch("downRelease");
+  expect(c.snapshot.fallMs).toBe(100);
+});

@@ -76,7 +76,11 @@ export class Controller {
       this.clearHeld();
       this.state = start(this.draw);
     } else if (command === "down" || command === "downRelease") {
-      if (this.state.status !== "running") return;
+      if (
+        this.state.status !== "running" ||
+        (command === "downRelease" && !this.state.soft)
+      )
+        return;
       this.state =
         command === "down"
           ? { ...act(this.state, "down", this.draw), soft: true, fallMs: 0 }
