@@ -2,7 +2,7 @@
 
 ## Current gate
 
-Technical state: **Ready for combined PLAN/layout scope**. The user accepted PLAN as presented at `a7a28cd0102ae4878a00d4e5ec12f4ac28b3dde8`; PLAN content is unchanged. Layout human review is pending. TASKS generation remains held until layout acceptance.
+Technical state: **Ready for combined PLAN/layout scope**. The user accepted PLAN as presented at `a7a28cd0102ae4878a00d4e5ec12f4ac28b3dde8`; PLAN content is unchanged. Layout human review is accepted at `7a61b2473a2de0e21005f81b74c79ae84b5c43a1`; TASKS derivation is eligible.
 
 Reviewed scope: complete PLAN root and [layout](layout.md), no focused children. Layout content identity and the combined recheck are recorded in Revision 1. Governing inputs are accepted PROJECT, ARCHITECTURE, DECOMPOSITION, and SPEC. SPEC/design QC content identities were checked against actual files before planning; they match. SPEC human acceptance refers to checkpoint `1ae7fa32560ebc7db679be0bd3b353c23c9005bc`, with unchanged SPEC content.
 
@@ -62,3 +62,7 @@ Direct review confirms both component-to-path and directory-to-owner navigation.
 Checked official Vite, Vitest, and Playwright documentation for proposed tool roles/requirements and observed Node v24.19.0/npm 11.9.0. Package versions, native dependencies, browser installation/launch, production-build correctness, and platform compatibility are not validated at this document checkpoint. The npm environment emits an unknown `http-proxy` configuration warning; no environment mutation was performed. Selecting and verifying compatible locked tool versions remains the first implementation setup work.
 
 Local links, heading/list spacing, tabs/credential-marker scan, whitespace, source hashes, proposed ownership coverage, and absence of application scaffolding were checked. No confirmed combined PLAN/layout issue remains. No correction to PLAN or SPEC was necessary. Technical combined Ready does not supply human layout acceptance. After acceptance, sdd-tasks may derive and review TASKS; hosted task projection and implementation still require their later human/readiness/tracking gates.
+
+## Human layout decision
+
+The user accepted the complete layout/tooling checkpoint at `7a61b2473a2de0e21005f81b74c79ae84b5c43a1`. Layout, PLAN, SPEC, and governing design content identities remain unchanged. This acceptance clears task derivation, not unseen TASKS, hosted projection, or implementation execution.
