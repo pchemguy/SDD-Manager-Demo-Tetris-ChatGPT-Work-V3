@@ -19,7 +19,7 @@ export function bindInput(
     });
   listen(root, "keydown", (event) => {
     const e = event as KeyboardEvent;
-    if (e.target !== board || e.repeat) return;
+    if (e.target !== board) return;
     const c: Record<string, Command> = {
       ArrowLeft: "left",
       ArrowRight: "right",
@@ -31,6 +31,7 @@ export function bindInput(
     const cmd = c[e.key] ?? c[e.key.toLowerCase()];
     if (cmd) {
       e.preventDefault();
+      if (e.repeat) return;
       dispatch(cmd);
       if (cmd === "pause") reset();
     }

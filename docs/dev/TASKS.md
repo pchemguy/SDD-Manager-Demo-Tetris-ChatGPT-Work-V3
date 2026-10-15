@@ -106,10 +106,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-017. Contracts: B8.
             Evidence: Verify missing required markup, unavailable Canvas 2D, transition/render failures, stopped scheduling/input, concise reload guidance, safe console diagnostics, and fresh reload state.
             Verified: All four new fault-injection browser scenarios failed before the fatal boundary and pass afterward. Full checks: 39 unit tests, strict static build, nine Chromium scenarios. Missing markup/error region, unavailable Canvas, runtime invalid draw and rendering failure now stop scheduling/listeners/input, show textual Error/reload guidance, and reload fresh. Diagnostics use controlled text without exception payloads, credentials or unrelated content.
-        - [ ] T-019 — Complete accessible desktop presentation and resize behavior
+        - [x] T-019 — Complete accessible desktop presentation and resize behavior
             Scope: index.html, views and src/style.css; tests/browser/usability.spec.ts.
             Depends on: T-018. Contracts: B6–B7.
             Evidence: Inspect 800 × 600 viewport with scrolling, all cells/preview/status, native named buttons, Tab/focus styles, text lifecycle/error messages, canvas naming/fallback, case-insensitive controls, editable-field exclusion, and resize without gameplay changes.
+            Verified: New browser repeat-default assertion failed and identified page-scroll leakage; fixed prevention while preserving OS-repeat suppression. All 39 unit tests, strict build and 11 Chromium scenarios pass. Verified editable-field independence, case-insensitive controls, 800x600 no horizontal overflow, accessible canvas name, native button focus outline, resize preserving canvas state and textual paused/error state. Desktop screenshot inspected; cell-by-cell screen-reader gameplay remains excluded.
         - [ ] T-020 — Integrate lifecycle and failure regression scenarios
             Scope: tests/browser, tests/fixtures, and only necessary narrow fixes in their owning modules.
             Depends on: T-019. Contracts: B5–B8 cross-component acceptance.

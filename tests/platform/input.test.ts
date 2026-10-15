@@ -24,7 +24,7 @@ test("OS repeats are ignored, releases translate and cleanup removes listeners",
     root.dispatchEvent(e);
     return e;
   };
-  send("keydown", "ArrowLeft", true);
+  expect(send("keydown", "ArrowLeft", true).defaultPrevented).toBe(true);
   expect(dispatch).not.toHaveBeenCalled();
   expect(send("keydown", "ArrowLeft").defaultPrevented).toBe(true);
   send("keyup", "ArrowLeft");
