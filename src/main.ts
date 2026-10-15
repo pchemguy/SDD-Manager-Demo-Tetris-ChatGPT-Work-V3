@@ -1,2 +1,3 @@
-/** Temporary tooling entry; gameplay is derived in subsequent P1 tasks. */
-export {};
+/** Compose browser adapters, core coordination, and snapshot-only views. */
+import './style.css';import {Controller} from './session/controller';import {canvasView} from './view/canvas';import {domView} from './view/dom';import {randomDraw} from './platform/random';import {clock} from './platform/clock';import {bindInput} from './platform/input';
+const paint=canvasView(document.getElementById('board') as HTMLCanvasElement),text=domView(document);const session=new Controller(randomDraw,s=>{paint(s);text(s);});const timer=clock(ms=>session.frame(ms));const unbind=bindInput(document,c=>session.dispatch(c),()=>timer.reset());timer.start();window.addEventListener('pagehide',()=>{timer.stop();unbind();},{once:true});

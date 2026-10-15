@@ -1,0 +1,2 @@
+/** One animation-frame chain with monotonic baseline and bounded elapsed delivery. */
+export function clock(deliver:(ms:number)=>void){let handle=0,last:number|null=null,live=false;const frame=(now:number)=>{if(!live)return;const ms=last===null?0:Math.max(0,Math.min(250,now-last));last=now;deliver(ms);if(live)handle=requestAnimationFrame(frame);};return {start(){if(live)return;live=true;last=null;handle=requestAnimationFrame(frame);},reset(){last=null;},stop(){live=false;cancelAnimationFrame(handle);last=null;}};}

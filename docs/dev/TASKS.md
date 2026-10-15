@@ -49,10 +49,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-006. Contracts: B7 and B6 M1.1 subset.
             Evidence: Representative state/draw-command checks show all cells, legal active piece, ready/game-over text, and native Start/Restart controls; input wiring remains the next task. Preview/scoring polish remains M1.2.
             Verified: Two renderer tests failed before implementation; all 26 unit tests now pass. Drawing checks verify 200 grid cells, literal active/settled positions, no snapshot mutation or extra draws, and explicit missing Canvas failure. Typecheck passed. HTML/CSS provide first-playable controls/status; native input and real visual inspection remain T-008.
-        - [ ] T-008 — Wire and demonstrate the playable browser loop
+        - [x] T-008 — Wire and demonstrate the playable browser loop
             Scope: src/main.ts, src/platform/input.ts, src/platform/clock.ts, and tests/browser/playable.spec.ts; integrate existing controller/views.
             Depends on: T-007. Contracts: B1–B3; B5–B7 M1.1 subset.
             Evidence: Run Chromium browser checks and production-build smoke: real fresh-press keyboard movement/rotation, gravity, locking, clear, succession, blocked spawn, and restart. Use deterministic test fixtures for rare states without a production global setter. Inspect a play screenshot; record demo observations and incomplete SPEC scope.
+            Verified: Real browser test first failed because Start left status Ready; wiring fixed it. 26 unit tests, typechecked static build, two Chromium integration tests, and one production-build browser smoke passed. Actual native keyboard movement/CW/CCW, Canvas pixels, timed falling and restart are verified; separate deterministic module harness covers clear/succession/blocked spawn. Screenshot inspected; missing arrow glyph labels replaced with words. Added vite/client CSS declarations after a typecheck failure. Remaining M1.2 functionality is not claimed.
         - [ ] T-009 — Review test and report the first playable milestone
             Scope: All M1.1 result and dependent code; docs/dev/reports/phases/P1/M1.1.md.
             Depends on: T-001–T-008; constituent delivery issues completed. Contracts: PLAN M1.1 exit.
