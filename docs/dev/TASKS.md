@@ -133,10 +133,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-022. Contracts: B1–B8 acceptance table.
             Evidence: Install/launch required Chromium, Firefox and WebKit; run npm test, typecheck/build, and npm run test:browser across all three. Record exact versions, scenario counts/skips, visual/viewport observations, and contract coverage. Missing required evidence blocks completion; no silent engine substitution.
             Verified: Fresh 40/40 unit tests and strict build passed; Chromium 153.0.8010.0, Firefox 157.0 and WebKit 27.2 each passed 14 development plus 2 production scenarios, zero skips. Per-engine screenshots inspected at 800x600. Provisioning, exact launch limitations and B1-B8 coverage retained in reports/phases/P1/T-023-ACCEPTANCE.md.
-        - [ ] T-024 — Finalize reproducible player and developer instructions
+        - [x] T-024 — Finalize reproducible player and developer instructions
             Scope: README.md, AGENTS.md, and focused docs only where necessary; validate documented commands.
             Depends on: T-023. Contracts: B6–B8; PLAN delivery/documentation exits.
             Evidence: From actual validated setup, document requirements, npm ci, browser installation, dev/typecheck/test/browser/build/preview, controls, rules, static serving, non-goals and observed limits. Verify links and Windows CMD-compatible script assumptions; claim only tested environments.
+            Verified: README and AGENTS now document actual controls/rules, Node/npm setup, dev/typecheck/unit/browser/build/preview, static-only deployment, CMD syntax and observed engine/container limits. Fresh npm ci, typecheck, optional packaged-browser provisioning, strict build and 2/2 production Chromium checks passed; all maintained local links resolve. npm scripts inspected for CMD-compatible commands; Windows runtime remains untested.
         - [ ] T-025 — Review test and report reproducible delivery
             Scope: Whole delivery result with M1.4 changes; docs/dev/reports/phases/P1/M1.4.md.
             Depends on: T-022–T-024; constituent delivery issues completed. Contracts: PLAN M1.4 exit.
