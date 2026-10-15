@@ -106,3 +106,38 @@ test("Ghost recomputes after Hold and is replaced by active pixels on drop", asy
   await page.keyboard.press("Enter");
   expect(await pixel()).toEqual([241, 206, 103, 255]);
 });
+
+test("Space floor kick and Hold compose with the paused Ghost display", async ({
+  page,
+}, info) => {
+  await page.addInitScript(() => {
+    Math.random = () => 0;
+  });
+  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
+  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
+  await page.goto("/");
+  await page.getByRole("button", { name: "Start game" }).click();
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Space");
+  const pixel = (x: number, y: number) =>
+    page
+      .locator("#board")
+      .evaluate(
+        (c, [x, y]) =>
+          Array.from(
+            (c as HTMLCanvasElement).getContext("2d")!.getImageData(x, y, 1, 1)
+              .data,
+          ),
+        [x, y],
+      );
+  expect(await pixel(156, 396)).toEqual([99, 217, 223, 255]);
+  expect(await pixel(84, 468)).toEqual([9, 25, 29, 255]);
+  await page.keyboard.press("c");
+  await expect(page.locator("#hold-status")).toHaveText("Used");
+  await page.keyboard.press("p");
+  await expect(page.locator("#status")).toHaveText("Paused");
+  await page.screenshot({
+    path: info.outputPath("modern-demo.png"),
+    fullPage: true,
+  });
+});

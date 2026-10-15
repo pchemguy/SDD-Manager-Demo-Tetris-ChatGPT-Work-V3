@@ -28,7 +28,7 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-027–T-029.
             Evidence: Separate code review from execution; repair blockers; deterministic/build/browser demonstration; findings and TODO; close review issue then milestone.
             Verified: Reviewed bag/timer/drop code and dependent lifecycle/input separately from tests. Added passing 100 ms floor and grounded-pause characterizations, formatted scoped additions, and inspected actual production screenshot. Fresh 55/55 unit tests, strict build, 48/48 development and 12/12 production browser scenarios passed across Chromium 153.0.8010.0/Firefox 157.0/WebKit 27.2, zero skips. M2.1 report retains findings, limits and TODO None.
-    - [ ] M2.2 — Hold ghost and wall kicks
+    - [x] M2.2 — Hold ghost and wall kicks
         - [x] T-031 — Implement once-per-piece Hold and presentation
             Scope: core state/transitions, controller/input/composition, Hold markup/views and fixtures.
             Depends on: T-030; M2.1 complete/closed.
@@ -44,10 +44,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-032.
             Evidence: F6/F2; all eight transitions for both tables, I/JLSTZ/O distinction, first legal order, floor/wall/blocked rejection, timer preserve/reset and no extra draws.
             Verified: RED I floor rotation remained unchanged before kicks. 113/113 unit tests and strict build pass. Literal F6 fixtures cover all eight transitions for I and each JLSTZ identity, earlier-candidate obstruction, floor/left wall kicks, full rejection atomicity, O, no draws, continuous grounded timing and airborne kick reset. Previous fixed-origin rejection expectation explicitly changed to its specified wall-kick success.
-        - [ ] T-034 — Review test and report complete modern mechanics
+        - [x] T-034 — Review test and report complete modern mechanics
             Scope: M2.2 coherent result and package M2.2.md.
             Depends on: T-031–T-033.
             Evidence: Separate code review/testing, integrated Hold/Ghost/kick demonstration, retained modern/baseline regressions, repairs and TODO; close review issue then milestone.
+            Verified: Separate coherent Hold/Ghost/kick source review found no blockers. Added native Space floor-kick then Hold/Ghost demonstration and inspected production screenshot. Fresh 113/113 unit tests, strict build, 57/57 development and 21/21 production scenarios across Chromium153/Firefox157/WebKit27.2 pass, zero skips. M2.2 report records scope, inspection, limits and TODO None.
     - [ ] M2.3 — Robust reproducible modern delivery
         - [ ] T-035 — Verify modern state failures and lifecycle boundaries
             Scope: core/controller/composition validations and focused regression tests.
