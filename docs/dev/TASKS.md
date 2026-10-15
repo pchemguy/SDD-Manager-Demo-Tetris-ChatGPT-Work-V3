@@ -19,10 +19,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: none. Contracts: B8; PLAN M1.1 prerequisite.
             Evidence: Verify installed stable package engine requirements, npm installation, typecheck and static build; obtain real Chromium download/launch evidence and identify other engine prerequisites. Record Node/npm versions and the existing proxy warning. Record test collection honestly; no empty-suite success claim.
             Verified: npm install, typecheck and build passed on Node 24.19.0/npm 11.9.0. Official Playwright downloads returned 195-byte HTML, not ZIP; a stable older release also failed. Ownership-safe npm-packaged Chromium 153.0.8010.0 with Playwright 1.64.1 passed three successive contexts and Canvas/text pixel probes. Recovery covers archive ownership, executable mode and font paths. No gameplay suite exists yet; Firefox/WebKit are pending.
-        - [ ] T-002 — Implement tetromino geometry
+        - [x] T-002 — Implement tetromino geometry
             Scope: src/core/types.ts, src/core/geometry.ts, and tests/core/geometry.test.ts.
             Depends on: T-001. Contracts: B1–B2.
             Evidence: Use npm test -- tests/core/geometry.test.ts and typecheck; verify all seven coordinate sets, CW/CCW transforms, O invariance, and four-rotation identity.
+            Verified: Observed eight geometry assertions fail against the empty-cell stub before implementation. All eight now pass, covering seven literal shapes, fixed-origin CW/CCW rotation, O invariance, translation, and four-rotation identity. Typecheck passed; no browser or later gameplay claims.
         - [ ] T-003 — Implement board placement and row compaction
             Scope: src/core/board.ts and tests/core/board.test.ts; coherent board types only.
             Depends on: T-002. Contracts: B1, B3.
