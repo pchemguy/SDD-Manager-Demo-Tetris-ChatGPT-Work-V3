@@ -122,10 +122,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Evidence: Review implementation separately from tests, assess B7–B8 and remaining B5–B6 acceptance, inspect viewport/visual evidence, repair blockers, and publish features/findings/limits/TODO report before issue/milestone closure.
             Verified: Reviewed all application state/input/resource/failure/view boundaries and M1.3 acceptance. Finding M13-F001 reproduced an unowned Down release resetting 100 ms to 0; repaired with held-soft guard and rechecked. All 40 unit tests, strict build and 14 Chromium scenarios pass; desktop screenshot inspected/retained. No blocking M1.3 findings or TODOs. Firefox/WebKit and final delivery evidence remain mandatory M1.4 work.
     - [ ] M1.4 — Reproducible delivery and acceptance evidence
-        - [ ] T-022 — Verify clean production build and distributable contents
+        - [x] T-022 — Verify clean production build and distributable contents
             Scope: Build/config/lockfile and tests/browser/static-build.spec.ts; focused fixes only.
             Depends on: T-021; M1.3 complete/closed. Contracts: B8; PLAN M1.4.
             Evidence: Verify npm ci, typecheck, production build and HTTP serving; inspect dist contains only application assets and excludes credentials, tests/harnesses, docs and agent packages. Confirm no external runtime requests and preserve lockfile/native dependency reproducibility.
+            Verified: Clean npm ci passed; two strict production builds had identical file/content hashes. Both production-only Chromium scenarios passed: actual static asset loading/play/pause/preview and distribution exclusion of credentials/tests/docs/agent packages. Full 40-test Node suite passed. Browser configuration now selects development and production suites explicitly, with no hidden skip-based acceptance; full three-engine validation remains T-023.
         - [ ] T-023 — Verify complete three-engine acceptance coverage
             Scope: Playwright browser projects, tests and fixtures; repair failures within existing scope.
             Depends on: T-022. Contracts: B1–B8 acceptance table.

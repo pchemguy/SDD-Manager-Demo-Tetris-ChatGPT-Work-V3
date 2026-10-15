@@ -4,6 +4,10 @@ import { resolve } from "node:path";
 import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/browser",
+  testMatch: process.env.SDD_PRODUCTION
+    ? ["static-build.spec.ts"]
+    : ["**/*.spec.ts"],
+  testIgnore: process.env.SDD_PRODUCTION ? [] : ["static-build.spec.ts"],
   workers: 1,
   use: {
     baseURL: "http://127.0.0.1:4173",
