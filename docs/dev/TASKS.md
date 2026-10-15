@@ -39,10 +39,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-004. Contracts: B1–B3, B5 normal-falling subset.
             Evidence: Verify legal/rejected moves and rotation, exact level-one gravity boundaries, partial elapsed time, failed-downward locking, clear/promote order, no post-lock cascade, and game over. Run core regressions.
             Verified: Observed five new movement/gravity/lock-clear assertions fail before implementation; all now pass. Full suite 22 tests passed with exact interval/remainder, contact versus failed attempt, blocked rotation, four-line clear ordering, immutable prior board, game-over inertness and no post-lock cascade. Typecheck passed. Scoring and advanced input remain M1.2 work.
-        - [ ] T-006 — Implement the minimal session coordinator
+        - [x] T-006 — Implement the minimal session coordinator
             Scope: src/session/controller.ts, src/session/ports.ts, and tests/session/controller.test.ts.
             Depends on: T-005. Contracts: B5–B6 M1.1 subset.
             Evidence: Controlled action/time/draw/view tests prove a single retained snapshot, ordered transition/view calls, running/ready/game-over guards, Start/Restart, and no rule duplication.
+            Verified: Two controller behavior tests failed before orchestration was implemented and now pass. Full suite 24 tests passed, proving action/time/view order, ready draw guards, duplicate Start inertness, fresh restart and snapshot isolation from view mutation. Typecheck passed; browser wiring remains pending.
         - [ ] T-007 — Render the first playable board and controls
             Scope: src/view/canvas.ts, src/view/dom.ts, index.html, src/style.css, and focused view checks.
             Depends on: T-006. Contracts: B7 and B6 M1.1 subset.
