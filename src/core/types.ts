@@ -7,3 +7,4 @@ export type Board = (Piece|null)[][];
 /** Canonical gameplay snapshot; the session owns the live reference. */
 export interface Game {board:Board;active:Active|null;next:Piece|null;status:'ready'|'running'|'paused'|'gameover';score:number;lines:number;level:number;fallMs:number}
 export type Draw=()=>number;
+export type Move='left'|'right'|'cw'|'ccw'|'down';

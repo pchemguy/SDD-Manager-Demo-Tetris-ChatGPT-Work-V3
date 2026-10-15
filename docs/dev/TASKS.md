@@ -34,10 +34,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-002, T-003. Contracts: B2–B3, B6 ready/start/restart subset.
             Evidence: Verify ready state consumes no draws, Start consumes two, exact mapping/spawn/preview promotion, repeated identities, fresh restart, and blocked spawn; no browser globals in core.
             Verified: Four lifecycle/draw tests failed against missing behavior and now pass: no ready draws, exactly two Start draws, preview promotion/replenishment, repeats, exact draw boundaries, blocked spawn without overwrite, and fresh state. Full suite 16 passing; typecheck passed.
-        - [ ] T-005 — Implement movement gravity and lock-clear transitions
+        - [x] T-005 — Implement movement gravity and lock-clear transitions
             Scope: src/core/game.ts and focused game sequence tests; compose existing geometry/board helpers.
             Depends on: T-004. Contracts: B1–B3, B5 normal-falling subset.
             Evidence: Verify legal/rejected moves and rotation, exact level-one gravity boundaries, partial elapsed time, failed-downward locking, clear/promote order, no post-lock cascade, and game over. Run core regressions.
+            Verified: Observed five new movement/gravity/lock-clear assertions fail before implementation; all now pass. Full suite 22 tests passed with exact interval/remainder, contact versus failed attempt, blocked rotation, four-line clear ordering, immutable prior board, game-over inertness and no post-lock cascade. Typecheck passed. Scoring and advanced input remain M1.2 work.
         - [ ] T-006 — Implement the minimal session coordinator
             Scope: src/session/controller.ts, src/session/ports.ts, and tests/session/controller.test.ts.
             Depends on: T-005. Contracts: B5–B6 M1.1 subset.
