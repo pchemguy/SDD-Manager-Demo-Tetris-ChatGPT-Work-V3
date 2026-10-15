@@ -2,13 +2,13 @@
 
 ## Project and governing sources
 
-This repository develops a classic browser-based Tetris game. Start with the accepted [PROJECT](docs/dev/PROJECT.md) and accepted [ARCHITECTURE](docs/dev/ARCHITECTURE.md). The accepted [DECOMPOSITION](docs/dev/DECOMPOSITION.md) refines those boundaries. Accepted [SPEC](docs/dev/SPEC.md) has a current [QC report](docs/dev/SPEC-REVIEW-REPORT.md). Accepted [PLAN](docs/dev/PLAN.md) has a [combined QC report](docs/dev/PLAN-REVIEW-REPORT.md). Accepted [layout](docs/dev/layout.md) assigns physical ownership. Proposed [TASKS](docs/dev/TASKS.md) and its [QC report](docs/dev/TASKS-REVIEW-REPORT.md) await human review; no execution range is selected. No application source, tests, or validated setup commands exist yet.
+This repository develops a classic browser-based Tetris game. Start with the accepted [PROJECT](docs/dev/PROJECT.md) and accepted [ARCHITECTURE](docs/dev/ARCHITECTURE.md). The accepted [DECOMPOSITION](docs/dev/DECOMPOSITION.md) refines those boundaries. Accepted [SPEC](docs/dev/SPEC.md) has a current [QC report](docs/dev/SPEC-REVIEW-REPORT.md). Accepted [PLAN](docs/dev/PLAN.md) has a [combined QC report](docs/dev/PLAN-REVIEW-REPORT.md). Accepted [layout](docs/dev/layout.md) assigns physical ownership. Accepted [TASKS](docs/dev/TASKS.md) and its current [QC report](docs/dev/TASKS-REVIEW-REPORT.md) define the sole executable hierarchy; no execution range is selected. Hold implementation and phase activation until range selection. No application source, tests, or validated setup commands exist yet.
 
 Read applicable nested AGENTS.md files before working on selected paths. Load this entry explicitly if the host does not discover it automatically.
 
 ## Workflow ownership
 
-Load the bundled [SDD Manager entry](.agents/plugins/sdd-manager/PLUGIN.md) and [coordinator](.agents/plugins/sdd-manager/skills/sdd-manage/SKILL.md). The [task derivation skill](.agents/plugins/sdd-manager/skills/sdd-tasks/SKILL.md) owns the current TASKS checkpoint. Follow [human document review](.agents/plugins/sdd-manager/skills/sdd-manage/references/human-document-review.md) before dependent work.
+Load the bundled [SDD Manager entry](.agents/plugins/sdd-manager/PLUGIN.md) and [coordinator](.agents/plugins/sdd-manager/skills/sdd-manage/SKILL.md). Preparation documents are accepted. The coordinator owns the pending execution-range handoff; [sdd-implement](.agents/plugins/sdd-manager/skills/sdd-implement/SKILL.md) will resolve and execute the selected range after preparation integration and phase activation. Follow [human document review](.agents/plugins/sdd-manager/skills/sdd-manage/references/human-document-review.md) before dependent work.
 
 Use accepted current documents and the eventual owning TASKS for execution. Preserve pending and unrelated changes. Do not infer acceptance or implementation authority from a branch name or checked box.
 

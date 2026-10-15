@@ -2,7 +2,7 @@
 
 ## Current gate
 
-Technical state: **Ready** for the complete TASKS proposal. Human TASKS review is **pending**. No execution range is selected, no task is complete, and no phase tracking objects have been projected. Implementation additionally requires accepted preparation integration/publication, range selection, and verified phase activation.
+Technical state: **Ready** for the complete TASKS proposal. Human TASKS review is **accepted** at `f3093eb6ec9ccc9e541cfadc9f5157b05687b077`. No execution range is selected, no task is complete, and no phase tracking objects have been projected. Implementation additionally requires accepted preparation integration/publication, range selection, and verified phase activation.
 
 Reviewed root: [TASKS](TASKS.md), no children. Governing inputs are accepted PROJECT, ARCHITECTURE, DECOMPOSITION, SPEC, PLAN, and layout. Current upstream SPEC/design and combined PLAN/layout QC identities were checked against actual files. The user accepted the layout checkpoint `7a61b2473a2de0e21005f81b74c79ae84b5c43a1` before derivation.
 
@@ -49,3 +49,7 @@ No confirmed TASKS/PLAN conformance issue remains. No correction/recheck cycle w
 Automated hierarchy/dependency/count, local-link, heading/list-spacing, tab/credential-marker, reviewed-content identity and Git whitespace checks passed for this checkpoint. Direct semantic review assessed task breadth, critical path, integration timing, tests/documentation/failures, milestone/phase evidence, native hosted association/closure gates, and the one-task commit contract.
 
 No implementation, dependency installation, browser launch, test run, task issue creation, milestone creation, or phase activation is claimed. Technical Ready does not supply human TASKS acceptance or select an execution range. The next checkpoint is human review; after acceptance, the human selects a task count, milestone, or full phase before implementation.
+
+## Human TASKS decision
+
+The user accepted the complete TASKS checkpoint presented at `f3093eb6ec9ccc9e541cfadc9f5157b05687b077`. The reviewed task-list and governing content identities above remain unchanged. No implementation range is selected. Human selection of a task count, milestone, or full phase is pending; no hosted phase activation or implementation has occurred. Subsequent execution must first complete preparation integration/publication and verified phase activation under the existing authorization.
