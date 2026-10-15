@@ -12,7 +12,8 @@ test("seven-bag emits canonical zero-draw permutations and owns its remainder", 
     s = promote(s, draw);
     emitted.push(s.active!.kind);
   }
-  for (let i = 0; i < 21; i += 7) expect(emitted.slice(i, i + 7)).toEqual(PIECES);
+  for (let i = 0; i < 21; i += 7)
+    expect(emitted.slice(i, i + 7)).toEqual(PIECES);
   expect(draw).toHaveBeenCalledTimes(22);
   expect(start(() => 0).bag).toEqual(["T", "S", "Z", "J", "L"]);
 });
@@ -26,7 +27,7 @@ test("bag validation and a failed selection preserve the source snapshot", () =>
 });
 test("only bag boundaries permit adjacent repeats", () => {
   let count = 0;
-  const draw = () => ++count <= 7 ? 0 : 0.99999;
+  const draw = () => (++count <= 7 ? 0 : 0.99999);
   let s = start(draw);
   for (let i = 0; i < 6; i++) s = promote(s, draw);
   expect(s.active?.kind).toBe("L");

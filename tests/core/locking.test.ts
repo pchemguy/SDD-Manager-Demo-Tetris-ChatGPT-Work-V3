@@ -50,3 +50,11 @@ test("higher levels use their normal interval and discard post-lock elapsed time
   expect(n.active?.y).toBe(0);
   expect(n.fallMs).toBe(0);
 });
+test("lock delay follows the 100 ms normal-gravity floor", () => {
+  const s = start(draw);
+  s.lines = 110;
+  s.level = 12;
+  s.active!.y = 18;
+  expect(advance(s, 99, draw).board.flat().filter(Boolean)).toHaveLength(0);
+  expect(advance(s, 100, draw).board.flat().filter(Boolean)).toHaveLength(4);
+});

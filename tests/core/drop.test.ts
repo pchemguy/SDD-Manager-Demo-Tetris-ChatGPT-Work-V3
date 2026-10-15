@@ -4,7 +4,8 @@ import { start, act, advance } from "../../src/core/game";
 test("hard drop lands over an obstacle without settlement, draws or reward", () => {
   const s = start(() => 0.2);
   s.board[12][4] = "J";
-  const before = structuredClone(s), draw = vi.fn(() => 0);
+  const before = structuredClone(s),
+    draw = vi.fn(() => 0);
   const n = act(s, "hardDrop", draw);
   expect(n.active).toMatchObject({ x: 4, y: 10, rotation: 0 });
   expect(n.board).toEqual(s.board);
@@ -22,7 +23,11 @@ test("hard drop on support preserves an accrued delay and is inert when paused",
   let n = advance(s, 700, () => 0);
   n = act(n, "hardDrop", () => 0);
   expect(n.lockMs).toBe(700);
-  expect(advance(n, 300, () => 0).board.flat().filter(Boolean)).toHaveLength(4);
+  expect(
+    advance(n, 300, () => 0)
+      .board.flat()
+      .filter(Boolean),
+  ).toHaveLength(4);
   const paused = { ...n, status: "paused" as const };
   expect(act(paused, "hardDrop", () => 0)).toBe(paused);
 });

@@ -25,14 +25,19 @@ function assertState(s: Game): void {
     s.level !== 1 + Math.floor(s.lines / 10) ||
     !Number.isFinite(s.fallMs) ||
     s.fallMs < 0 ||
-    !Number.isFinite(s.lockMs) || s.lockMs < 0 ||
+    !Number.isFinite(s.lockMs) ||
+    s.lockMs < 0 ||
     typeof s.soft !== "boolean" ||
     !["ready", "running", "paused", "gameover"].includes(s.status)
   )
     throw Error("Invalid game state");
-  if (!Array.isArray(s.bag) || s.bag.length > 6 ||
-      Array.from(s.bag).some((v) => !piece(v)) || new Set(s.bag).size !== s.bag.length ||
-      (s.status === "ready" && s.bag.length !== 0))
+  if (
+    !Array.isArray(s.bag) ||
+    s.bag.length > 6 ||
+    Array.from(s.bag).some((v) => !piece(v)) ||
+    new Set(s.bag).size !== s.bag.length ||
+    (s.status === "ready" && s.bag.length !== 0)
+  )
     throw Error("Invalid bag state");
   if (s.status === "running" || s.status === "paused") {
     const a = s.active;
@@ -80,7 +85,8 @@ export function ready(): Game {
 /** Uniformly select without replacement; the returned remainder is snapshot state. */
 function take(remaining: Piece[], draw: Draw): { kind: Piece; bag: Piece[] } {
   const u = draw();
-  if (!Number.isFinite(u) || u < 0 || u >= 1) throw Error("Invalid random draw");
+  if (!Number.isFinite(u) || u < 0 || u >= 1)
+    throw Error("Invalid random draw");
   const bag = remaining.length ? remaining.slice() : [...PIECES];
   const [kind] = bag.splice(Math.floor(u * bag.length), 1);
   return { kind, bag };
@@ -90,8 +96,15 @@ function spawn(kind: Piece): Active {
 }
 /** Start/restart with fresh state and exactly two draws. */
 export function start(draw: Draw): Game {
-  const first = take([], draw), second = take(first.bag, draw);
-  return { ...ready(), active: spawn(first.kind), next: second.kind, bag: second.bag, status: "running" };
+  const first = take([], draw),
+    second = take(first.bag, draw);
+  return {
+    ...ready(),
+    active: spawn(first.kind),
+    next: second.kind,
+    bag: second.bag,
+    status: "running",
+  };
 }
 /** Promote stored preview, replenish once, and detect blocked spawn without settlement. */
 export function promote(s: Game, draw: Draw): Game {
@@ -100,7 +113,8 @@ export function promote(s: Game, draw: Draw): Game {
 }
 function spawnNext(s: Game, draw: Draw): Game {
   if (!s.next) throw Error("Missing preview");
-  const active = spawn(s.next), selection = take(s.bag, draw);
+  const active = spawn(s.next),
+    selection = take(s.bag, draw);
   const ok = legal(s.board, cells(active));
   const result: Game = {
     ...s,
@@ -116,18 +130,22 @@ function spawnNext(s: Game, draw: Draw): Game {
 }
 /** Whether a legal active piece is supported one row below. */
 function grounded(s: Game): boolean {
-  return !!s.active && !legal(s.board, cells({ ...s.active, y: s.active.y + 1 }));
+  return (
+    !!s.active && !legal(s.board, cells({ ...s.active, y: s.active.y + 1 }))
+  );
 }
 /** Preserve a continuous contact timer; leaving support starts fresh airborne timing. */
 function moved(s: Game, active: Active): Game {
   const next = { ...s, active };
-  if (grounded(next)) return grounded(s) ? next : { ...next, fallMs: 0, lockMs: 0 };
+  if (grounded(next))
+    return grounded(s) ? next : { ...next, fallMs: 0, lockMs: 0 };
   return { ...next, lockMs: 0, fallMs: grounded(s) ? 0 : s.fallMs };
 }
 /** Apply movement without settling; only elapsed continuous contact may lock. */
 export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
   assertState(s);
-  if (!["left", "right", "cw", "ccw", "down", "hardDrop"].includes(action)) throw Error("Unknown action");
+  if (!["left", "right", "cw", "ccw", "down", "hardDrop"].includes(action))
+    throw Error("Unknown action");
   if (s.status !== "running" || !s.active) return s;
   if (action === "hardDrop") return moved(s, landing(s.board, s.active));
   const active = { ...s.active };
@@ -141,18 +159,27 @@ export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
 /** Settle, score, clear and promote atomically once a contact deadline is reached. */
 function lock(s: Game, draw: Draw): Game {
   const result = clearRows(settle(s.board, cells(s.active!), s.active!.kind));
-  return spawnNext({ ...s, board: result.board, ...progression(s.score, s.lines, result.cleared) }, draw);
+  return spawnNext(
+    {
+      ...s,
+      board: result.board,
+      ...progression(s.score, s.lines, result.cleared),
+    },
+    draw,
+  );
 }
 /** Spend time chronologically in airborne falls then grounded delay; discard after one lock. */
 export function advance(s: Game, ms: number, draw: Draw): Game {
   assertState(s);
   if (!Number.isFinite(ms) || ms < 0) throw Error("Invalid elapsed time");
   if (s.status !== "running") return s;
-  let next = { ...s }, remaining = ms;
+  let next = { ...s },
+    remaining = ms;
   for (;;) {
     if (grounded(next)) {
       const needed = Math.max(0, gravity(next.level) - next.lockMs);
-      if (remaining < needed) return { ...next, fallMs: 0, lockMs: next.lockMs + remaining };
+      if (remaining < needed)
+        return { ...next, fallMs: 0, lockMs: next.lockMs + remaining };
       return lock(next, draw);
     }
     const interval = next.soft ? 50 : gravity(next.level);

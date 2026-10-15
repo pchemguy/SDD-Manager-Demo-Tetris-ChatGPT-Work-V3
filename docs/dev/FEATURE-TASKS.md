@@ -7,7 +7,7 @@ Each task closes with its result, current verification and initial checkbox in o
 ## P2 — Modern gameplay enhancements
 
 - [ ] P2 — Modern gameplay enhancements
-    - [ ] M2.1 — Bag and delayed drop gameplay
+    - [x] M2.1 — Bag and delayed drop gameplay
         - [x] T-027 — Implement snapshot-owned seven-bag succession
             Scope: core/types.ts and game.ts; deterministic core tests and affected preview/browser expectations.
             Depends on: Published preparation and verified P2 activation.
@@ -23,10 +23,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-028.
             Evidence: F3/F7; projection over uneven stacks, native Enter, no immediate settle/score/draw, preserve existing grounded time and defaults.
             Verified: Hard-drop test failed on Unknown action before implementation. 53/53 unit tests and strict build passed; frozen-clock native Enter delay scenario passed against development and production Chromium. Shared pure landing stops above obstacles; drop consumes no draws/reward, does not settle, preserves accrued grounding and paused guards. Initial browser clock auto-advance caused an early-boundary observation; explicit pauseAt fixed the facility without changing expectations. Enter help added and modern scenario selected in production.
-        - [ ] T-030 — Review test and report bag and delayed drop gameplay
+        - [x] T-030 — Review test and report bag and delayed drop gameplay
             Scope: M2.1 coherent result and package M2.1.md.
             Depends on: T-027–T-029.
             Evidence: Separate code review from execution; repair blockers; deterministic/build/browser demonstration; findings and TODO; close review issue then milestone.
+            Verified: Reviewed bag/timer/drop code and dependent lifecycle/input separately from tests. Added passing 100 ms floor and grounded-pause characterizations, formatted scoped additions, and inspected actual production screenshot. Fresh 55/55 unit tests, strict build, 48/48 development and 12/12 production browser scenarios passed across Chromium 153.0.8010.0/Firefox 157.0/WebKit 27.2, zero skips. M2.1 report retains findings, limits and TODO None.
     - [ ] M2.2 — Hold ghost and wall kicks
         - [ ] T-031 — Implement once-per-piece Hold and presentation
             Scope: core state/transitions, controller/input/composition, Hold markup/views and fixtures.
