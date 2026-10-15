@@ -111,10 +111,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-018. Contracts: B6–B7.
             Evidence: Inspect 800 × 600 viewport with scrolling, all cells/preview/status, native named buttons, Tab/focus styles, text lifecycle/error messages, canvas naming/fallback, case-insensitive controls, editable-field exclusion, and resize without gameplay changes.
             Verified: New browser repeat-default assertion failed and identified page-scroll leakage; fixed prevention while preserving OS-repeat suppression. All 39 unit tests, strict build and 11 Chromium scenarios pass. Verified editable-field independence, case-insensitive controls, 800x600 no horizontal overflow, accessible canvas name, native button focus outline, resize preserving canvas state and textual paused/error state. Desktop screenshot inspected; cell-by-cell screen-reader gameplay remains excluded.
-        - [ ] T-020 — Integrate lifecycle and failure regression scenarios
+        - [x] T-020 — Integrate lifecycle and failure regression scenarios
             Scope: tests/browser, tests/fixtures, and only necessary narrow fixes in their owning modules.
             Depends on: T-019. Contracts: B5–B8 cross-component acceptance.
             Evidence: Exercise real app focus, held input across pause/restart, blur/visibility sequences, fatal-error inertness, disposal/rebuild and render/state consistency. Distinguish injected-harness checks from actual-app checks; preserve core regressions.
+            Verified: Added cross-component regression scenarios against already implemented behavior; they passed on first execution, with no fabricated RED or production edits. All 39 unit tests, strict build and 14 Chromium scenarios pass. Verified frozen paused canvas, cleared held input across pause/resume/restart, idempotent modeled visibility notifications, fatal inertness and controlled diagnostics that do not echo injected payloads.
         - [ ] T-021 — Review test and report robustness and usability
             Scope: All M1.3 changes and affected dependencies; docs/dev/reports/phases/P1/M1.3.md.
             Depends on: T-016–T-020; constituent delivery issues completed. Contracts: PLAN M1.3 exit.
