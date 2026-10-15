@@ -24,10 +24,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-001. Contracts: B1–B2.
             Evidence: Use npm test -- tests/core/geometry.test.ts and typecheck; verify all seven coordinate sets, CW/CCW transforms, O invariance, and four-rotation identity.
             Verified: Observed eight geometry assertions fail against the empty-cell stub before implementation. All eight now pass, covering seven literal shapes, fixed-origin CW/CCW rotation, O invariance, translation, and four-rotation identity. Typecheck passed; no browser or later gameplay claims.
-        - [ ] T-003 — Implement board placement and row compaction
+        - [x] T-003 — Implement board placement and row compaction
             Scope: src/core/board.ts and tests/core/board.test.ts; coherent board types only.
             Depends on: T-002. Contracts: B1, B3.
             Evidence: Focused board tests verify edges, occupied-cell overlap, padding, atomic settlement, simultaneous clears, empty-row insertion, and retained-row order.
+            Verified: Four board tests first failed against behavior stubs; all now pass, covering legal cells, integer/boundary/overlap rejection, copy-on-settlement, atomic failure, simultaneous two/four-row clears and preserved order. Full suite: 12 passing tests; typecheck passed.
         - [ ] T-004 — Implement initial game state and piece succession
             Scope: src/core/game.ts, core types, src/platform/random.ts, and deterministic tests/core/game.test.ts.
             Depends on: T-002, T-003. Contracts: B2–B3, B6 ready/start/restart subset.
