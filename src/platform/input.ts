@@ -27,6 +27,7 @@ export function bindInput(
       z: "ccw",
       x: "cw",
       " ": "cw",
+      Enter: "hardDrop",
       p: "pause",
     };
     const cmd = c[e.key] ?? c[e.key.toLowerCase()];

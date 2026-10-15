@@ -1,5 +1,5 @@
 /** Canonical lifecycle and explicitly supplied random piece succession (SPEC B2). */
-import { emptyBoard, legal, settle, clearRows } from "./board";
+import { emptyBoard, legal, settle, clearRows, landing } from "./board";
 import { progression, gravity } from "./scoring";
 import { cells, size } from "./geometry";
 import { PIECES, type Piece, type Game, type Draw, type Active } from "./types";
@@ -127,8 +127,9 @@ function moved(s: Game, active: Active): Game {
 /** Apply movement without settling; only elapsed continuous contact may lock. */
 export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
   assertState(s);
-  if (!["left", "right", "cw", "ccw", "down"].includes(action)) throw Error("Unknown action");
+  if (!["left", "right", "cw", "ccw", "down", "hardDrop"].includes(action)) throw Error("Unknown action");
   if (s.status !== "running" || !s.active) return s;
+  if (action === "hardDrop") return moved(s, landing(s.board, s.active));
   const active = { ...s.active };
   if (action === "left") active.x--;
   else if (action === "right") active.x++;

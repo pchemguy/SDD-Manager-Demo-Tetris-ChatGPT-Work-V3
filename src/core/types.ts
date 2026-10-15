@@ -24,4 +24,4 @@ export interface Game {
   soft: boolean;
 }
 export type Draw = () => number;
-export type Move = "left" | "right" | "cw" | "ccw" | "down";
+export type Move = "left" | "right" | "cw" | "ccw" | "down" | "hardDrop";

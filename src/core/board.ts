@@ -1,5 +1,6 @@
 /** Pure 10×20 placement, atomic settlement, and simultaneous row compaction. */
-import type { Board, Cell, Piece } from "./types";
+import { cells } from "./geometry";
+import type { Active, Board, Cell, Piece } from "./types";
 /** Allocate independent empty rows. */
 export const emptyBoard = (): Board =>
   Array.from({ length: 20 }, () => Array(10).fill(null));
@@ -35,4 +36,12 @@ export function clearRows(b: Board): { board: Board; cleared: number } {
     ],
     cleared,
   };
+}
+
+/** Furthest reachable legal descent; no cell or active-piece mutation. */
+export function landing(board: Board, active: Active): Active {
+  if (!legal(board, cells(active))) throw Error("Invalid landing source");
+  const result = { ...active };
+  while (legal(board, cells({ ...result, y: result.y + 1 }))) result.y++;
+  return result;
 }
