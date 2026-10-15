@@ -2,7 +2,7 @@
 
 ## Project and governing sources
 
-This repository develops a classic browser-based Tetris game. Start with [PROJECT](docs/dev/PROJECT.md); its initial human review is pending. Architecture, decomposition, specification, delivery plan, layout, and task list have not yet been prepared. No application source, tests, or validated setup commands exist yet.
+This repository develops a classic browser-based Tetris game. Start with the accepted [PROJECT](docs/dev/PROJECT.md) and proposed [ARCHITECTURE](docs/dev/ARCHITECTURE.md). Architecture human review is pending; hold decomposition until acceptance. Decomposition, specification, delivery plan, layout, and task list have not yet been prepared. No application source, tests, or validated setup commands exist yet.
 
 Read applicable nested AGENTS.md files before working on selected paths. Load this entry explicitly if the host does not discover it automatically.
 
