@@ -8,10 +8,11 @@ Each task closes with its result, current verification and initial checkbox in o
 
 - [ ] P2 — Modern gameplay enhancements
     - [ ] M2.1 — Bag and delayed drop gameplay
-        - [ ] T-027 — Implement snapshot-owned seven-bag succession
+        - [x] T-027 — Implement snapshot-owned seven-bag succession
             Scope: core/types.ts and game.ts; deterministic core tests and affected preview/browser expectations.
             Depends on: Published preparation and verified P2 activation.
             Evidence: F1; preserve explicit draws, multi-bag permutations, no replacement, boundary repeats, restart and atomic invalid draws.
+            Verified: Seven-bag test failed before snapshot/remainder implementation. 46/46 unit tests, strict build, preview integration and 3/3 production Chromium scenarios passed. Verified three deterministic permutations, cross-bag repeat, one draw per selection, bag uniqueness/ownership, restart and atomic invalid selection. Changed old independent-draw and O-preview expectations explicitly to F1's no-replacement results.
         - [ ] T-028 — Implement continuous grounded locking delay
             Scope: core/game.ts and types.ts; update declared changed immediate-lock checks.
             Depends on: T-027.

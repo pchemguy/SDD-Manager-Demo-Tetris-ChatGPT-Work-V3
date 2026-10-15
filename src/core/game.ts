@@ -29,6 +29,10 @@ function assertState(s: Game): void {
     !["ready", "running", "paused", "gameover"].includes(s.status)
   )
     throw Error("Invalid game state");
+  if (!Array.isArray(s.bag) || s.bag.length > 6 ||
+      Array.from(s.bag).some((v) => !piece(v)) || new Set(s.bag).size !== s.bag.length ||
+      (s.status === "ready" && s.bag.length !== 0))
+    throw Error("Invalid bag state");
   if (s.status === "running" || s.status === "paused") {
     const a = s.active;
     if (
@@ -60,6 +64,7 @@ export function ready(): Game {
     board: emptyBoard(),
     active: null,
     next: null,
+    bag: [],
     status: "ready",
     score: 0,
     lines: 0,
@@ -68,21 +73,21 @@ export function ready(): Game {
     soft: false,
   };
 }
-/** Map one finite uniform draw to a piece. Invalid sources fail explicitly. */
-function choose(draw: Draw): Piece {
+/** Uniformly select without replacement; the returned remainder is snapshot state. */
+function take(remaining: Piece[], draw: Draw): { kind: Piece; bag: Piece[] } {
   const u = draw();
-  if (!Number.isFinite(u) || u < 0 || u >= 1)
-    throw Error("Invalid random draw");
-  return PIECES[Math.floor(u * 7)];
+  if (!Number.isFinite(u) || u < 0 || u >= 1) throw Error("Invalid random draw");
+  const bag = remaining.length ? remaining.slice() : [...PIECES];
+  const [kind] = bag.splice(Math.floor(u * bag.length), 1);
+  return { kind, bag };
 }
 function spawn(kind: Piece): Active {
   return { kind, x: Math.floor((10 - size(kind)) / 2), y: 0, rotation: 0 };
 }
 /** Start/restart with fresh state and exactly two draws. */
 export function start(draw: Draw): Game {
-  const active = spawn(choose(draw)),
-    next = choose(draw);
-  return { ...ready(), active, next, status: "running" };
+  const first = take([], draw), second = take(first.bag, draw);
+  return { ...ready(), active: spawn(first.kind), next: second.kind, bag: second.bag, status: "running" };
 }
 /** Promote stored preview, replenish once, and detect blocked spawn without settlement. */
 export function promote(s: Game, draw: Draw): Game {
@@ -91,13 +96,13 @@ export function promote(s: Game, draw: Draw): Game {
 }
 function spawnNext(s: Game, draw: Draw): Game {
   if (!s.next) throw Error("Missing preview");
-  const active = spawn(s.next),
-    next = choose(draw);
+  const active = spawn(s.next), selection = take(s.bag, draw);
   const ok = legal(s.board, cells(active));
   const result: Game = {
     ...s,
     active: ok ? active : null,
-    next,
+    next: selection.kind,
+    bag: selection.bag,
     status: ok ? "running" : "gameover",
     fallMs: 0,
   };

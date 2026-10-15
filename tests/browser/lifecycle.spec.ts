@@ -33,11 +33,11 @@ test("stored next preview, Pause/Resume button and focus are rendered", async ({
       .locator("#preview")
       .evaluate((c) =>
         Array.from(
-          (c as HTMLCanvasElement).getContext("2d")!.getImageData(36, 36, 1, 1)
+          (c as HTMLCanvasElement).getContext("2d")!.getImageData(48, 48, 1, 1)
             .data,
         ),
       ),
-  ).toEqual([241, 206, 103, 255]);
+  ).toEqual([189, 155, 244, 255]);
   await page.getByRole("button", { name: "Pause", exact: true }).press("Enter");
   await expect(page.locator("#status")).toHaveText("Paused");
   await page.getByRole("button", { name: "Resume", exact: true }).press("Enter");

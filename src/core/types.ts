@@ -14,6 +14,7 @@ export interface Game {
   board: Board;
   active: Active | null;
   next: Piece | null;
+  bag: Piece[];
   status: "ready" | "running" | "paused" | "gameover";
   score: number;
   lines: number;

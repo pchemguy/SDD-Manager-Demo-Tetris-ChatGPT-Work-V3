@@ -7,15 +7,15 @@ test("ready consumes no draws; Start consumes active and preview", () => {
   const s = start(draw);
   expect(draw).toHaveBeenCalledTimes(2);
   expect(s.active).toEqual({ kind: "I", x: 3, y: 0, rotation: 0 });
-  expect(s.next).toBe("O");
+  expect(s.next).toBe("T");
   expect(s.status).toBe("running");
 });
-test("preview promotion consumes one draw and permits repeats", () => {
+test("preview promotion consumes one draw from the remaining bag", () => {
   const s = start(() => 0.2);
   const n = promote(s, () => 0.2);
-  expect(n.active?.kind).toBe("O");
-  expect(n.next).toBe("O");
-  expect(n.active?.x).toBe(4);
+  expect(n.active?.kind).toBe("T");
+  expect(n.next).toBe("S");
+  expect(n.active?.x).toBe(3);
   expect(s.active).not.toBe(n.active);
 });
 test("blocked preview spawn ends play without settlement", () => {
@@ -33,7 +33,7 @@ test("blocked preview spawn ends play without settlement", () => {
 test("restart allocates fresh board and counters; draw boundaries are exact", () => {
   const draws = [0, 1 / 7, 2 / 7, 3 / 7, 4 / 7, 5 / 7, 6 / 7, 0.99999];
   const kinds = ["I", "O", "T", "S", "Z", "J", "L", "L"];
-  draws.forEach((v, i) => expect(start(() => v).next).toBe(kinds[i]));
+  draws.forEach((v, i) => expect(start(() => v).active?.kind).toBe(kinds[i]));
   const a = start(() => 0);
   a.board[19][0] = "I";
   expect(start(() => 0).board[19][0]).toBe(null);
