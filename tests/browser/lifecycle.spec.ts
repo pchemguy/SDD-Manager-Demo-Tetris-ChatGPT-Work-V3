@@ -40,7 +40,9 @@ test("stored next preview, Pause/Resume button and focus are rendered", async ({
   ).toEqual([189, 155, 244, 255]);
   await page.getByRole("button", { name: "Pause", exact: true }).press("Enter");
   await expect(page.locator("#status")).toHaveText("Paused");
-  await page.getByRole("button", { name: "Resume", exact: true }).press("Enter");
+  await page
+    .getByRole("button", { name: "Resume", exact: true })
+    .press("Enter");
   await expect(page.locator("#status")).toHaveText("Running");
   await expect(page.locator("#board")).toBeFocused();
   await page.getByRole("button", { name: "Restart", exact: true }).click();
@@ -70,4 +72,39 @@ test("composition disposal removes listeners and permits one fresh rebuild", asy
     return { inert, ready, running };
   });
   expect(result).toEqual({ inert: true, ready: "Ready", running: "Running" });
+});
+
+test("disposal with occupied Hold and grounded delay permits a fresh empty rebuild", async ({
+  page,
+}) => {
+  await page.goto("/tests/fixtures/application.html");
+  const result = await page.evaluate(async () => {
+    const path = "/src/main.ts",
+      { mount } = await import(path);
+    const dispose = mount(document);
+    document.getElementById("start")!.click();
+    const board = document.getElementById("board")!;
+    for (const key of ["c", "Enter"])
+      board.dispatchEvent(
+        new KeyboardEvent("keydown", { key, bubbles: true, cancelable: true }),
+      );
+    const used = document.getElementById("hold-status")!.textContent;
+    dispose();
+    const old = (board as HTMLCanvasElement).toDataURL();
+    for (const key of ["c", "Enter", " "])
+      board.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true }));
+    const inert = old === (board as HTMLCanvasElement).toDataURL();
+    const second = mount(document);
+    const fresh = document.getElementById("hold-status")!.textContent;
+    document.getElementById("start")!.click();
+    const available = document.getElementById("hold-status")!.textContent;
+    second();
+    return { used, inert, fresh, available };
+  });
+  expect(result).toEqual({
+    used: "Used",
+    inert: true,
+    fresh: "Inactive",
+    available: "Available",
+  });
 });

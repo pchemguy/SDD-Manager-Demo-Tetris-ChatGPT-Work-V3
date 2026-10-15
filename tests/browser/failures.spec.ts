@@ -64,3 +64,64 @@ test("unexpected rendering failure stops with a text error", async ({
   await page.goto("/");
   await expect(page.getByRole("alert")).toContainText("Reload");
 });
+
+for (const id of ["hold", "hold-status"])
+  test(`missing ${id} markup stops safely`, async ({ page }) => {
+    await page.route("**/", async (route) => {
+      const response = await route.fetch();
+      await route.fulfill({
+        response,
+        body: (await response.text()).replace(
+          `id="${id}"`,
+          `id="missing-${id}"`,
+        ),
+      });
+    });
+    await page.goto("/");
+    await expect(page.getByRole("alert")).toContainText("Reload");
+    await expect(page.locator("#start")).toBeDisabled();
+  });
+test("unavailable Hold Canvas alone stops initialization", async ({ page }) => {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (
+      this: HTMLCanvasElement,
+      ...args: Parameters<typeof original>
+    ) {
+      return this.id === "hold" ? null : original.apply(this, args);
+    } as typeof original;
+  });
+  await page.goto("/");
+  await expect(page.locator("#status")).toHaveText("Error");
+  await expect(page.getByRole("alert")).toContainText("Reload");
+});
+test("a failing Hold draw stops modern input and time without leaking payloads", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Math.random = () => 0;
+  });
+  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
+  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
+  await page.goto("/");
+  await page.getByRole("button", { name: "Start game" }).click();
+  await page.evaluate(() => {
+    Math.random = () => {
+      throw Error("private-draw-payload");
+    };
+  });
+  await page.keyboard.press("c");
+  await expect(page.getByRole("alert")).toContainText("Reload");
+  const before = await page
+    .locator("#board")
+    .evaluate((c) => (c as HTMLCanvasElement).toDataURL());
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Space");
+  await page.clock.runFor(5000);
+  expect(
+    await page
+      .locator("#board")
+      .evaluate((c) => (c as HTMLCanvasElement).toDataURL()),
+  ).toBe(before);
+  await expect(page.locator("body")).not.toContainText("private-draw-payload");
+});
