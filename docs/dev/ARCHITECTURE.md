@@ -15,7 +15,7 @@ Use ordinary TypeScript modules, HTML, and CSS, with a Canvas 2D playfield and n
 | Presentation | Read snapshots to draw the board and preview and update HTML status and controls. Report user control actions through the coordinator's input boundary. | Read-only state/view contracts and browser rendering APIs; no rule implementation or direct state mutation. |
 | Browser adapters and composition | Translate keyboard and button events into semantic actions, supply elapsed time and randomness, and construct/dispose the application wiring. | Browser APIs and coordinator contracts. Composition may import all blocks to assemble them. |
 
-The core defines valid game state; the coordinator holds the single live snapshot and replaces it through core transitions. Presentation derives its display from that snapshot rather than maintaining a second gameplay model. Timing accumulators and held-input bookkeeping are coordinator state, separate from board and scoring state.
+The core defines valid game state; the coordinator holds the single live snapshot and replaces it through core transitions. Presentation derives its display from that snapshot rather than maintaining a second gameplay model. Scheduling timestamps and held-input bookkeeping are coordinator state. Logical timing state required by gameplay rules belongs to the core snapshot; neither renderer owns timing decisions.
 
 ## Dependency direction and execution
 
@@ -46,4 +46,8 @@ Use direct module collaboration rather than a general event bus, dependency-inje
 
 Verify core rules and transitions with deterministic automated tests. Verify coordinator ordering and lifecycle with controlled clocks, input, and random draws. Browser checks cover real keyboard/button interactions, canvas rendering, HTML status, pause/restart, and browser lifecycle wiring. Passing core tests alone does not establish browser acceptance.
 
-DECOMPOSITION will define detailed logical responsibilities and collaborations after architecture acceptance; that document is not yet authored. SPEC will establish exact rules, controls, timing, compatibility targets, and acceptance scenarios. PLAN and layout will own delivery order, tooling allocation, and physical paths. No implementation or dependency installation is part of this architecture checkpoint.
+[DECOMPOSITION](DECOMPOSITION.md) defines the proposed detailed logical responsibilities and collaborations for its own human review. SPEC will establish exact rules, controls, timing, compatibility targets, and acceptance scenarios. PLAN and layout will own delivery order, tooling allocation, and physical paths. No implementation or dependency installation is part of this architecture checkpoint.
+
+## Review state
+
+The user accepted ARCHITECTURE as presented at commit `89e8144dccfc0ad712898b346d3581439ab8cf65`. This acceptance covers the structural approach and tradeoffs; it does not accept unseen component or behavior contracts.
