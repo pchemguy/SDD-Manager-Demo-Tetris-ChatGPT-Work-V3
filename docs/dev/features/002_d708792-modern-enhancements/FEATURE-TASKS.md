@@ -1,6 +1,6 @@
-# Modern enhancements executable tasks
+# Historical modern feature task snapshot
 
-Campaign 002_d708792. Governing [FEATURE-SPEC](FEATURE-SPEC.md), [FEATURE-PLAN](FEATURE-PLAN.md), accepted main design/layout and their feature QC reports. Human checkpoints are pre-approved and the entire feature is selected for autonomous execution. P1 and the published Space amendment are prerequisites; preserve their stable IDs/evidence and closed reports. Task IDs continue after T-026 and have exactly one active owner here until final transfer.
+Historical snapshot at transfer during T-039, before its closing status. This file is not an executable task owner; use [main TASKS](../../TASKS.md). Archived checkboxes do not select work. Campaign 002_d708792. Governing [FEATURE-SPEC](FEATURE-SPEC.md), [FEATURE-PLAN](FEATURE-PLAN.md), accepted main design/layout and their feature QC reports. Human checkpoints are pre-approved and the entire feature is selected for autonomous execution. P1 and the published Space amendment are prerequisites; preserve their stable IDs/evidence and closed reports. Task IDs continue after T-026; their single executable owner is now main TASKS.
 
 Each task closes with its result, current verification and initial checkbox in one single-ID commit, then push/readback and evidence-backed issue closure. Before the first task require complete P2 projection/readback. Milestone review tasks are explicit; close each native milestone only after all its issues. Final incorporation/archive occurs on the feature branch before verification/integration. Reports live under docs/dev/features/002_d708792-modern-enhancements/.
 

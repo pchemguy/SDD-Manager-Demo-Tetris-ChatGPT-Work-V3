@@ -1,5 +1,7 @@
 # Feature PLAN and layout conformance
 
+Historical preparation QC archived with its source during T-039. Original identities/findings remain evidence for that reviewed checkpoint, not current main-document readiness. Main adjacent QC reports own current conformance.
+
 Technical gate: **Ready**; human checkpoints explicitly pre-approved. FEATURE-PLAN SHA-256 `7199ecf4be84146b3a52dcf57607929d641cd8ffd1d2d2c4572b2f08b17a5d0e`; governing FEATURE-SPEC SHA-256 `08062282f69d218c3d20479df6c2864bc11aad7eac63c9bf1ac01a9aae1f84f4`.
 
 Reviewed F1–F3 through M2.1, F4–F6 through M2.2, F7/F8 plus retained acceptance through M2.3, and whole-feature review/incorporation/tracking/integration through M2.4. Three delivery milestones are within the preferred 3–5 range; the dedicated one-outcome phase review is excluded. Each delivery milestone requires its own final code-review/testing/report outcome. M2.1 offers real bag/delayed-drop play and does not postpone all integration.
