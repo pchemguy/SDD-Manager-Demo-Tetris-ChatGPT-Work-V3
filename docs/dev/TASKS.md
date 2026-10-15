@@ -91,10 +91,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Evidence: Separate code review and deterministic/browser checks; inspect complete controls/scoring/preview demo and timing observations, repair blockers, report capabilities, evidence, limits and TODOs; publish and reconcile issue/milestone closure.
             Verified: M1.2 code review assessed score/clear order, core versus scheduling state, repeat ordering, pause/focus lifecycle, draw-free views and actual input. All 36 unit tests, strict static build and four Chromium scenarios passed; updated screenshot inspected/retained. No blocking milestone findings or optional TODOs; modeled focus evidence and missing final engines are explicit. Updated current README/agent guidance.
     - [ ] M1.3 — Robust and usable browser experience
-        - [ ] T-016 — Enforce atomic core validation and error contracts
+        - [x] T-016 — Enforce atomic core validation and error contracts
             Scope: Core state/action/time/draw validation in src/core/game.ts and focused invalid-input tests.
             Depends on: T-015; M1.2 complete/closed. Contracts: B1, B8.
             Evidence: Verify malformed state, unknown actions, invalid/nonfinite/out-of-range draws, negative/nonfinite elapsed time, and expected placement rejection; errors leave prior snapshots unchanged and do not commit partial board/score results.
+            Verified: Two new core validation/overflow scenarios failed before implementation. All 38 unit tests, strict build and four Chromium regressions pass after input/state/output guards. Unknown actions, malformed/nonintegral state, invalid times/draws, and unsafe scoring fail before committing results; invalid draw after tentative lock preserves the original board/score. Corrected blocked-spawn fixture to retain a legal active piece under the explicit invariant.
         - [ ] T-017 — Complete scheduler and listener resource safety
             Scope: Controller disposal, clock/input adapter cleanup and focused tests/platform/session cases.
             Depends on: T-016. Contracts: B5–B6, B8 resources.

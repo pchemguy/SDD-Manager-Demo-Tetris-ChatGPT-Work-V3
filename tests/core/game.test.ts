@@ -20,6 +20,7 @@ test("preview promotion consumes one draw and permits repeats", () => {
 });
 test("blocked preview spawn ends play without settlement", () => {
   const s = start(() => 0.2);
+  s.active!.y = 18;
   s.board[0][4] = "T";
   const draw = vi.fn(() => 0);
   const n = promote(s, draw);
@@ -99,4 +100,33 @@ test("held soft drop locks on failed attempt with no cascade or drop reward", ()
   expect(n.active?.y).toBe(0);
   expect(n.fallMs).toBe(0);
   expect(n.score).toBe(0);
+});
+test("invalid times, actions and malformed state reject explicitly before mutation", () => {
+  const s = start(() => 0.2);
+  for (const ms of [-1, NaN, Infinity])
+    expect(() => advance(s, ms, () => 0)).toThrow();
+  expect(() => act(s, "teleport" as never, () => 0)).toThrow();
+  const bad = structuredClone(s);
+  bad.board[0].pop();
+  expect(() => act(bad, "left", () => 0)).toThrow();
+  const noninteger = structuredClone(s);
+  noninteger.active!.x = 0.5;
+  expect(() => act(noninteger, "left", () => 0)).toThrow();
+});
+test("invalid draws and score overflow are atomic", () => {
+  for (const u of [-0.1, 1, NaN, Infinity])
+    expect(() => start(() => u)).toThrow();
+  const s = start(() => 0.2);
+  s.active!.y = 18;
+  const before = structuredClone(s);
+  expect(() => act(s, "down", () => 1)).toThrow();
+  expect(s).toEqual(before);
+  const full = start(() => 0.2);
+  full.active = { kind: "I", x: 7, y: 16, rotation: 1 };
+  full.score = Number.MAX_SAFE_INTEGER;
+  for (let y = 16; y < 20; y++)
+    for (let x = 0; x < 9; x++) full.board[y][x] = "J";
+  const original = structuredClone(full);
+  expect(() => act(full, "down", () => 0)).toThrow();
+  expect(full).toEqual(original);
 });
