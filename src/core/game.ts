@@ -1,7 +1,7 @@
 /** Canonical lifecycle and explicitly supplied random piece succession (SPEC B2). */
 import { emptyBoard, legal, settle, clearRows, landing } from "./board";
 import { progression, gravity } from "./scoring";
-import { cells, size } from "./geometry";
+import { cells, size, kicks } from "./geometry";
 import { PIECES, type Piece, type Game, type Draw, type Active } from "./types";
 /** Validate the complete input boundary before any state transition. */
 function assertState(s: Game): void {
@@ -183,11 +183,22 @@ export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
     };
   }
   if (action === "hardDrop") return moved(s, landing(s.board, s.active));
+  if (action === "cw" || action === "ccw") {
+    const rotation = (s.active.rotation + (action === "cw" ? 1 : 3)) % 4;
+    for (const [dx, dy] of kicks(s.active.kind, s.active.rotation, rotation)) {
+      const candidate = {
+        ...s.active,
+        rotation,
+        x: s.active.x + dx,
+        y: s.active.y + dy,
+      };
+      if (legal(s.board, cells(candidate))) return moved(s, candidate);
+    }
+    return s;
+  }
   const active = { ...s.active };
   if (action === "left") active.x--;
   else if (action === "right") active.x++;
-  else if (action === "cw") active.rotation = (active.rotation + 1) % 4;
-  else if (action === "ccw") active.rotation = (active.rotation + 3) % 4;
   else active.y++;
   return legal(s.board, cells(active)) ? moved(s, active) : s;
 }

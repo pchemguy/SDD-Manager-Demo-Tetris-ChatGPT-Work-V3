@@ -39,13 +39,13 @@ test("restart allocates fresh board and counters; draw boundaries are exact", ()
   expect(start(() => 0).board[19][0]).toBe(null);
 });
 import { act, advance } from "../../src/core/game";
-test("movement and rejected rotation preserve unrelated state/timer", () => {
+test("movement and wall kick preserve unrelated state/timer", () => {
   const s = start(() => 0);
   s.fallMs = 80;
   expect(act(s, "left", () => 0).active?.x).toBe(2);
   s.active = { kind: "I", x: -1, y: 0, rotation: 1 };
   const n = act(s, "cw", () => 0);
-  expect(n).toBe(s);
+  expect(n.active).toEqual({ kind: "I", x: 1, y: 0, rotation: 2 });
   expect(n.fallMs).toBe(80);
 });
 test("exact gravity intervals and partial remainder", () => {

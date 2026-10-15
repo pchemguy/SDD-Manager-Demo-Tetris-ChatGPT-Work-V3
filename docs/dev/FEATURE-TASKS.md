@@ -39,10 +39,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-031.
             Evidence: F3/F5; shared landing, outline behind active, overlap suppression, obstacles, movement and hold recomputation, paused/ready/gameover and snapshot/draw purity.
             Verified: Ghost RED observed missing outlines. 62/62 unit tests and strict build passed; native Hold/drop Ghost pixel scenarios passed in development and production Chromium. Focused paused/ready/gameover and overlap/purity assertions passed after final additions; shared landing recomputes without draws or snapshot mutation.
-        - [ ] T-033 — Implement ordered quarter-turn wall kicks
+        - [x] T-033 — Implement ordered quarter-turn wall kicks
             Scope: core/geometry.ts and game.ts with deterministic rotation/obstacle/timer regressions.
             Depends on: T-032.
             Evidence: F6/F2; all eight transitions for both tables, I/JLSTZ/O distinction, first legal order, floor/wall/blocked rejection, timer preserve/reset and no extra draws.
+            Verified: RED I floor rotation remained unchanged before kicks. 113/113 unit tests and strict build pass. Literal F6 fixtures cover all eight transitions for I and each JLSTZ identity, earlier-candidate obstruction, floor/left wall kicks, full rejection atomicity, O, no draws, continuous grounded timing and airborne kick reset. Previous fixed-origin rejection expectation explicitly changed to its specified wall-kick success.
         - [ ] T-034 — Review test and report complete modern mechanics
             Scope: M2.2 coherent result and package M2.2.md.
             Depends on: T-031–T-033.
