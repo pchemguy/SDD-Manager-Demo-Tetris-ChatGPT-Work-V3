@@ -1,5 +1,6 @@
 /** Canonical lifecycle and explicitly supplied random piece succession (SPEC B2). */
 import { emptyBoard, legal, settle, clearRows } from "./board";
+import { progression, gravity } from "./scoring";
 import { cells, size } from "./geometry";
 import { PIECES, type Piece, type Game, type Draw, type Active } from "./types";
 /** Allocate the ready snapshot; no random collaborator is consulted. */
@@ -57,14 +58,21 @@ export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
   if (legal(s.board, cells(active))) return { ...s, active };
   if (action !== "down") return s;
   const result = clearRows(settle(s.board, cells(s.active), s.active.kind));
-  return promote({ ...s, board: result.board }, draw);
+  return promote(
+    {
+      ...s,
+      board: result.board,
+      ...progression(s.score, s.lines, result.cleared),
+    },
+    draw,
+  );
 }
-/** Consume level-one logical gravity; stop at the first lock and discard excess. */
+/** Consume level-dependent logical gravity; stop at the first lock and discard excess. */
 export function advance(s: Game, ms: number, draw: Draw): Game {
   if (s.status !== "running") return s;
   let next = { ...s, fallMs: s.fallMs + ms };
-  while (next.fallMs >= 1000) {
-    next = { ...next, fallMs: next.fallMs - 1000 };
+  while (next.fallMs >= gravity(next.level)) {
+    next = { ...next, fallMs: next.fallMs - gravity(next.level) };
     const moved = act(next, "down", draw);
     if (moved.board !== next.board) return moved;
     next = moved;

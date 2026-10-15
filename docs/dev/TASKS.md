@@ -60,10 +60,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Evidence: Perform code review separately from tests; run core/session and Chromium playable regressions, repair blockers, report delivered features/demo feedback, verification and limits, and TODOs. Commit/push the report, close its issue, then close/read back M1.1.
             Verified: M1.1 code review covered all application modules, input/time/state/view boundaries, tooling, tests and partial-scope exits. Resolved formatting finding M11-F001; 26 unit tests, strict build, two Chromium integration tests and one production-preview test passed after cleanup. Screenshot inspected and retained in milestone report; no blocking M1.1 findings or optional TODOs. Scoring/advanced input and complete engine evidence remain planned later work.
     - [ ] M1.2 — Complete game controls and progression
-        - [ ] T-010 — Implement scoring level progression and gravity scaling
+        - [x] T-010 — Implement scoring level progression and gravity scaling
             Scope: src/core/scoring.ts, transition integration, tests/core/scoring.test.ts and game sequence cases.
             Depends on: T-009; M1.1 complete/closed. Contracts: B4.
             Evidence: Verify all clear rewards, pre-clear multiplier across a level boundary, no-clear score, cumulative lines, exact level/interval formula and 100 ms floor; run core regressions.
+            Verified: Three scoring/progression integration tests failed before implementation and now pass. Full suite 29 tests passed; rewards 0/100/300/500/800, pre-clear multiplier, 10-line level crossing, exact gravity curve/floor, atomic clear reward and updated interval verified. Typecheck passed; M1.1 is closed/read back before this milestone.
         - [ ] T-011 — Implement soft-drop timing and reset semantics
             Scope: Core falling-time actions, controller Down-state handling, input mapping, and focused core/session tests.
             Depends on: T-010. Contracts: B3, B5 soft drop.
