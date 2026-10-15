@@ -66,6 +66,8 @@ test("C holds once and renders the original identity; restart clears the slot", 
       .evaluate((c) => (c as HTMLCanvasElement).toDataURL()),
   ).toBe(before);
   await page.getByRole("button", { name: "Restart", exact: true }).click();
+  // Presentation acceptance is at the next rendered frame, including Restart.
+  await page.clock.runFor(32);
   await expect(page.locator("#hold-status")).toHaveText("Available");
   expect(
     await page

@@ -49,7 +49,7 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-031–T-033.
             Evidence: Separate code review/testing, integrated Hold/Ghost/kick demonstration, retained modern/baseline regressions, repairs and TODO; close review issue then milestone.
             Verified: Separate coherent Hold/Ghost/kick source review found no blockers. Added native Space floor-kick then Hold/Ghost demonstration and inspected production screenshot. Fresh 113/113 unit tests, strict build, 57/57 development and 21/21 production scenarios across Chromium153/Firefox157/WebKit27.2 pass, zero skips. M2.2 report records scope, inspection, limits and TODO None.
-    - [ ] M2.3 — Robust reproducible modern delivery
+    - [x] M2.3 — Robust reproducible modern delivery
         - [x] T-035 — Verify modern state failures and lifecycle boundaries
             Scope: core/controller/composition validations and focused regression tests.
             Depends on: T-034; M2.2 complete/closed.
@@ -65,10 +65,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-036.
             Evidence: Controls, seven-bag/hold/ghost/kicks, full normal-gravity lock including Hard drop, no drop bonuses; actual setup/tests/build/static serve, CMD and observed limits, local links.
             Verified: README and root orientation now describe all modern controls/rules, full normal-gravity grounded delay including Enter, no reset on support/no drop bonus, Hold availability, Ghost and seven-bag/SRS limits. Setup/production/CMD commands checked against package scripts and T-036 actual evidence; local links, heading spacing and whitespace pass. Counts are current 129 units and 25/18 scenarios per engine. Historical P1 reports remain frozen; active feature ownership and final stopping boundary are explicit.
-        - [ ] T-038 — Review test and report modern delivery acceptance
+        - [x] T-038 — Review test and report modern delivery acceptance
             Scope: Whole delivery result and package M2.3.md.
             Depends on: T-035–T-037.
             Evidence: Code/config/docs review, complete required checks and repairs, actual acceptance/limits/TODO; close review issue then milestone.
+            Verified: Separate whole delivery source/config/docs review and clean npm ci passed. First dev run was 74/75: transient Chromium old Hold pixel after Restart; 10 unchanged and 40 instrumented repetitions passed. M23-F001 retained in report; pixel check now observes specified next-frame boundary, same assertion. Fresh 129/129 units, strict build, 75/75 dev and 54/54 production across all three engines pass, zero skips. No product defect or deferred TODO; initial observation and environment limits retained.
     - [ ] M2.4 — Feature phase review and final report
         - [ ] T-039 — Review incorporate and report the complete modern feature
             Scope: Whole feature, canonical main documents/QC and unique task transfer, eligible source archive, package PHASE-REPORT.md and IMPLEMENTATION-REPORT.md.
