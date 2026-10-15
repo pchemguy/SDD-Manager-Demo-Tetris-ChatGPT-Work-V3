@@ -18,3 +18,32 @@ test("P toggles pause and focus loss requires explicit resume", async ({
   await page.keyboard.press("p");
   await expect(page.locator("#status")).toHaveText("Running");
 });
+test("stored next preview, Pause/Resume button and focus are rendered", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Math.random = () => 0.2;
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Start game" }).click();
+  await expect(page.locator("#board")).toBeFocused();
+  expect(
+    await page
+      .locator("#preview")
+      .evaluate((c) =>
+        Array.from(
+          (c as HTMLCanvasElement).getContext("2d")!.getImageData(36, 36, 1, 1)
+            .data,
+        ),
+      ),
+  ).toEqual([241, 206, 103, 255]);
+  await page.getByRole("button", { name: "Pause", exact: true }).click();
+  await expect(page.locator("#status")).toHaveText("Paused");
+  await page.getByRole("button", { name: "Resume", exact: true }).click();
+  await expect(page.locator("#status")).toHaveText("Running");
+  await expect(page.locator("#board")).toBeFocused();
+  await page.getByRole("button", { name: "Restart", exact: true }).click();
+  await expect(page.locator("#score")).toHaveText("0");
+  await expect(page.locator("#lines")).toHaveText("0");
+  await expect(page.locator("#level")).toHaveText("1");
+});

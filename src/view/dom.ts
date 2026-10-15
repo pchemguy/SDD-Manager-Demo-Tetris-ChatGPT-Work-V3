@@ -1,8 +1,10 @@
-/** Semantic HTML presentation; gameplay event ownership stays in the input adapter. */
+/** Snapshot-driven semantic status and native control availability. */
 import type { Game } from "../core/types";
-/** Update minimal lifecycle presentation for the first playable milestone. */
+/** Render counters and lifecycle labels; do not own event handlers or game state. */
 export function domView(root: Document): (s: Game) => void {
   return (s) => {
+    for (const id of ["score", "lines", "level"] as const)
+      root.getElementById(id)!.textContent = String(s[id]);
     root.getElementById("status")!.textContent =
       s.status === "gameover"
         ? "Game over"
@@ -11,5 +13,8 @@ export function domView(root: Document): (s: Game) => void {
       s.status !== "ready";
     (root.getElementById("restart") as HTMLButtonElement).disabled =
       s.status === "ready";
+    const pause = root.getElementById("pause") as HTMLButtonElement;
+    pause.disabled = s.status !== "running" && s.status !== "paused";
+    pause.textContent = s.status === "paused" ? "Resume" : "Pause";
   };
 }

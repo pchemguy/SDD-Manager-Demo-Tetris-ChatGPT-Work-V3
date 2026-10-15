@@ -6,7 +6,10 @@ import { domView } from "./view/dom";
 import { randomDraw } from "./platform/random";
 import { clock } from "./platform/clock";
 import { bindInput } from "./platform/input";
-const paint = canvasView(document.getElementById("board") as HTMLCanvasElement),
+const paint = canvasView(
+    document.getElementById("board") as HTMLCanvasElement,
+    document.getElementById("preview") as HTMLCanvasElement,
+  ),
   text = domView(document);
 const session = new Controller(randomDraw, (s) => {
   paint(s);

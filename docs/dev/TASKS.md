@@ -80,10 +80,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-012. Contracts: B5–B6.
             Evidence: Verify P/button pause, preserved core fall time, cleared held keys, explicit resume, first-frame baseline, long-frame clamp, blur/hidden idempotence, no automatic return-to-focus resume, and restart in each allowed state.
             Verified: Pause scenario failed before implementation; 35 unit tests and three Chromium browser tests now pass, with strict build. Verified preserved core fall time, held-input clearing, explicit P resume, idempotent modeled blur, no focus auto-resume, fresh restart, first-frame baseline, clamped/negative elapsed handling, reset and one scheduling chain. Native keyboard P tested; synthetic blur/focus evidence is labeled separately from native desktop focus delivery.
-        - [ ] T-014 — Complete preview status and control presentation
+        - [x] T-014 — Complete preview status and control presentation
             Scope: Canvas preview, DOM score/lines/level/status/button availability, and browser interaction cases.
             Depends on: T-013. Contracts: B2, B4, B6–B7.
             Evidence: Verify displayed preview exactly matches stored next piece, rendering consumes no draw, status follows core snapshot, inapplicable lifecycle actions are no-ops, and Start/Restart/Resume focus returns to game surface.
+            Verified: DOM counter/availability assertion failed before completion; all 36 unit tests, strict build and four Chromium browser scenarios pass. Stored-next preview pixels, score/line/level display, Pause/Resume labels/availability, reset counters, and game-surface focus after Start/Resume are verified. Rendering remains snapshot-only and consumes no draws.
         - [ ] T-015 — Review test and report complete controls and progression
             Scope: All M1.2 code and preserved playable path; docs/dev/reports/phases/P1/M1.2.md.
             Depends on: T-010–T-014; constituent delivery issues completed. Contracts: PLAN M1.2 exit.
