@@ -68,3 +68,34 @@ test("Space rotates once, prevents focused scrolling, and preserves other contro
     cleanup();
   }
 });
+test("Hold rebases the clock only when the session accepts it", () => {
+  const root = new EventTarget(),
+    board = new EventTarget();
+  const elements = {
+    board,
+    start: new EventTarget(),
+    restart: new EventTarget(),
+    pause: new EventTarget(),
+  };
+  const doc = Object.assign(root, {
+    getElementById: (id: keyof typeof elements) => elements[id],
+  }) as unknown as Document;
+  const dispatch = vi.fn().mockReturnValueOnce(true).mockReturnValueOnce(false),
+    reset = vi.fn();
+  const cleanup = bindInput(doc, dispatch, reset);
+  try {
+    for (let i = 0; i < 2; i++) {
+      const event = Object.assign(new Event("keydown", { cancelable: true }), {
+        key: "c",
+        repeat: false,
+      });
+      Object.defineProperty(event, "target", { value: board });
+      root.dispatchEvent(event);
+      expect(event.defaultPrevented).toBe(true);
+    }
+    expect(dispatch.mock.calls.map(([c]) => c)).toEqual(["hold", "hold"]);
+    expect(reset).toHaveBeenCalledTimes(1);
+  } finally {
+    cleanup();
+  }
+});

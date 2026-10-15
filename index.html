@@ -40,16 +40,28 @@
               <div><span>LEVEL</span><strong id="level">1</strong></div>
             </div>
           </section>
-          <section class="panel next">
-            <p class="eyebrow">UP NEXT</p>
-            <canvas
-              id="preview"
-              width="96"
-              height="96"
-              aria-label="Next piece preview"
-              >The next tetromino appears here.</canvas
-            >
-          </section>
+          <div class="previews">
+            <section class="panel next">
+              <p class="eyebrow">UP NEXT</p>
+              <canvas
+                id="preview"
+                width="96"
+                height="96"
+                aria-label="Next piece preview"
+                >The next tetromino appears here.</canvas
+              >
+            </section>
+            <section class="panel next">
+              <p class="eyebrow">HOLD <span id="hold-status">Inactive</span></p>
+              <canvas
+                id="hold"
+                width="96"
+                height="96"
+                aria-label="Held piece preview"
+                >The held tetromino appears here.</canvas
+              >
+            </section>
+          </div>
           <div class="actions">
             <button id="start" class="primary">Start game</button
             ><button id="pause" disabled>Pause</button
@@ -69,6 +81,14 @@
               <div>
                 <dt>SPACE</dt>
                 <dd>Rotate clockwise</dd>
+              </div>
+              <div>
+                <dt>ENTER</dt>
+                <dd>Hard drop · delayed lock</dd>
+              </div>
+              <div>
+                <dt>C</dt>
+                <dd>Hold / swap</dd>
               </div>
               <div>
                 <dt>DOWN</dt>

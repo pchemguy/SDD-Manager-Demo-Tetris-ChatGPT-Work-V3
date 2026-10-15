@@ -5,7 +5,13 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/browser",
   testMatch: process.env.SDD_PRODUCTION
-    ? ["static-build.spec.ts", "spacebar.spec.ts"]
+    ? [
+        "static-build.spec.ts",
+        "spacebar.spec.ts",
+        "modern.spec.ts",
+        "failures.spec.ts",
+        "usability.spec.ts",
+      ]
     : ["**/*.spec.ts"],
   testIgnore: process.env.SDD_PRODUCTION ? [] : ["static-build.spec.ts"],
   workers: 1,

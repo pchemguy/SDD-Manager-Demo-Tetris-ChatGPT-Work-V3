@@ -14,12 +14,17 @@ export interface Game {
   board: Board;
   active: Active | null;
   next: Piece | null;
+  bag: Piece[];
+  hold: Piece | null;
+  holdUsed: boolean;
   status: "ready" | "running" | "paused" | "gameover";
   score: number;
   lines: number;
   level: number;
   fallMs: number;
+  lockMs: number;
   soft: boolean;
 }
 export type Draw = () => number;
-export type Move = "left" | "right" | "cw" | "ccw" | "down";
+export type Move =
+  "left" | "right" | "cw" | "ccw" | "down" | "hardDrop" | "hold";

@@ -2,7 +2,7 @@
 import type { Command } from "../session/ports";
 export function bindInput(
   root: Document,
-  dispatch: (c: Command) => void,
+  dispatch: (c: Command) => boolean | void,
   reset: () => void,
 ): () => void {
   const board = root.getElementById("board")!;
@@ -27,14 +27,16 @@ export function bindInput(
       z: "ccw",
       x: "cw",
       " ": "cw",
+      Enter: "hardDrop",
+      c: "hold",
       p: "pause",
     };
     const cmd = c[e.key] ?? c[e.key.toLowerCase()];
     if (cmd) {
       e.preventDefault();
       if (e.repeat) return;
-      dispatch(cmd);
-      if (cmd === "pause") reset();
+      const accepted = dispatch(cmd);
+      if (cmd === "pause" || (cmd === "hold" && accepted)) reset();
     }
   });
   listen(root, "keyup", (event) => {

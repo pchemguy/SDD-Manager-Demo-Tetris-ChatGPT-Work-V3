@@ -1,8 +1,8 @@
 # TASKS review report
 
-Latest bounded control amendment: see Revision 2 below for the current SPEC identity and focused Ready assessment. Earlier preparation observations and acceptance remain historical evidence.
+Current complete incorporated scope: see Revision 3 below for the actual identities, conformance and Ready assessment. Earlier preparation gates/observations are historical.
 
-## Current gate
+## Initial preparation gate (historical)
 
 Technical state: **Ready** for the complete TASKS proposal. Human TASKS review is **accepted** at `f3093eb6ec9ccc9e541cfadc9f5157b05687b077`. No execution range is selected, no task is complete, and no phase tracking objects have been projected. Implementation additionally requires accepted preparation integration/publication, range selection, and verified phase activation.
 
@@ -67,3 +67,31 @@ Current amended SPEC SHA-256: `15118b886ae68d5c6297616f897ed5da4ff49872feff7bd83
 Scoped technical gate: **Ready** for this bounded steering amendment; no unresolved conformance finding. The human command authorizes this direct amendment; initial preparation acceptance and earlier evidence remain historical. Governing PROJECT, ARCHITECTURE, DECOMPOSITION, PLAN and layout contents are unchanged. This recheck establishes document conformance, not a runtime pass. Runtime acceptance and reassessed completion evidence belong to the active [revision report](reports/phases/P1/revisions/001_8131306-spacebar-rotation/REVISION-REPORT.md).
 
 Reviewed TASKS SHA-256: `8799abae0c0bc2b28b7e778cb4bb7f01b7b5107de429354dc0a62c2ce66e737b`. This bounded recheck preserves the existing phase/milestone/task decomposition assessment; counts and unaffected findings are unchanged.
+
+## Revision 3: Modern feature incorporation
+
+Current technical gate: **Ready** for complete main TASKS/PLAN conformance. Human modern document checkpoints are pre-approved. TASKS is the only executable owner; archived FEATURE-TASKS is explicitly historical, captured before T-039's closing status. Completion reassessment flags are execution evidence duties, not permission to rewrite historical checks.
+
+- [PROJECT.md](PROJECT.md): SHA-256 `82df2b780cbf4e56f579770b0df4483e369bf9289344c07c2be3544148fa05f4`.
+- [ARCHITECTURE.md](ARCHITECTURE.md): SHA-256 `5040738e2527bfdd24605fe77043af9f4dc1e9c534f9244d1f29bd8f16bdb776`.
+- [DECOMPOSITION.md](DECOMPOSITION.md): SHA-256 `937e9ff7c8d5ea802b3562840117ca6ee3e58600e14c01b512b28210846a73e6`.
+- [SPEC.md](SPEC.md): SHA-256 `2de4fc7c611d2a23522368da1b9369e2d386c66b1c4241b16f2e9b10f49d7ff2`.
+- [PLAN.md](PLAN.md): SHA-256 `8f2c4841cbfc336dca8a92b9d4e3ee2069fd597fb2fba2917fc630a59f9035e6`.
+- [layout.md](layout.md): SHA-256 `1aced04e3940ce126510bd502a1026eba657736a9f84cc646c8435da7cbfb037`.
+- [TASKS.md](TASKS.md): final closing-tree SHA-256 `305c198ef4f39a75ca8c2afd05a40da92da1287e53f4089546de6f36a8346b46` (actual closing-tree content, including final status/evidence).
+
+| Milestone | Delivery tasks | Excluded review task | Scope assessment |
+| --- | --- | --- | --- |
+| M1.1 | 8 | T-009 | Above preferred 3–5, retained for original bounded first-playable slice across facilities, core, session, views and actual app; no delayed core-only demonstration. Stable IDs/history are preserved. |
+| M1.2 | 5 | T-015 | Controls/progression/preview form a coherent usable increment. |
+| M1.3 | 5 | T-021 | Validation, cleanup, fatal boundaries, usability and regression evidence have independent outcomes. |
+| M1.4 | 3 | T-025 | Production acceptance, engine evidence and usable guides close reproducibility. |
+| M1.5 | 0 | T-026 only | Intentional dedicated single-task phase review, excluded from delivery counts. |
+| M2.1 | 3 | T-030 | Bag, continuous grounded delay and delayed Hard drop are bounded, immediately integrated mechanics. |
+| M2.2 | 3 | T-034 | Hold, Ghost and ordered kicks each contribute one meaningful contract with focused consumers and tests. |
+| M2.3 | 3 | T-038 | Robustness, complete static/browser evidence and guides close delivery gaps. |
+| M2.4 | 0 | T-039 only | Required single final phase review, including incorporation/archive and publication; not padding delivery. |
+
+Total: 30 delivery tasks plus nine review tasks = 39 stable executable IDs across two phases and nine milestones. Count assessment retains original P1 scope rationale and current P2 preferred-range semantic assessment. No duplicate task owner, missing review, self-dependency, fabricated task or hidden strategy change is present. T-027–T-039 retain status/evidence/issue associations during transfer. P1 historical verification text and T-022's exception remain distinct from T-039 current reassessment. Current Evidence phrases use bag-based succession and delayed locking.
+
+MI-T001 resolved stale main preparation-status/behavior wording, transferred the accepted P2 hierarchy once, marked affected P1 task/parent reassessments for execution review and archived only this package's source/QC. Main PLAN/SPEC are reconciled first. Code/test/docs/tracking/report scope maps to every planned exit; native and rare-state harness evidence remain distinct. Task scopes are cohesive rather than filename quotas. Hierarchy, ID/dependency/count, link/style and source identities checked; no unresolved conformance finding. Runtime reassessment and target integration require phase evidence, not this Ready label.

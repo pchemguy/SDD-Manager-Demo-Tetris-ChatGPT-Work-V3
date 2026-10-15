@@ -133,7 +133,10 @@ test("unowned Down release does not reset normal gravity timing", () => {
 });
 
 test("due horizontal repeats run before the downward attempt locks", () => {
-  const c = new Controller(() => 0.2, () => {});
+  const c = new Controller(
+    () => 0.2,
+    () => {},
+  );
   c.dispatch("start");
   c.frame(18000); // O reaches support, without a failed downward attempt.
   expect(c.snapshot.active?.y).toBe(18);
@@ -141,4 +144,36 @@ test("due horizontal repeats run before the downward attempt locks", () => {
   c.frame(1000); // Repeats reach the wall before gravity settles this piece.
   expect(c.snapshot.board[19].slice(0, 4)).toEqual(["O", "O", null, null]);
   expect(c.snapshot.active?.y).toBe(0);
+});
+test("grounded pause preserves lock elapsed until explicit resume", () => {
+  const c = new Controller(
+    () => 0.2,
+    () => {},
+  );
+  c.dispatch("start");
+  c.dispatch("hardDrop");
+  c.frame(600);
+  c.dispatch("pause");
+  c.frame(5000);
+  expect(c.snapshot.lockMs).toBe(600);
+  c.dispatch("pause");
+  c.frame(399);
+  expect(c.snapshot.board.flat().filter(Boolean)).toHaveLength(0);
+  c.frame(1);
+  expect(c.snapshot.board.flat().filter(Boolean)).toHaveLength(4);
+  expect(c.snapshot.lockMs).toBe(0);
+});
+test("accepted Hold clears held movement and soft drop; another Hold is inert", () => {
+  const c = new Controller(
+    () => 0.2,
+    () => {},
+  );
+  c.dispatch("start");
+  c.dispatch("left");
+  c.dispatch("down");
+  expect(c.dispatch("hold")).toBe(true);
+  expect(c.dispatch("hold")).toBe(false);
+  c.frame(150);
+  expect(c.snapshot.active).toMatchObject({ kind: "T", x: 3, y: 0 });
+  expect(c.snapshot.soft).toBe(false);
 });

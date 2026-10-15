@@ -1,8 +1,8 @@
 # SPEC review report
 
-Latest bounded control amendment: see Revision 2 below for the current SPEC identity and focused Ready assessment. Earlier preparation observations and acceptance remain historical evidence.
+Current complete incorporated scope: see Revision 3 below for the actual identities, conformance and Ready assessment. Earlier preparation gates/observations are historical.
 
-## Current gate
+## Initial preparation gate (historical)
 
 Technical state: **Ready** for the complete reviewed SPEC scope, subject to separate human acceptance. SPEC human review is **accepted** at `1ae7fa32560ebc7db679be0bd3b353c23c9005bc`; dependent PLAN authoring is eligible. No implementation, test execution, or browser compatibility pass is claimed.
 
@@ -50,3 +50,23 @@ The user accepted the complete SPEC checkpoint presented at `1ae7fa32560ebc7db67
 Current amended SPEC SHA-256: `15118b886ae68d5c6297616f897ed5da4ff49872feff7bd83f52a57c5af7f7d3`. Reviewed B5/B6 against accepted PROJECT/design and the human-commanded amendment: Space is an alternate clockwise action in the existing input adapter; focus, repeat suppression, scroll prevention and inapplicable-state rules still apply. No core rule, boundary or non-goal changes.
 
 Scoped technical gate: **Ready** for this bounded steering amendment; no unresolved conformance finding. The human command authorizes this direct amendment; initial preparation acceptance and earlier evidence remain historical. Governing PROJECT, ARCHITECTURE, DECOMPOSITION, PLAN and layout contents are unchanged. This recheck establishes document conformance, not a runtime pass. Runtime acceptance and reassessed completion evidence belong to the active [revision report](reports/phases/P1/revisions/001_8131306-spacebar-rotation/REVISION-REPORT.md).
+
+## Revision 3: Modern feature incorporation
+
+Current technical gate: **Ready** for the complete incorporated main SPEC, no focused children. Human modern document checkpoints are explicitly pre-approved. Assessed by sdd-specify criteria within sdd-integrate-feature; this is an owner self-review, not an independent external assessment.
+
+- [PROJECT.md](PROJECT.md): SHA-256 `82df2b780cbf4e56f579770b0df4483e369bf9289344c07c2be3544148fa05f4`.
+- [ARCHITECTURE.md](ARCHITECTURE.md): SHA-256 `5040738e2527bfdd24605fe77043af9f4dc1e9c534f9244d1f29bd8f16bdb776`.
+- [DECOMPOSITION.md](DECOMPOSITION.md): SHA-256 `937e9ff7c8d5ea802b3562840117ca6ee3e58600e14c01b512b28210846a73e6`.
+- [SPEC.md](SPEC.md): SHA-256 `2de4fc7c611d2a23522368da1b9369e2d386c66b1c4241b16f2e9b10f49d7ff2`.
+
+| Coverage | Current whole-owner assessment |
+| --- | --- |
+| B1–B3 / F1–F4 / F6 | Geometry, spawn, snapshot bag/hold/contact timing, kicks and atomic board transitions retain single core owners. Exact selection/hold counts, chronological normal-gravity lock delay and shared landing are complete, objectively assessable contracts. |
+| B4–B6 / F7 | Rewards/progression remain stable; no drop bonus. Core versus frame timing, accepted-only Hold rebase, Space/Z/X preservation, C/Enter, repeat/focus/default/lifecycle and fatal ownership align with design. |
+| B7–B8 / F5/F8 | Views derive pure Ghost/preview pixels without transitions or draws; named Hold resources, viewport and failure/static/engine acceptance have explicit owners. |
+| Scope and acceptance | PROJECT contains all requested modern outcomes and non-goals. Architecture/decomposition preserve existing structure while allowing pure view projection. Main SPEC describes final behavior rather than a chronological delta; F1–F8 identities remain traceable from transferred tasks. |
+
+MI-S001: initial incorporation's Ready-Hold language could conflate an unused allowance with an actionable Ready state. Clarified that the allowance is unused while actions only apply running; Ready remains inert. MI-S002: superseded main no-modern/no-kick/independent-draw/immediate-lock claims and a design sentence excluding pure view queries conflicted with the accepted delta. Replaced those current claims, retained core transition ownership and checked dependent design/acceptance. Both resolved in this revision; no behavioral decision was invented. Original F-001/F-002 and earlier revisions remain historical with their dispositions.
+
+Checks: full source/delta/design comparison, local links/style/identity checks, exact eight-row kick table and all B/F acceptance groups. This gate establishes current document conformance; implementation/task completion and final publication are separate phase-report/Git evidence.

@@ -1,4 +1,5 @@
 /** Snapshot-only Canvas drawing; cell size follows intrinsic canvas dimensions. */
+import { landing } from "../core/board";
 import { cells, size } from "../core/geometry";
 import type { Game, Piece } from "../core/types";
 export const COLORS: Record<Piece, string> = {
@@ -14,11 +15,34 @@ export const COLORS: Record<Piece, string> = {
 export function canvasView(
   canvas: HTMLCanvasElement,
   preview?: HTMLCanvasElement,
+  hold?: HTMLCanvasElement,
 ): (s: Game) => void {
   const ctx = canvas.getContext("2d");
   if (!ctx) throw Error("Canvas 2D unavailable");
   const nextCtx = preview?.getContext("2d");
   if (preview && !nextCtx) throw Error("Canvas 2D unavailable");
+  const holdCtx = hold?.getContext("2d");
+  if (hold && !holdCtx) throw Error("Canvas 2D unavailable");
+  const mini = (
+    canvas: HTMLCanvasElement | undefined,
+    context: CanvasRenderingContext2D | null | undefined,
+    kind: Piece | null,
+  ) => {
+    if (!canvas || !context) return;
+    context.fillStyle = "#09191d";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    if (!kind) return;
+    const n = size(kind),
+      unit = canvas.width / 4;
+    context.fillStyle = COLORS[kind];
+    for (const [x, y] of cells({ kind, x: 0, y: 0, rotation: 0 }))
+      context.fillRect(
+        (x + (4 - n) / 2) * unit + 1,
+        (y + (4 - n) / 2) * unit + 1,
+        unit - 2,
+        unit - 2,
+      );
+  };
   return (s) => {
     const w = canvas.width / 10,
       h = canvas.height / 20;
@@ -36,23 +60,16 @@ export function canvasView(
         const kind = s.board[y][x];
         if (kind) block(x, y, kind);
       }
-    if (preview && nextCtx) {
-      nextCtx.fillStyle = "#09191d";
-      nextCtx.fillRect(0, 0, preview.width, preview.height);
-      if (s.next) {
-        const n = size(s.next),
-          unit = preview.width / 4;
-        nextCtx.fillStyle = COLORS[s.next];
-        for (const [x, y] of cells({ kind: s.next, x: 0, y: 0, rotation: 0 }))
-          nextCtx.fillRect(
-            (x + (4 - n) / 2) * unit + 1,
-            (y + (4 - n) / 2) * unit + 1,
-            unit - 2,
-            unit - 2,
-          );
+    mini(preview, nextCtx, s.next);
+    mini(hold, holdCtx, s.hold);
+    if (s.active) {
+      const ghost = landing(s.board, s.active);
+      if (ghost.y !== s.active.y) {
+        ctx.strokeStyle = "#567570";
+        for (const [x, y] of cells(ghost))
+          ctx.strokeRect(x * w + 3, y * h + 3, w - 6, h - 6);
       }
-    }
-    if (s.active)
       for (const [x, y] of cells(s.active)) block(x, y, s.active.kind);
+    }
   };
 }

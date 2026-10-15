@@ -4,9 +4,16 @@ import { domView } from "../../src/view/dom";
 import { start } from "../../src/core/game";
 test("status counters and lifecycle availability follow one snapshot", () => {
   const nodes = Object.fromEntries(
-    ["score", "lines", "level", "status", "start", "restart", "pause"].map(
-      (id) => [id, { textContent: "", disabled: false }],
-    ),
+    [
+      "score",
+      "lines",
+      "level",
+      "status",
+      "start",
+      "restart",
+      "pause",
+      "hold-status",
+    ].map((id) => [id, { textContent: "", disabled: false }]),
   );
   const doc = {
     getElementById: (id: string) => nodes[id],

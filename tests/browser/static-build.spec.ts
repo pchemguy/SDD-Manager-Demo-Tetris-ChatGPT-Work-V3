@@ -20,11 +20,11 @@ test("production app renders and plays using only its own HTTP assets", async ({
       .locator("#preview")
       .evaluate((c) =>
         Array.from(
-          (c as HTMLCanvasElement).getContext("2d")!.getImageData(36, 36, 1, 1)
+          (c as HTMLCanvasElement).getContext("2d")!.getImageData(48, 48, 1, 1)
             .data,
         ),
       ),
-  ).toEqual([241, 206, 103, 255]);
+  ).toEqual([189, 155, 244, 255]);
   expect(requests.every((u) => u.startsWith("http://127.0.0.1:4173/"))).toBe(
     true,
   );

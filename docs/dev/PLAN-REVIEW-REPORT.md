@@ -1,8 +1,8 @@
 # PLAN review report
 
-Latest bounded control amendment: see Revision 3 below for the current SPEC identity and focused Ready assessment. Earlier preparation observations and acceptance remain historical evidence.
+Current complete incorporated scope: see Revision 4 below for the actual identities, conformance and Ready assessment. Earlier preparation gates/observations are historical.
 
-## Current gate
+## Initial preparation gate (historical)
 
 Technical state: **Ready for combined PLAN/layout scope**. The user accepted PLAN as presented at `a7a28cd0102ae4878a00d4e5ec12f4ac28b3dde8`; PLAN content is unchanged. Layout human review is accepted at `7a61b2473a2de0e21005f81b74c79ae84b5c43a1`; TASKS derivation is eligible.
 
@@ -80,3 +80,23 @@ Current amended SPEC SHA-256: `15118b886ae68d5c6297616f897ed5da4ff49872feff7bd83
 Scoped technical gate: **Ready** for this bounded steering amendment; no unresolved conformance finding. The human command authorizes this direct amendment; initial preparation acceptance and earlier evidence remain historical. Governing PROJECT, ARCHITECTURE, DECOMPOSITION, PLAN and layout contents are unchanged. This recheck establishes document conformance, not a runtime pass. Runtime acceptance and reassessed completion evidence belong to the active [revision report](reports/phases/P1/revisions/001_8131306-spacebar-rotation/REVISION-REPORT.md).
 
 Reviewed PLAN SHA-256: `ed8499f98cf503a422c663e8f0f919261fb7781f876a1587644c80c5a35841fd`. This bounded recheck preserves the existing phase/milestone/task decomposition assessment; counts and unaffected findings are unchanged.
+
+## Revision 4: Modern feature incorporation
+
+Current technical gate: **Ready for complete combined PLAN/layout scope**, no focused children. Human modern document checkpoints are pre-approved. Owner assessment uses sdd-plan criteria within incorporation.
+
+- [PROJECT.md](PROJECT.md): SHA-256 `82df2b780cbf4e56f579770b0df4483e369bf9289344c07c2be3544148fa05f4`.
+- [ARCHITECTURE.md](ARCHITECTURE.md): SHA-256 `5040738e2527bfdd24605fe77043af9f4dc1e9c534f9244d1f29bd8f16bdb776`.
+- [DECOMPOSITION.md](DECOMPOSITION.md): SHA-256 `937e9ff7c8d5ea802b3562840117ca6ee3e58600e14c01b512b28210846a73e6`.
+- [SPEC.md](SPEC.md): SHA-256 `2de4fc7c611d2a23522368da1b9369e2d386c66b1c4241b16f2e9b10f49d7ff2`.
+- [PLAN.md](PLAN.md): SHA-256 `8f2c4841cbfc336dca8a92b9d4e3ee2069fd597fb2fba2917fc630a59f9035e6`.
+- [layout.md](layout.md): SHA-256 `1aced04e3940ce126510bd502a1026eba657736a9f84cc646c8435da7cbfb037`.
+
+| Group | Delivery milestones | Excluded review milestone | Semantic assessment |
+| --- | --- | --- | --- |
+| P1 | Four, M1.1–M1.4 | M1.5, exactly one phase-review outcome | First playable loop, controls/progression, robust usability and reproducible acceptance remain useful distinct increments; completed claims are reassessed without rewriting history. |
+| P2 | Three, M2.1–M2.3 | M2.4, exactly one phase-review outcome | Bag/delay/drop, Hold/Ghost/kicks, then robust accepted delivery/guides each have observable end-to-end exits. Preferred 3–5 range; no padding or tiny administrative phases. |
+
+Complete B1–B8/F1–F8 mapping: baseline core/lifecycle/presentation in P1; F1–F3 at M2.1; F4–F6 at M2.2; F7–F8 and full modern/static acceptance at M2.3; cross-milestone review, incorporation, unique transfer/archive, task audit and final target integration at M2.4. Dependencies are acyclic and require predecessor publication and delivery-milestone closures. Every delivery milestone has a review; each phase review waits for all delivery exits. Required hosted activation/readback and one-task persistence remain explicit.
+
+Layout supports every component and test route. Existing core modules own bag/hold/timers/kicks/landing; views use pure queries and composition owns resources. No new production module, runtime package or layout overlay is needed. Current setup/build/test commands and generated/test-only boundaries are coherent. MI-P001 resolved superseded preparation-only language and added the accepted P2 delivery strategy with stable parent identities. No missing route, scope conflict or unresolved layout owner remains. Current hashes/local links, count/dependency/coverage and Markdown checks pass; runtime evidence is separate.

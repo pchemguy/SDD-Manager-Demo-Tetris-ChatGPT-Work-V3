@@ -41,10 +41,10 @@ export function mount(root: Document = document): () => void {
       "Tetris stopped: an initialization or application operation failed.",
     );
   };
-  const guard = (fn: () => void) => {
+  const guard = <T>(fn: () => T): T | undefined => {
     if (disposed) return;
     try {
-      fn();
+      return fn();
     } catch {
       fail();
     }
@@ -53,6 +53,8 @@ export function mount(root: Document = document): () => void {
     for (const id of [
       "board",
       "preview",
+      "hold",
+      "hold-status",
       "status",
       "score",
       "lines",
@@ -65,6 +67,7 @@ export function mount(root: Document = document): () => void {
     const paint = canvasView(
         root.getElementById("board") as HTMLCanvasElement,
         root.getElementById("preview") as HTMLCanvasElement,
+        root.getElementById("hold") as HTMLCanvasElement,
       ),
       text = domView(root);
     session = new Controller(randomDraw, (s) => {

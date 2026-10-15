@@ -13,6 +13,11 @@ export function domView(root: Document): (s: Game) => void {
       s.status !== "ready";
     (root.getElementById("restart") as HTMLButtonElement).disabled =
       s.status === "ready";
+    root.getElementById("hold-status")!.textContent = s.holdUsed
+      ? "Used"
+      : s.status === "running"
+        ? "Available"
+        : "Inactive";
     const pause = root.getElementById("pause") as HTMLButtonElement;
     pause.disabled = s.status !== "running" && s.status !== "paused";
     pause.textContent = s.status === "paused" ? "Resume" : "Pause";
