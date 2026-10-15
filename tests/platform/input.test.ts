@@ -8,6 +8,7 @@ test("OS repeats are ignored, releases translate and cleanup removes listeners",
     board,
     start: new EventTarget(),
     restart: new EventTarget(),
+    pause: new EventTarget(),
   };
   const doc = Object.assign(root, {
     getElementById: (id: keyof typeof elements) => elements[id],

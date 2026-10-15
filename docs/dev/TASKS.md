@@ -75,10 +75,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-011. Contracts: B5 held direction and ordering.
             Evidence: Verify immediate press, 150/50 ms repeat boundaries, OS-repeat suppression, opposing-key winner/release, horizontal-before-fall ordering, and no lock/timer reset from horizontal rejection.
             Verified: Held-direction test first failed before implementation. A prior single-press test then correctly exposed its missing release under the new held-input contract; added the modeled release, preserving the new held-key assertions. All 33 tests and typecheck pass. Verified 150/50 ms boundaries, opposing-key winner/release, OS-repeat suppression, and listener cleanup; horizontal repeats precede core falling.
-        - [ ] T-013 — Implement pause resume and focus-loss lifecycle
+        - [x] T-013 — Implement pause resume and focus-loss lifecycle
             Scope: Controller lifecycle, input/focus/visibility adapter, clock baseline integration, and browser/session cases.
             Depends on: T-012. Contracts: B5–B6.
             Evidence: Verify P/button pause, preserved core fall time, cleared held keys, explicit resume, first-frame baseline, long-frame clamp, blur/hidden idempotence, no automatic return-to-focus resume, and restart in each allowed state.
+            Verified: Pause scenario failed before implementation; 35 unit tests and three Chromium browser tests now pass, with strict build. Verified preserved core fall time, held-input clearing, explicit P resume, idempotent modeled blur, no focus auto-resume, fresh restart, first-frame baseline, clamped/negative elapsed handling, reset and one scheduling chain. Native keyboard P tested; synthetic blur/focus evidence is labeled separately from native desktop focus delivery.
         - [ ] T-014 — Complete preview status and control presentation
             Scope: Canvas preview, DOM score/lines/level/status/button availability, and browser interaction cases.
             Depends on: T-013. Contracts: B2, B4, B6–B7.

@@ -76,3 +76,35 @@ test("held direction repeats at 150/50 ms and winning-key release rebases", () =
   c.frame(150);
   expect(c.snapshot.active?.x).toBe(1);
 });
+test("pause/focus are idempotent, preserve fall time and clear held state", () => {
+  const c = new Controller(
+    () => 0.2,
+    () => {},
+  );
+  c.dispatch("start");
+  c.dispatch("left");
+  c.dispatch("down");
+  c.frame(30);
+  c.dispatch("pause");
+  expect(c.snapshot.status).toBe("paused");
+  expect(c.snapshot.fallMs).toBe(30);
+  expect(c.snapshot.soft).toBe(false);
+  c.frame(10000);
+  expect(c.snapshot.active).toMatchObject({ x: 3, y: 1 });
+  c.dispatch("blur");
+  expect(c.snapshot.status).toBe("paused");
+  c.dispatch("pause");
+  c.frame(969);
+  expect(c.snapshot.active?.y).toBe(1);
+  c.frame(1);
+  expect(c.snapshot.active).toMatchObject({ x: 3, y: 2 });
+  c.dispatch("blur");
+  c.dispatch("blur");
+  expect(c.snapshot.status).toBe("paused");
+  c.dispatch("restart");
+  expect(c.snapshot).toMatchObject({
+    status: "running",
+    fallMs: 0,
+    soft: false,
+  });
+});

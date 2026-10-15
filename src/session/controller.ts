@@ -28,6 +28,21 @@ export class Controller {
   }
   /** Apply one command in order; Start and Restart have distinct lifecycle guards. */
   dispatch(command: Command) {
+    if (command === "pause" || command === "blur") {
+      if (
+        this.state.status !== "running" &&
+        !(command === "pause" && this.state.status === "paused")
+      )
+        return;
+      this.clearHeld();
+      this.state = {
+        ...this.state,
+        status: this.state.status === "running" ? "paused" : "running",
+        soft: false,
+      };
+      this.render();
+      return;
+    }
     if (command === "leftRelease" || command === "rightRelease") {
       const dir = command === "leftRelease" ? "left" : "right";
       const winner = this.held.at(-1);
