@@ -44,10 +44,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-005. Contracts: B5–B6 M1.1 subset.
             Evidence: Controlled action/time/draw/view tests prove a single retained snapshot, ordered transition/view calls, running/ready/game-over guards, Start/Restart, and no rule duplication.
             Verified: Two controller behavior tests failed before orchestration was implemented and now pass. Full suite 24 tests passed, proving action/time/view order, ready draw guards, duplicate Start inertness, fresh restart and snapshot isolation from view mutation. Typecheck passed; browser wiring remains pending.
-        - [ ] T-007 — Render the first playable board and controls
+        - [x] T-007 — Render the first playable board and controls
             Scope: src/view/canvas.ts, src/view/dom.ts, index.html, src/style.css, and focused view checks.
             Depends on: T-006. Contracts: B7 and B6 M1.1 subset.
             Evidence: Representative state/draw-command checks show all cells, legal active piece, ready/game-over text, and native Start/Restart controls; input wiring remains the next task. Preview/scoring polish remains M1.2.
+            Verified: Two renderer tests failed before implementation; all 26 unit tests now pass. Drawing checks verify 200 grid cells, literal active/settled positions, no snapshot mutation or extra draws, and explicit missing Canvas failure. Typecheck passed. HTML/CSS provide first-playable controls/status; native input and real visual inspection remain T-008.
         - [ ] T-008 — Wire and demonstrate the playable browser loop
             Scope: src/main.ts, src/platform/input.ts, src/platform/clock.ts, and tests/browser/playable.spec.ts; integrate existing controller/views.
             Depends on: T-007. Contracts: B1–B3; B5–B7 M1.1 subset.
