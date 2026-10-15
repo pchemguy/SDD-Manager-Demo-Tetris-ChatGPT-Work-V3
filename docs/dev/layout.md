@@ -54,6 +54,7 @@ Use npm with a committed `package-lock.json` for reproducible installation. Prop
 | `vite.config.ts` | Static application entry, output, and development/preview serving. |
 | `vitest.config.ts` | Node unit/integration test selection, excluding browser specs. |
 | `playwright.config.ts` | Browser-engine projects, test selection, local server lifecycle, and output locations. |
+| `scripts/provision-chromium.mjs` | Optional Linux x64, ownership-safe extraction of npm-packaged Chromium/fonts into ignored `.cache/browser/` when official browser downloads are unavailable; never a Firefox/WebKit substitute. |
 | `.gitignore` | Generated/dependency output and protected credential exclusions; preserve existing rules. |
 
 Run project commands from the repository root. Intended script names are `dev`, `typecheck`, `test`, `test:browser`, `build`, and `preview`; they are not implemented or validated commands yet. Installation/launch of browser binaries must be established and recorded during implementation, separately from a package install. Use npm scripts compatible with Windows CMD and the execution environment's shell; do not force PowerShell or hard-code a Windows shell on Linux.

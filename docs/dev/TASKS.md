@@ -14,10 +14,11 @@ Intended commands below become executable through T-001; exact focused check sel
 
 - [ ] P1 — Complete classic browser gameplay
     - [ ] M1.1 — First playable loop
-        - [ ] T-001 — Establish reproducible build and verification facilities
+        - [x] T-001 — Establish reproducible build and verification facilities
             Scope: Root npm/TypeScript/Vite/Vitest/Playwright configuration and lockfile; minimal entry needed to exercise tooling, setup documentation, and generated-output exclusions.
             Depends on: none. Contracts: B8; PLAN M1.1 prerequisite.
             Evidence: Verify installed stable package engine requirements, npm installation, typecheck and static build; obtain real Chromium download/launch evidence and identify other engine prerequisites. Record Node/npm versions and the existing proxy warning. Record test collection honestly; no empty-suite success claim.
+            Verified: npm install, typecheck and build passed on Node 24.19.0/npm 11.9.0. Official Playwright downloads returned 195-byte HTML, not ZIP; a stable older release also failed. Ownership-safe npm-packaged Chromium 153.0.8010.0 with Playwright 1.64.1 passed three successive contexts and Canvas/text pixel probes. Recovery covers archive ownership, executable mode and font paths. No gameplay suite exists yet; Firefox/WebKit are pending.
         - [ ] T-002 — Implement tetromino geometry
             Scope: src/core/types.ts, src/core/geometry.ts, and tests/core/geometry.test.ts.
             Depends on: T-001. Contracts: B1–B2.
