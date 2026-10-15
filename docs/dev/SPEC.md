@@ -48,7 +48,7 @@ The core accumulates nonnegative elapsed milliseconds only while running. At eac
 
 The normal falling interval is B4's gravity interval. While Down is held, it is 50 ms. A fresh Down press attempts one downward move immediately and resets accumulated fall time. Releasing Down resets accumulated fall time and restores normal gravity. Each successful timed downward move preserves only the unconsumed remainder; rejected horizontal movement and rotation never reset falling time.
 
-Left/Right presses each attempt one immediate horizontal move. A held direction repeats after 150 ms and every 50 ms thereafter, independently of operating-system key repeat. If both directions are held, the most recently pressed direction wins; releasing it activates the remaining direction with a fresh 150 ms repeat delay and no immediate move. At a frame update, process due horizontal repeats before advancing core falling time. Horizontal repeats cannot lock a piece. Z/X and P act only on fresh presses; ignore browser-generated repeat events for all mapped keys.
+Left/Right presses each attempt one immediate horizontal move. A held direction repeats after 150 ms and every 50 ms thereafter, independently of operating-system key repeat. If both directions are held, the most recently pressed direction wins; releasing it activates the remaining direction with a fresh 150 ms repeat delay and no immediate move. At a frame update, process due horizontal repeats before advancing core falling time. Horizontal repeats cannot lock a piece. Z/X, Space, and P act only on fresh presses; ignore browser-generated repeat events for all mapped keys.
 
 Browser input events are delivered in event-loop order; each callback completes its state update before the next. The first animation frame after start/resume establishes its timestamp baseline and contributes no elapsed time. Clamp subsequent frame deltas to `[0, 250]` ms and discard excess; negative deltas contribute zero. Therefore long stalls may slow game time but cannot trigger unbounded catch-up. Restart, pause, resume, focus loss, and disposal clear held-input/repeat state and rebase scheduling; pause/resume preserves the core's accumulated fall time. The clamp is a browser-boundary policy; deterministic core tests may deliver larger finite deltas directly.
 
@@ -58,7 +58,8 @@ Browser input events are delivered in event-loop order; each callback completes 
 | --- | --- |
 | Left / Right arrows | Move or hold horizontal direction under B5. |
 | Down arrow | Soft drop under B3/B5. |
-| Z / X | Counterclockwise / clockwise rotation. |
+| Z | Counterclockwise rotation. |
+| X / Space | Clockwise rotation. |
 | P | Toggle pause/resume while running or paused. |
 | Start button | Start from ready state. |
 | Pause / Resume button | Pause or resume the current session. |

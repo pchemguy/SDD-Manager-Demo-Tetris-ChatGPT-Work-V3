@@ -33,3 +33,38 @@ test("OS repeats are ignored, releases translate and cleanup removes listeners",
   send("keydown", "ArrowRight");
   expect(dispatch).toHaveBeenCalledTimes(2);
 });
+
+test("Space rotates once, prevents focused scrolling, and preserves other controls", () => {
+  const root = new EventTarget(),
+    board = new EventTarget();
+  const elements = {
+    board,
+    start: new EventTarget(),
+    restart: new EventTarget(),
+    pause: new EventTarget(),
+  };
+  const doc = Object.assign(root, {
+    getElementById: (id: keyof typeof elements) => elements[id],
+  }) as unknown as Document;
+  const dispatch = vi.fn();
+  const cleanup = bindInput(doc, dispatch, () => {});
+  const key = (target: EventTarget, repeat = false) => {
+    const event = Object.assign(new Event("keydown", { cancelable: true }), {
+      key: " ",
+      repeat,
+    });
+    Object.defineProperty(event, "target", { value: target });
+    root.dispatchEvent(event);
+    return event;
+  };
+  try {
+    expect(key(board).defaultPrevented).toBe(true);
+    expect(dispatch.mock.calls.map(([command]) => command)).toEqual(["cw"]);
+    expect(key(board, true).defaultPrevented).toBe(true);
+    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(key(elements.pause).defaultPrevented).toBe(false);
+    expect(dispatch).toHaveBeenCalledTimes(1);
+  } finally {
+    cleanup();
+  }
+});

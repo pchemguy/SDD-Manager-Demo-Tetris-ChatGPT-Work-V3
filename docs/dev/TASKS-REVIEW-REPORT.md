@@ -1,5 +1,7 @@
 # TASKS review report
 
+Latest bounded control amendment: see Revision 2 below for the current SPEC identity and focused Ready assessment. Earlier preparation observations and acceptance remain historical evidence.
+
 ## Current gate
 
 Technical state: **Ready** for the complete TASKS proposal. Human TASKS review is **accepted** at `f3093eb6ec9ccc9e541cfadc9f5157b05687b077`. No execution range is selected, no task is complete, and no phase tracking objects have been projected. Implementation additionally requires accepted preparation integration/publication, range selection, and verified phase activation.
@@ -57,3 +59,11 @@ The user accepted the complete TASKS checkpoint presented at `f3093eb6ec9ccc9e54
 ## Revision 1: Tooling recovery allocation
 
 T-001 exposed invalid HTML returned by official browser downloads and unsupported archive chown. The layout adds one cohesive tooling utility, `scripts/provision-chromium.mjs`, and ignored `.cache/browser/` output. Revised layout SHA-256: `bc74c29dfa9bccaa6bd5ea735d644aebe56d35f7699f8feaa1e0efaf8a979249`. Rechecked component/path ownership, T-001 scope, delivery/acceptance and tracking gates: unchanged; no gameplay or task hierarchy amendment. Combined conformance remains Ready. The fallback verifies Chromium only; Firefox/WebKit remain required. Actual runtime observations are retained in T-001 evidence.
+
+## Revision 2: Spacebar rotation amendment
+
+Current amended SPEC SHA-256: `15118b886ae68d5c6297616f897ed5da4ff49872feff7bd83f52a57c5af7f7d3`. Reviewed T-008 input mapping and its repeat/focus/presentation dependents against unchanged PLAN/layout. Existing identities, hierarchy, 26 task scopes and dependencies remain sufficient. This commanded checkpoint amendment carries additional acceptance and evidence under T-008, without a new executable task or initial reclosure. Completed claims will be retained only after amendment verification.
+
+Scoped technical gate: **Ready** for this bounded steering amendment; no unresolved conformance finding. The human command authorizes this direct amendment; initial preparation acceptance and earlier evidence remain historical. Governing PROJECT, ARCHITECTURE, DECOMPOSITION, PLAN and layout contents are unchanged. This recheck establishes document conformance, not a runtime pass. Runtime acceptance and reassessed completion evidence belong to the active [revision report](reports/phases/P1/revisions/001_8131306-spacebar-rotation/REVISION-REPORT.md).
+
+Reviewed TASKS SHA-256: `8799abae0c0bc2b28b7e778cb4bb7f01b7b5107de429354dc0a62c2ce66e737b`. This bounded recheck preserves the existing phase/milestone/task decomposition assessment; counts and unaffected findings are unchanged.

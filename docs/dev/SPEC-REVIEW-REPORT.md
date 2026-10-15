@@ -1,5 +1,7 @@
 # SPEC review report
 
+Latest bounded control amendment: see Revision 2 below for the current SPEC identity and focused Ready assessment. Earlier preparation observations and acceptance remain historical evidence.
+
 ## Current gate
 
 Technical state: **Ready** for the complete reviewed SPEC scope, subject to separate human acceptance. SPEC human review is **accepted** at `1ae7fa32560ebc7db679be0bd3b353c23c9005bc`; dependent PLAN authoring is eligible. No implementation, test execution, or browser compatibility pass is claimed.
@@ -42,3 +44,9 @@ Rechecked dependency direction, state/rule ownership, selected scope, determinis
 ## Human decision
 
 The user accepted the complete SPEC checkpoint presented at `1ae7fa32560ebc7db679be0bd3b353c23c9005bc`. SPEC content and the governing content identities above are unchanged; the current-gate update records the decision without changing the original review or Revision 1 evidence. PLAN and layout retain their separate human checkpoints.
+
+## Revision 2: Spacebar rotation amendment
+
+Current amended SPEC SHA-256: `15118b886ae68d5c6297616f897ed5da4ff49872feff7bd83f52a57c5af7f7d3`. Reviewed B5/B6 against accepted PROJECT/design and the human-commanded amendment: Space is an alternate clockwise action in the existing input adapter; focus, repeat suppression, scroll prevention and inapplicable-state rules still apply. No core rule, boundary or non-goal changes.
+
+Scoped technical gate: **Ready** for this bounded steering amendment; no unresolved conformance finding. The human command authorizes this direct amendment; initial preparation acceptance and earlier evidence remain historical. Governing PROJECT, ARCHITECTURE, DECOMPOSITION, PLAN and layout contents are unchanged. This recheck establishes document conformance, not a runtime pass. Runtime acceptance and reassessed completion evidence belong to the active [revision report](reports/phases/P1/revisions/001_8131306-spacebar-rotation/REVISION-REPORT.md).
