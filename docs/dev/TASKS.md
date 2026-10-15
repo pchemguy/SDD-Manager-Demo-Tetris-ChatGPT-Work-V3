@@ -70,10 +70,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-010. Contracts: B3, B5 soft drop.
             Evidence: Verify immediate Down attempt, 50 ms falling interval, release/reset, failed soft-drop locking, pause-independent core accumulation contract, and no newly spawned-piece cascade.
             Verified: Soft-drop scenario first failed at the 50 ms boundary; after implementation all 31 tests and typecheck passed. Verified immediate attempt, exact held timing, release timer reset/restored gravity, no drop reward, failed-attempt locking and no post-lock cascade. Input maps Down press/release without OS-repeat dependence.
-        - [ ] T-012 — Implement deterministic horizontal key repetition
+        - [x] T-012 — Implement deterministic horizontal key repetition
             Scope: Controller repeat bookkeeping and input adapter repeat filtering; tests/session and tests/platform/input.test.ts.
             Depends on: T-011. Contracts: B5 held direction and ordering.
             Evidence: Verify immediate press, 150/50 ms repeat boundaries, OS-repeat suppression, opposing-key winner/release, horizontal-before-fall ordering, and no lock/timer reset from horizontal rejection.
+            Verified: Held-direction test first failed before implementation. A prior single-press test then correctly exposed its missing release under the new held-input contract; added the modeled release, preserving the new held-key assertions. All 33 tests and typecheck pass. Verified 150/50 ms boundaries, opposing-key winner/release, OS-repeat suppression, and listener cleanup; horizontal repeats precede core falling.
         - [ ] T-013 — Implement pause resume and focus-loss lifecycle
             Scope: Controller lifecycle, input/focus/visibility adapter, clock baseline integration, and browser/session cases.
             Depends on: T-012. Contracts: B5–B6.

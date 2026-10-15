@@ -34,7 +34,13 @@ export function bindInput(
     }
   });
   listen(root, "keyup", (event) => {
-    if ((event as KeyboardEvent).key === "ArrowDown") dispatch("downRelease");
+    const releases: Record<string, Command> = {
+      ArrowDown: "downRelease",
+      ArrowLeft: "leftRelease",
+      ArrowRight: "rightRelease",
+    };
+    const c = releases[(event as KeyboardEvent).key];
+    if (c) dispatch(c);
   });
   return () => listeners.splice(0).forEach((fn) => fn());
 }
