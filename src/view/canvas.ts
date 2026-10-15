@@ -1,4 +1,5 @@
 /** Snapshot-only Canvas drawing; cell size follows intrinsic canvas dimensions. */
+import { landing } from "../core/board";
 import { cells, size } from "../core/geometry";
 import type { Game, Piece } from "../core/types";
 export const COLORS: Record<Piece, string> = {
@@ -61,7 +62,14 @@ export function canvasView(
       }
     mini(preview, nextCtx, s.next);
     mini(hold, holdCtx, s.hold);
-    if (s.active)
+    if (s.active) {
+      const ghost = landing(s.board, s.active);
+      if (ghost.y !== s.active.y) {
+        ctx.strokeStyle = "#567570";
+        for (const [x, y] of cells(ghost))
+          ctx.strokeRect(x * w + 3, y * h + 3, w - 6, h - 6);
+      }
       for (const [x, y] of cells(s.active)) block(x, y, s.active.kind);
+    }
   };
 }

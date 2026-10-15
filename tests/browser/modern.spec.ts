@@ -78,3 +78,31 @@ test("C holds once and renders the original identity; restart clears the slot", 
       ),
   ).toEqual([9, 25, 29, 255]);
 });
+test("Ghost recomputes after Hold and is replaced by active pixels on drop", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Math.random = () => 0.2;
+  });
+  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
+  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
+  await page.goto("/");
+  await page.getByRole("button", { name: "Start game" }).click();
+  const pixel = () =>
+    page
+      .locator("#board")
+      .evaluate((c) =>
+        Array.from(
+          (c as HTMLCanvasElement)
+            .getContext("2d")!
+            .getImageData(123, 440, 1, 1).data,
+        ),
+      );
+  expect(await pixel()).not.toEqual([9, 25, 29, 255]);
+  expect(await pixel()).not.toEqual([241, 206, 103, 255]);
+  await page.keyboard.press("c");
+  expect(await pixel()).toEqual([9, 25, 29, 255]);
+  await page.getByRole("button", { name: "Restart", exact: true }).click();
+  await page.keyboard.press("Enter");
+  expect(await pixel()).toEqual([241, 206, 103, 255]);
+});

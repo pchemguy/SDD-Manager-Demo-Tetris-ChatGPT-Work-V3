@@ -34,10 +34,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-030; M2.1 complete/closed.
             Evidence: F4/F7/F8; empty/swap draw counts, repeat rejection, blocked spawn, reset/pause and held-state/clock cleanup, actual named Hold display.
             Verified: RED Unknown action observed before Hold implementation. 61/61 unit tests, strict build, actual C/uppercase C display/restart checks, composition rebuild and production C scenario passed. Empty Hold consumes preview plus one draw; occupied swaps are draw-free; both blocked paths, once-per-piece reset after lock, pause/restart, soft/held timing cleanup and accepted-only clock rebase verified. Hold Canvas/availability are required composition resources; test-only real-markup fixture aligned.
-        - [ ] T-032 — Render exact state-free landing Ghost
+        - [x] T-032 — Render exact state-free landing Ghost
             Scope: view/canvas.ts and focused core/view/browser tests.
             Depends on: T-031.
             Evidence: F3/F5; shared landing, outline behind active, overlap suppression, obstacles, movement and hold recomputation, paused/ready/gameover and snapshot/draw purity.
+            Verified: Ghost RED observed missing outlines. 62/62 unit tests and strict build passed; native Hold/drop Ghost pixel scenarios passed in development and production Chromium. Focused paused/ready/gameover and overlap/purity assertions passed after final additions; shared landing recomputes without draws or snapshot mutation.
         - [ ] T-033 — Implement ordered quarter-turn wall kicks
             Scope: core/geometry.ts and game.ts with deterministic rotation/obstacle/timer regressions.
             Depends on: T-032.
