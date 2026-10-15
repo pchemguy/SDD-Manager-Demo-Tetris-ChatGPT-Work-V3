@@ -87,3 +87,5 @@ npm's existing unknown `http-proxy` configuration warning and terminal-color war
 The pure rules live in `src/core/`, session coordination in `src/session/`, browser adapters in `src/platform/`, and rendering in `src/view/`. `src/main.ts` composes one disposable application. Tests live under `tests/`; their harnesses are excluded from the production entry graph.
 
 The accepted [project brief](docs/dev/PROJECT.md), [architecture](docs/dev/ARCHITECTURE.md), [decomposition](docs/dev/DECOMPOSITION.md), [behavioral specification](docs/dev/SPEC.md), [plan](docs/dev/PLAN.md), [layout](docs/dev/layout.md) and owning [task list](docs/dev/TASKS.md) govern development. Use [AGENTS.md](AGENTS.md) for agent orientation. Development uses [SDD Manager](SDD-MANAGER.md); see the [AI-assisted development disclosure](AI_DISCLOSURE.md).
+
+The [implementation report](docs/dev/reports/IMPLEMENTATION-REPORT.md) and [phase review](docs/dev/reports/phases/P1/PHASE-REPORT.md) retain delivered scope, checks, findings, task-history exceptions and integration gates.

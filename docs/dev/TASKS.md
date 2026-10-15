@@ -12,7 +12,7 @@ Intended commands below become executable through T-001; exact focused check sel
 
 ## P1 — Complete classic browser gameplay
 
-- [ ] P1 — Complete classic browser gameplay
+- [x] P1 — Complete classic browser gameplay
     - [x] M1.1 — First playable loop
         - [x] T-001 — Establish reproducible build and verification facilities
             Scope: Root npm/TypeScript/Vite/Vitest/Playwright configuration and lockfile; minimal entry needed to exercise tooling, setup documentation, and generated-output exclusions.
@@ -143,8 +143,9 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-022–T-024; constituent delivery issues completed. Contracts: PLAN M1.4 exit.
             Evidence: Review code/config/docs, rerun required affected/full regressions and build/engine checks, repair blockers, and publish features, reproducibility, acceptance and compatibility evidence, findings and TODOs; close issue and native milestone after verified completion.
             Verified: Reviewed coherent delivery code/config/docs separately from checks. M14-F001 sparse board validation reproduced RED, repaired and rechecked; M14-F002 WebKit injected pointer loss investigated and native Enter button activation retained (10/10 repeats). Fresh 41/41 unit, strict build, 42/42 development and 6/6 production engine scenarios passed, zero skips. M1.4 report records acceptance, historical T-022 exception and limits; TODO None.
-    - [ ] M1.5 — Phase review and final report
-        - [ ] T-026 — Review verify and report complete Phase P1
+    - [x] M1.5 — Phase review and final report
+        - [x] T-026 — Review verify and report complete Phase P1
             Scope: Complete P1 implementation and all milestone reports; docs/dev/reports/phases/P1/PHASE-REPORT.md and docs/dev/reports/IMPLEMENTATION-REPORT.md.
             Depends on: T-009, T-015, T-021, T-025; M1.1–M1.4 complete/closed. Contracts: PLAN P1 exits; all SPEC contracts.
             Evidence: Perform cross-milestone code review and full acceptance/regression/build/three-engine assessment, repair blockers, audit one-task commits and tracking state, aggregate all TODO identities/options/owners/provenance, and publish phase/final reports. Close this issue then M1.5; reconcile parents, perform eligible explicit phase merge, verify merged target and publish/read back. Report integrated features and remaining limits; stop without release or extra tasks.
+            Verified: Completed direct phase code review and B1-B8 assessment separately from execution. Added passing characterization of horizontal-before-lock ordering; 42/42 unit tests, strict build, 42/42 development and 6/6 production engine scenarios passed with zero skips. Task parent diffs audited individually; approved T-022 historical exception retained. All delivery milestone closures/associations read back; final reports aggregate TODO None and exact environment limits. Final task/milestone closure and explicit merged-state verification/publication follow this commit.

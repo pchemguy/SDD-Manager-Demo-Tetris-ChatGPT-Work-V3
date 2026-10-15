@@ -131,3 +131,14 @@ test("unowned Down release does not reset normal gravity timing", () => {
   c.dispatch("downRelease");
   expect(c.snapshot.fallMs).toBe(100);
 });
+
+test("due horizontal repeats run before the downward attempt locks", () => {
+  const c = new Controller(() => 0.2, () => {});
+  c.dispatch("start");
+  c.frame(18000); // O reaches support, without a failed downward attempt.
+  expect(c.snapshot.active?.y).toBe(18);
+  c.dispatch("left");
+  c.frame(1000); // Repeats reach the wall before gravity settles this piece.
+  expect(c.snapshot.board[19].slice(0, 4)).toEqual(["O", "O", null, null]);
+  expect(c.snapshot.active?.y).toBe(0);
+});
