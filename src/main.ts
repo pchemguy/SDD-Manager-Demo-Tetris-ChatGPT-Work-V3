@@ -84,4 +84,4 @@ export function mount(root: Document = document): () => void {
   }
   return dispose;
 }
-if (document.querySelector("script[data-tetris-entry]")) mount();
+if (document.querySelector("[data-tetris-root]")) mount();
