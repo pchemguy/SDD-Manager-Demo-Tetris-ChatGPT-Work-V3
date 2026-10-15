@@ -60,10 +60,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: T-035.
             Evidence: F1–F8; actual C/Enter/Space/Z/X, lock delay, ghost/hold pixels, typing/repeats/focus, 800x600, production assets/exclusions; all three exact engine versions/counts/skips.
             Verified: 129/129 unit tests, strict build, 75/75 development and 54/54 actual static-production browser checks pass across Chromium153.0.8010.0/Firefox157.0/WebKit27.2, zero skips. Added real Z/X/native typing/button checks and explicit C/Enter repeat defaults; expanded production to modern, Space, failures, usability and static exclusions. ACCEPTANCE.md maps F1-F8 and retained contracts to evidence and records exact facilities/limits.
-        - [ ] T-037 — Document modern player rules and reproducible checks
+        - [x] T-037 — Document modern player rules and reproducible checks
             Scope: README.md, AGENTS.md and focused maintained guides.
             Depends on: T-036.
             Evidence: Controls, seven-bag/hold/ghost/kicks, full normal-gravity lock including Hard drop, no drop bonuses; actual setup/tests/build/static serve, CMD and observed limits, local links.
+            Verified: README and root orientation now describe all modern controls/rules, full normal-gravity grounded delay including Enter, no reset on support/no drop bonus, Hold availability, Ghost and seven-bag/SRS limits. Setup/production/CMD commands checked against package scripts and T-036 actual evidence; local links, heading spacing and whitespace pass. Counts are current 129 units and 25/18 scenarios per engine. Historical P1 reports remain frozen; active feature ownership and final stopping boundary are explicit.
         - [ ] T-038 — Review test and report modern delivery acceptance
             Scope: Whole delivery result and package M2.3.md.
             Depends on: T-035–T-037.
