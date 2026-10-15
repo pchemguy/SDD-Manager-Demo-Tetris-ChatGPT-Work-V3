@@ -2,13 +2,13 @@
 
 ## Project and governing sources
 
-This repository develops a classic browser-based Tetris game. Start with the accepted [PROJECT](docs/dev/PROJECT.md) and accepted [ARCHITECTURE](docs/dev/ARCHITECTURE.md). The [DECOMPOSITION](docs/dev/DECOMPOSITION.md) proposal awaits human review; hold SPEC until acceptance. Specification, delivery plan, layout, and task list have not yet been prepared. No application source, tests, or validated setup commands exist yet.
+This repository develops a classic browser-based Tetris game. Start with the accepted [PROJECT](docs/dev/PROJECT.md) and accepted [ARCHITECTURE](docs/dev/ARCHITECTURE.md). The accepted [DECOMPOSITION](docs/dev/DECOMPOSITION.md) refines those boundaries. [SPEC](docs/dev/SPEC.md) and its [QC report](docs/dev/SPEC-REVIEW-REPORT.md) await human review; hold PLAN until acceptance. Delivery plan, layout, and task list have not yet been prepared. No application source, tests, or validated setup commands exist yet.
 
 Read applicable nested AGENTS.md files before working on selected paths. Load this entry explicitly if the host does not discover it automatically.
 
 ## Workflow ownership
 
-Load the bundled [SDD Manager entry](.agents/plugins/sdd-manager/PLUGIN.md) and [coordinator](.agents/plugins/sdd-manager/skills/sdd-manage/SKILL.md). The [design skill](.agents/plugins/sdd-manager/skills/sdd-design/SKILL.md) owns current project preparation. Follow [human document review](.agents/plugins/sdd-manager/skills/sdd-manage/references/human-document-review.md) before dependent work.
+Load the bundled [SDD Manager entry](.agents/plugins/sdd-manager/PLUGIN.md) and [coordinator](.agents/plugins/sdd-manager/skills/sdd-manage/SKILL.md). The [specification skill](.agents/plugins/sdd-manager/skills/sdd-specify/SKILL.md) owns the current specification checkpoint. Follow [human document review](.agents/plugins/sdd-manager/skills/sdd-manage/references/human-document-review.md) before dependent work.
 
 Use accepted current documents and the eventual owning TASKS for execution. Preserve pending and unrelated changes. Do not infer acceptance or implementation authority from a branch name or checked box.
 

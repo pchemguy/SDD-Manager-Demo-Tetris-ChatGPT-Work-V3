@@ -55,4 +55,4 @@ The dependency graph is directed: game transitions use geometry, board operation
 
 SPEC must settle board dimensions, spawn and rotation behavior, locking, random distribution, score/progression formulas, input mapping/repeat, browser lifecycle timing, error responses, and compatibility targets. Those decisions can be assigned to the components above without creating a second owner for a rule. Core, coordinator, DOM, and browser checks provide complementary evidence rather than interchangeable acceptance claims.
 
-Physical module/test allocation belongs to layout, delivery order to PLAN, and executable work to TASKS. Specification authoring waits for human acceptance of this decomposition.
+Physical module/test allocation belongs to layout, delivery order to PLAN, and executable work to TASKS. The user accepted DECOMPOSITION as presented at commit `e14b1d5c07fc830aa3963d6e87044ad9b1df0cd2`; [SPEC](SPEC.md) supplies the proposed precise contracts for its separate human review.
