@@ -25,6 +25,7 @@ function assertState(s: Game): void {
     s.level !== 1 + Math.floor(s.lines / 10) ||
     !Number.isFinite(s.fallMs) ||
     s.fallMs < 0 ||
+    !Number.isFinite(s.lockMs) || s.lockMs < 0 ||
     typeof s.soft !== "boolean" ||
     !["ready", "running", "paused", "gameover"].includes(s.status)
   )
@@ -45,6 +46,7 @@ function assertState(s: Game): void {
       !piece(s.next)
     )
       throw Error("Invalid active state");
+    if (s.lockMs !== 0 && !grounded(s)) throw Error("Airborne lock time");
   } else if (
     s.active !== null ||
     (s.status === "ready" &&
@@ -52,6 +54,7 @@ function assertState(s: Game): void {
         s.score !== 0 ||
         s.lines !== 0 ||
         s.fallMs !== 0 ||
+        s.lockMs !== 0 ||
         s.soft ||
         s.board.flat().some((v) => v !== null))) ||
     (s.status === "gameover" && !piece(s.next))
@@ -70,6 +73,7 @@ export function ready(): Game {
     lines: 0,
     level: 1,
     fallMs: 0,
+    lockMs: 0,
     soft: false,
   };
 }
@@ -105,15 +109,25 @@ function spawnNext(s: Game, draw: Draw): Game {
     bag: selection.bag,
     status: ok ? "running" : "gameover",
     fallMs: 0,
+    lockMs: 0,
   };
   assertState(result);
   return result;
 }
-/** Apply a move atomically. Only a failed downward attempt settles a piece. */
+/** Whether a legal active piece is supported one row below. */
+function grounded(s: Game): boolean {
+  return !!s.active && !legal(s.board, cells({ ...s.active, y: s.active.y + 1 }));
+}
+/** Preserve a continuous contact timer; leaving support starts fresh airborne timing. */
+function moved(s: Game, active: Active): Game {
+  const next = { ...s, active };
+  if (grounded(next)) return grounded(s) ? next : { ...next, fallMs: 0, lockMs: 0 };
+  return { ...next, lockMs: 0, fallMs: grounded(s) ? 0 : s.fallMs };
+}
+/** Apply movement without settling; only elapsed continuous contact may lock. */
 export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
   assertState(s);
-  if (!["left", "right", "cw", "ccw", "down"].includes(action))
-    throw Error("Unknown action");
+  if (!["left", "right", "cw", "ccw", "down"].includes(action)) throw Error("Unknown action");
   if (s.status !== "running" || !s.active) return s;
   const active = { ...s.active };
   if (action === "left") active.x--;
@@ -121,32 +135,29 @@ export function act(s: Game, action: import("./types").Move, draw: Draw): Game {
   else if (action === "cw") active.rotation = (active.rotation + 1) % 4;
   else if (action === "ccw") active.rotation = (active.rotation + 3) % 4;
   else active.y++;
-  if (legal(s.board, cells(active))) return { ...s, active };
-  if (action !== "down") return s;
-  const result = clearRows(settle(s.board, cells(s.active), s.active.kind));
-  return spawnNext(
-    {
-      ...s,
-      board: result.board,
-      ...progression(s.score, s.lines, result.cleared),
-    },
-    draw,
-  );
+  return legal(s.board, cells(active)) ? moved(s, active) : s;
 }
-/** Consume level-dependent logical gravity; stop at the first lock and discard excess. */
+/** Settle, score, clear and promote atomically once a contact deadline is reached. */
+function lock(s: Game, draw: Draw): Game {
+  const result = clearRows(settle(s.board, cells(s.active!), s.active!.kind));
+  return spawnNext({ ...s, board: result.board, ...progression(s.score, s.lines, result.cleared) }, draw);
+}
+/** Spend time chronologically in airborne falls then grounded delay; discard after one lock. */
 export function advance(s: Game, ms: number, draw: Draw): Game {
   assertState(s);
   if (!Number.isFinite(ms) || ms < 0) throw Error("Invalid elapsed time");
   if (s.status !== "running") return s;
-  let next = { ...s, fallMs: s.fallMs + ms };
-  while (next.fallMs >= (next.soft ? 50 : gravity(next.level))) {
-    next = {
-      ...next,
-      fallMs: next.fallMs - (next.soft ? 50 : gravity(next.level)),
-    };
-    const moved = act(next, "down", draw);
-    if (moved.board !== next.board) return moved;
-    next = moved;
+  let next = { ...s }, remaining = ms;
+  for (;;) {
+    if (grounded(next)) {
+      const needed = Math.max(0, gravity(next.level) - next.lockMs);
+      if (remaining < needed) return { ...next, fallMs: 0, lockMs: next.lockMs + remaining };
+      return lock(next, draw);
+    }
+    const interval = next.soft ? 50 : gravity(next.level);
+    const needed = Math.max(0, interval - next.fallMs);
+    if (remaining < needed) return { ...next, fallMs: next.fallMs + remaining };
+    remaining -= needed;
+    next = act({ ...next, fallMs: 0 }, "down", draw);
   }
-  return next;
 }

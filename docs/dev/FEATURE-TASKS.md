@@ -13,10 +13,11 @@ Each task closes with its result, current verification and initial checkbox in o
             Depends on: Published preparation and verified P2 activation.
             Evidence: F1; preserve explicit draws, multi-bag permutations, no replacement, boundary repeats, restart and atomic invalid draws.
             Verified: Seven-bag test failed before snapshot/remainder implementation. 46/46 unit tests, strict build, preview integration and 3/3 production Chromium scenarios passed. Verified three deterministic permutations, cross-bag repeat, one draw per selection, bag uniqueness/ownership, restart and atomic invalid selection. Changed old independent-draw and O-preview expectations explicitly to F1's no-replacement results.
-        - [ ] T-028 — Implement continuous grounded locking delay
+        - [x] T-028 — Implement continuous grounded locking delay
             Scope: core/game.ts and types.ts; update declared changed immediate-lock checks.
             Depends on: T-027.
             Evidence: F2; exact normal interval, contact remainder, soft-drop independence, grounded/airborne movement, pause and single-lock discard.
+            Verified: RED observed missing post-contact timer; 50/50 unit tests, strict build and 15/15 Chromium regressions passed after chronological fall/contact implementation. Exact 999/1000 and level-two 799/800 boundaries, post-contact remainder, failed Down, soft independence, grounded preservation, airborne reset, paused freeze and one-lock discard are verified. Superseded immediate-lock tests/harness now use elapsed delay, preserving score/atomic assertions.
         - [ ] T-029 — Integrate delayed hard drop and shared landing
             Scope: core/board.ts and game.ts, ports/input, visible help and real browser coverage.
             Depends on: T-028.

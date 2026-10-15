@@ -20,6 +20,7 @@ export interface Game {
   lines: number;
   level: number;
   fallMs: number;
+  lockMs: number;
   soft: boolean;
 }
 export type Draw = () => number;

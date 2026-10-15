@@ -54,11 +54,11 @@ test("deterministic browser harness covers locking clear succession and blocked 
     s.active = { kind: "I", x: 7, y: 16, rotation: 1 };
     for (let y = 16; y < 20; y++)
       for (let x = 0; x < 9; x++) s.board[y][x] = "J";
-    s = g.act(s, "down", () => 0.2);
+    s = g.advance(s, 1000, () => 0.2);
     const cleared = s.board.flat().every((x: unknown) => x === null);
     s.board[0][4] = "T";
     s.active = { kind: "O", x: 4, y: 18, rotation: 0 };
-    s = g.act(s, "down", () => 0);
+    s = g.advance(s, 1000, () => 0);
     return { cleared, status: s.status, active: s.active, next: s.next };
   });
   expect(result).toEqual({

@@ -56,7 +56,7 @@ test("exact gravity intervals and partial remainder", () => {
   expect(s.active?.y).toBe(1);
   expect(s.fallMs).toBe(1);
 });
-test("contact alone does not lock; next failed downward attempt does", () => {
+test("contact waits one full gravity interval before lock", () => {
   let s = start(() => 0.2);
   s.active!.y = 17;
   s = advance(s, 1000, () => 0.2);
@@ -78,7 +78,7 @@ test("lock clears four rows before preview spawn and leaves input board unchange
   const s = start(() => 0.2);
   s.active = { kind: "I", x: 7, y: 16, rotation: 1 };
   for (let y = 16; y < 20; y++) for (let x = 0; x < 9; x++) s.board[y][x] = "J";
-  const n = act(s, "down", () => 0.2);
+  const n = advance(s, 1000, () => 0.2);
   expect(n.board.flat().every((v) => v === null)).toBe(true);
   expect(n.status).toBe("running");
   expect(s.board[19][0]).toBe("J");
@@ -91,11 +91,11 @@ test("game over ignores further movement and time", () => {
   expect(advance(s, 1000, () => 0)).toBe(s);
 });
 
-test("held soft drop locks on failed attempt with no cascade or drop reward", () => {
+test("held soft drop retains the full normal locking delay with no drop reward", () => {
   const s = start(() => 0.2);
   s.soft = true;
   s.active!.y = 18;
-  const n = advance(s, 500, () => 0.2);
+  const n = advance(s, 1000, () => 0.2);
   expect(n.board[19][4]).toBe("O");
   expect(n.active?.y).toBe(0);
   expect(n.fallMs).toBe(0);
@@ -119,7 +119,7 @@ test("invalid draws and score overflow are atomic", () => {
   const s = start(() => 0.2);
   s.active!.y = 18;
   const before = structuredClone(s);
-  expect(() => act(s, "down", () => 1)).toThrow();
+  expect(() => advance(s, 1000, () => 1)).toThrow();
   expect(s).toEqual(before);
   const full = start(() => 0.2);
   full.active = { kind: "I", x: 7, y: 16, rotation: 1 };
@@ -127,7 +127,7 @@ test("invalid draws and score overflow are atomic", () => {
   for (let y = 16; y < 20; y++)
     for (let x = 0; x < 9; x++) full.board[y][x] = "J";
   const original = structuredClone(full);
-  expect(() => act(full, "down", () => 0)).toThrow();
+  expect(() => advance(full, 1000, () => 0)).toThrow();
   expect(full).toEqual(original);
 });
 

@@ -18,7 +18,7 @@ test("lock reward and updated gravity integrate atomically", () => {
   s.active = { kind: "I", x: 7, y: 16, rotation: 1 };
   s.lines = 9;
   for (let y = 16; y < 20; y++) for (let x = 0; x < 9; x++) s.board[y][x] = "J";
-  const n = act(s, "down", () => 0.2);
+  const n = advance(s, 1000, () => 0.2);
   expect(n).toMatchObject({ score: 800, lines: 13, level: 2, fallMs: 0 });
   expect(advance(n, 800, () => 0.2).active?.y).toBe(1);
   expect(s.score).toBe(0);
