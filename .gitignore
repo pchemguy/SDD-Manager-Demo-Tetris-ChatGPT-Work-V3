@@ -153,3 +153,7 @@ vite.config.ts.timestamp-*
 
 # Repository credentials
 *.tkn
+
+# Browser verification output
+test-results/
+playwright-report/

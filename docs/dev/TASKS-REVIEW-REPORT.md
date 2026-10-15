@@ -53,3 +53,7 @@ No implementation, dependency installation, browser launch, test run, task issue
 ## Human TASKS decision
 
 The user accepted the complete TASKS checkpoint presented at `f3093eb6ec9ccc9e541cfadc9f5157b05687b077`. The reviewed task-list and governing content identities above remain unchanged. No implementation range is selected. Human selection of a task count, milestone, or full phase is pending; no hosted phase activation or implementation has occurred. Subsequent execution must first complete preparation integration/publication and verified phase activation under the existing authorization.
+
+## Revision 1: Tooling recovery allocation
+
+T-001 exposed invalid HTML returned by official browser downloads and unsupported archive chown. The layout adds one cohesive tooling utility, `scripts/provision-chromium.mjs`, and ignored `.cache/browser/` output. Revised layout SHA-256: `bc74c29dfa9bccaa6bd5ea735d644aebe56d35f7699f8feaa1e0efaf8a979249`. Rechecked component/path ownership, T-001 scope, delivery/acceptance and tracking gates: unchanged; no gameplay or task hierarchy amendment. Combined conformance remains Ready. The fallback verifies Chromium only; Firefox/WebKit remain required. Actual runtime observations are retained in T-001 evidence.

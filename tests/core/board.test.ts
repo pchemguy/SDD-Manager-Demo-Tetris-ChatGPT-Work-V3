@@ -1,0 +1,61 @@
+/** Placement and compaction contracts with literal board outcomes. */
+import { test, expect } from "vitest";
+import { emptyBoard, legal, settle, clearRows } from "../../src/core/board";
+test("legal cells and boundaries/overlap", () => {
+  const b = emptyBoard();
+  expect(
+    legal(b, [
+      [0, 0],
+      [9, 19],
+    ]),
+  ).toBe(true);
+  for (const c of [
+    [-1, 0],
+    [10, 0],
+    [0, -1],
+    [0, 20],
+    [0.5, 1],
+  ])
+    expect(legal(b, [c as [number, number]])).toBe(false);
+  b[0][0] = "O";
+  expect(legal(b, [[0, 0]])).toBe(false);
+});
+test("settlement copies and illegal settlement is atomic", () => {
+  const b = emptyBoard();
+  const n = settle(b, [[0, 19]], "I");
+  expect(n[19][0]).toBe("I");
+  expect(b[19][0]).toBe(null);
+  expect(() =>
+    settle(
+      n,
+      [
+        [0, 19],
+        [1, 19],
+      ],
+      "O",
+    ),
+  ).toThrow();
+  expect(n[19][1]).toBe(null);
+});
+test("simultaneous clear preserves row ordering and adds empty rows", () => {
+  const b = emptyBoard();
+  b[17][2] = "T";
+  b[18].fill("I");
+  b[19].fill("O");
+  const n = clearRows(b);
+  expect(n.cleared).toBe(2);
+  expect(n.board[19][2]).toBe("T");
+  expect(n.board[0]).toEqual(Array(10).fill(null));
+  expect(b[18][0]).toBe("I");
+});
+test("all four lines compact together; no clear retains contents", () => {
+  const b = emptyBoard();
+  for (let y = 16; y < 20; y++) b[y].fill("I");
+  expect(clearRows(b).cleared).toBe(4);
+  expect(
+    clearRows(b)
+      .board.flat()
+      .every((x) => x === null),
+  ).toBe(true);
+  expect(clearRows(emptyBoard()).cleared).toBe(0);
+});

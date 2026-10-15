@@ -66,3 +66,7 @@ Local links, heading/list spacing, tabs/credential-marker scan, whitespace, sour
 ## Human layout decision
 
 The user accepted the complete layout/tooling checkpoint at `7a61b2473a2de0e21005f81b74c79ae84b5c43a1`. Layout, PLAN, SPEC, and governing design content identities remain unchanged. This acceptance clears task derivation, not unseen TASKS, hosted projection, or implementation execution.
+
+## Revision 2: Tooling recovery allocation
+
+T-001 exposed invalid HTML returned by official browser downloads and unsupported archive chown. The layout adds one cohesive tooling utility, `scripts/provision-chromium.mjs`, and ignored `.cache/browser/` output. Revised layout SHA-256: `bc74c29dfa9bccaa6bd5ea735d644aebe56d35f7699f8feaa1e0efaf8a979249`. Rechecked component/path ownership, T-001 scope, delivery/acceptance and tracking gates: unchanged; no gameplay or task hierarchy amendment. Combined conformance remains Ready. The fallback verifies Chromium only; Firefox/WebKit remain required. Actual runtime observations are retained in T-001 evidence.
