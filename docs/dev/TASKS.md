@@ -59,7 +59,7 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-001–T-008; constituent delivery issues completed. Contracts: PLAN M1.1 exit.
             Evidence: Perform code review separately from tests; run core/session and Chromium playable regressions, repair blockers, report delivered features/demo feedback, verification and limits, and TODOs. Commit/push the report, close its issue, then close/read back M1.1.
             Verified: M1.1 code review covered all application modules, input/time/state/view boundaries, tooling, tests and partial-scope exits. Resolved formatting finding M11-F001; 26 unit tests, strict build, two Chromium integration tests and one production-preview test passed after cleanup. Screenshot inspected and retained in milestone report; no blocking M1.1 findings or optional TODOs. Scoring/advanced input and complete engine evidence remain planned later work.
-    - [ ] M1.2 — Complete game controls and progression
+    - [x] M1.2 — Complete game controls and progression
         - [x] T-010 — Implement scoring level progression and gravity scaling
             Scope: src/core/scoring.ts, transition integration, tests/core/scoring.test.ts and game sequence cases.
             Depends on: T-009; M1.1 complete/closed. Contracts: B4.
@@ -85,10 +85,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-013. Contracts: B2, B4, B6–B7.
             Evidence: Verify displayed preview exactly matches stored next piece, rendering consumes no draw, status follows core snapshot, inapplicable lifecycle actions are no-ops, and Start/Restart/Resume focus returns to game surface.
             Verified: DOM counter/availability assertion failed before completion; all 36 unit tests, strict build and four Chromium browser scenarios pass. Stored-next preview pixels, score/line/level display, Pause/Resume labels/availability, reset counters, and game-surface focus after Start/Resume are verified. Rendering remains snapshot-only and consumes no draws.
-        - [ ] T-015 — Review test and report complete controls and progression
+        - [x] T-015 — Review test and report complete controls and progression
             Scope: All M1.2 code and preserved playable path; docs/dev/reports/phases/P1/M1.2.md.
             Depends on: T-010–T-014; constituent delivery issues completed. Contracts: PLAN M1.2 exit.
             Evidence: Separate code review and deterministic/browser checks; inspect complete controls/scoring/preview demo and timing observations, repair blockers, report capabilities, evidence, limits and TODOs; publish and reconcile issue/milestone closure.
+            Verified: M1.2 code review assessed score/clear order, core versus scheduling state, repeat ordering, pause/focus lifecycle, draw-free views and actual input. All 36 unit tests, strict static build and four Chromium scenarios passed; updated screenshot inspected/retained. No blocking milestone findings or optional TODOs; modeled focus evidence and missing final engines are explicit. Updated current README/agent guidance.
     - [ ] M1.3 — Robust and usable browser experience
         - [ ] T-016 — Enforce atomic core validation and error contracts
             Scope: Core state/action/time/draw validation in src/core/game.ts and focused invalid-input tests.
