@@ -13,7 +13,7 @@ Intended commands below become executable through T-001; exact focused check sel
 ## P1 — Complete classic browser gameplay
 
 - [ ] P1 — Complete classic browser gameplay
-    - [ ] M1.1 — First playable loop
+    - [x] M1.1 — First playable loop
         - [x] T-001 — Establish reproducible build and verification facilities
             Scope: Root npm/TypeScript/Vite/Vitest/Playwright configuration and lockfile; minimal entry needed to exercise tooling, setup documentation, and generated-output exclusions.
             Depends on: none. Contracts: B8; PLAN M1.1 prerequisite.
@@ -54,10 +54,11 @@ Intended commands below become executable through T-001; exact focused check sel
             Depends on: T-007. Contracts: B1–B3; B5–B7 M1.1 subset.
             Evidence: Run Chromium browser checks and production-build smoke: real fresh-press keyboard movement/rotation, gravity, locking, clear, succession, blocked spawn, and restart. Use deterministic test fixtures for rare states without a production global setter. Inspect a play screenshot; record demo observations and incomplete SPEC scope.
             Verified: Real browser test first failed because Start left status Ready; wiring fixed it. 26 unit tests, typechecked static build, two Chromium integration tests, and one production-build browser smoke passed. Actual native keyboard movement/CW/CCW, Canvas pixels, timed falling and restart are verified; separate deterministic module harness covers clear/succession/blocked spawn. Screenshot inspected; missing arrow glyph labels replaced with words. Added vite/client CSS declarations after a typecheck failure. Remaining M1.2 functionality is not claimed.
-        - [ ] T-009 — Review test and report the first playable milestone
+        - [x] T-009 — Review test and report the first playable milestone
             Scope: All M1.1 result and dependent code; docs/dev/reports/phases/P1/M1.1.md.
             Depends on: T-001–T-008; constituent delivery issues completed. Contracts: PLAN M1.1 exit.
             Evidence: Perform code review separately from tests; run core/session and Chromium playable regressions, repair blockers, report delivered features/demo feedback, verification and limits, and TODOs. Commit/push the report, close its issue, then close/read back M1.1.
+            Verified: M1.1 code review covered all application modules, input/time/state/view boundaries, tooling, tests and partial-scope exits. Resolved formatting finding M11-F001; 26 unit tests, strict build, two Chromium integration tests and one production-preview test passed after cleanup. Screenshot inspected and retained in milestone report; no blocking M1.1 findings or optional TODOs. Scoring/advanced input and complete engine evidence remain planned later work.
     - [ ] M1.2 — Complete game controls and progression
         - [ ] T-010 — Implement scoring level progression and gravity scaling
             Scope: src/core/scoring.ts, transition integration, tests/core/scoring.test.ts and game sequence cases.
