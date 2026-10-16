@@ -1,3 +1,7 @@
+---
+url: https://chatgpt.com/c/6ad05759-4b4c-83ea-8ea6-e1f80b6da00d
+---
+
 # Browser Tetris
 
 A single-player Tetris game for desktop browsers, built with TypeScript, Canvas 2D and native HTML controls. It includes seven tetrominoes, a 10×20 board, next-piece and Hold previews, Ghost landing guide, seven-bag randomization, wall kicks, Hard drop, scoring, increasing levels, soft drop, pause/resume, restart and game over. The production build is static and needs no backend or account.
